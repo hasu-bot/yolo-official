@@ -1,0 +1,289 @@
+/* Creative YOLO 公式サイト — 「夜に、光が集まる。」（Brand Book §2 / Design System 準拠）
+   モバイル起点（〜599px）で設計し、960px〜をdesktopとする */
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  background: var(--yolo-night);
+  color: var(--yolo-paper);
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: var(--fs-body);
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: "Shippori Mincho B1", serif;
+  font-weight: 600;
+  line-height: 1.5;
+  margin: 0;
+}
+
+a { color: inherit; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.sp-only { display: inline; }
+@media (min-width: 600px) { .sp-only { display: none; } }
+.nowrap { white-space: nowrap; }
+
+/* ── skip link ── */
+.skip-link {
+  position: fixed; top: -48px; left: var(--sp-4);
+  background: var(--yolo-light); color: var(--yolo-night);
+  padding: var(--sp-2) var(--sp-4); border-radius: var(--rad-s);
+  z-index: 100; transition: top var(--dur-fast) var(--ease-out);
+}
+.skip-link:focus { top: var(--sp-4); }
+
+/* ── header ── */
+.site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--sp-4) var(--sp-6);
+  background: linear-gradient(rgba(16,16,20,.92), rgba(16,16,20,.72) 70%, transparent);
+}
+.brand { display: flex; align-items: center; gap: var(--sp-3); text-decoration: none; }
+.brand-mark {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--yolo-light);
+  box-shadow: 0 0 12px 2px rgba(240,169,44,.55);
+}
+.brand-name {
+  font-family: "Josefin Sans", sans-serif; font-weight: 600;
+  letter-spacing: .12em; font-size: var(--fs-small);
+}
+.desktop-nav { display: none; }
+@media (min-width: 960px) {
+  .desktop-nav { display: flex; gap: var(--sp-6); align-items: center; }
+  .desktop-nav a {
+    text-decoration: none; font-size: var(--fs-small);
+    color: var(--yolo-muted); transition: color var(--dur-fast) var(--ease-out);
+  }
+  .desktop-nav a:hover, .desktop-nav a:focus-visible { color: var(--yolo-paper); }
+  .desktop-nav .nav-join {
+    color: var(--yolo-night); background: var(--yolo-light);
+    padding: var(--sp-2) var(--sp-6); border-radius: var(--rad-pill);
+    font-weight: 500;
+  }
+  .desktop-nav .nav-join:hover, .desktop-nav .nav-join:focus-visible { color: var(--yolo-night); opacity: .9; }
+  .menu-button { display: none !important; }
+}
+
+.menu-button {
+  display: inline-flex; flex-direction: column; gap: 6px;
+  min-width: 44px; min-height: 44px; align-items: center; justify-content: center;
+  background: none; border: 0; cursor: pointer; padding: var(--sp-2);
+}
+.menu-button span:not(.sr-only) {
+  display: block; width: 22px; height: 1.5px;
+  background: var(--yolo-paper); transition: transform var(--dur-fast) var(--ease-out);
+}
+.menu-button[aria-expanded="true"] span:not(.sr-only):first-child { transform: translateY(4px) rotate(45deg); }
+.menu-button[aria-expanded="true"] span:not(.sr-only):last-child { transform: translateY(-3.5px) rotate(-45deg); }
+
+.mobile-nav {
+  position: fixed; inset: 0; z-index: 40;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: var(--sp-8); background: rgba(16,16,20,.97);
+  opacity: 0; pointer-events: none; transition: opacity var(--dur-base) var(--ease-out);
+}
+.mobile-nav.open { opacity: 1; pointer-events: auto; }
+.mobile-nav a {
+  text-decoration: none; font-family: "Shippori Mincho B1", serif;
+  font-size: 1.25rem;
+}
+
+/* ── buttons（Design System §2） ── */
+.button {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 44px; padding: var(--sp-3) var(--sp-8);
+  border-radius: var(--rad-pill); text-decoration: none;
+  font-weight: 500; font-size: var(--fs-body);
+  transition: opacity var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+.button:hover, .button:focus-visible { opacity: .88; transform: translateY(-1px); }
+.button-primary { background: var(--yolo-light); color: var(--yolo-night); }
+.button-secondary { border: 1px solid currentColor; color: var(--yolo-paper); }
+.button-large { padding: var(--sp-4) var(--sp-12); font-size: 1.05rem; }
+.text-link { color: var(--yolo-light); text-decoration: none; }
+.text-link:hover, .text-link:focus-visible { text-decoration: underline; }
+
+/* ── hero ── */
+.hero {
+  position: relative; min-height: 100svh;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; overflow: hidden;
+  padding: var(--sp-24) var(--sp-6) var(--sp-16);
+}
+.hero-glow {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 45% at 50% 88%, rgba(240,169,44,.28), transparent 70%),
+    radial-gradient(ellipse 40% 25% at 50% 96%, rgba(240,169,44,.35), transparent 70%),
+    radial-gradient(ellipse 90% 60% at 50% 110%, rgba(192,67,44,.12), transparent 75%);
+}
+.hero-grain {
+  position: absolute; inset: 0; opacity: .5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .03 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.hero-inner { position: relative; max-width: 720px; }
+.hero-eyebrow {
+  font-family: "Josefin Sans", sans-serif; font-size: var(--fs-label);
+  letter-spacing: .35em; color: var(--yolo-light); margin: 0 0 var(--sp-6);
+}
+.hero h1 { font-size: var(--fs-hero); letter-spacing: .04em; }
+.hero-lead { color: var(--yolo-muted); margin: var(--sp-6) 0 var(--sp-8); }
+.hero-cta { display: flex; flex-direction: column; align-items: center; gap: var(--sp-4); }
+@media (min-width: 600px) { .hero-cta { flex-direction: row; justify-content: center; gap: var(--sp-8); } }
+.hero-sub-link { color: var(--yolo-muted); text-decoration: none; font-size: var(--fs-small); }
+.hero-sub-link:hover, .hero-sub-link:focus-visible { color: var(--yolo-paper); }
+.scroll-cue {
+  position: absolute; bottom: var(--sp-6); left: 50%; transform: translateX(-50%);
+  font-family: "Josefin Sans", sans-serif; font-size: var(--fs-label);
+  letter-spacing: .3em; color: var(--yolo-muted); text-decoration: none;
+}
+
+/* ── sections ── */
+.section { padding: var(--sp-24) var(--sp-6); position: relative; }
+.section-alt { background: #15151b; }
+.section-inner { max-width: 1120px; margin: 0 auto; }
+.section-inner.narrow { max-width: 720px; }
+.kicker {
+  font-family: "Josefin Sans", sans-serif; font-size: var(--fs-label);
+  letter-spacing: .35em; text-transform: uppercase;
+  color: var(--yolo-light); margin: 0 0 var(--sp-4);
+}
+.section h2 { font-size: var(--fs-h2); margin-bottom: var(--sp-8); }
+.prose p { margin: 0 0 var(--sp-6); color: rgba(247,240,223,.86); }
+.prose-strong strong { color: var(--yolo-light); font-weight: 600; }
+.light-word {
+  color: var(--yolo-light);
+  text-shadow: 0 0 16px rgba(240,169,44,.5);
+}
+.section-cta { margin-top: var(--sp-8); }
+
+/* ── projects ── */
+.project-grid {
+  display: grid; gap: var(--sp-6); margin-top: var(--sp-8);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 600px) { .project-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 960px) { .project-grid { grid-template-columns: repeat(3, 1fr); } }
+.project-card {
+  display: flex; flex-direction: column; gap: var(--sp-3);
+  padding: var(--sp-8) var(--sp-6);
+  background: rgba(247,240,223,.04);
+  border: 1px solid rgba(247,240,223,.12);
+  border-radius: var(--rad-m); text-decoration: none;
+  transition: border-color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
+}
+.project-card:hover, .project-card:focus-visible {
+  border-color: rgba(240,169,44,.5); background: rgba(240,169,44,.06);
+}
+.card-label {
+  font-family: "Josefin Sans", sans-serif; font-size: var(--fs-label);
+  letter-spacing: .25em; color: var(--yolo-light); margin: 0;
+}
+.project-card h3 { font-size: 1.15rem; }
+.project-card p { margin: 0; font-size: var(--fs-small); color: var(--yolo-muted); line-height: 1.9; }
+.card-link { margin-top: auto; padding-top: var(--sp-3); font-size: var(--fs-small); color: var(--yolo-light); }
+
+/* ── community gallery（写真差し替え待ちのダミー：ダミーであることを隠さない） ── */
+.gallery {
+  display: grid; gap: var(--sp-4); margin-top: var(--sp-12);
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 600px) { .gallery { grid-template-columns: repeat(3, 1fr); } }
+.gallery-item {
+  margin: 0; aspect-ratio: 4 / 3; border-radius: var(--rad-s);
+  display: flex; align-items: flex-end; overflow: hidden;
+}
+.gallery-item.dummy {
+  background:
+    radial-gradient(ellipse 80% 60% at 60% 100%, rgba(240,169,44,.16), transparent 70%),
+    linear-gradient(160deg, #1a1a21, #121216);
+  border: 1px dashed rgba(247,240,223,.18);
+}
+.gallery-item.dummy figcaption {
+  width: 100%; padding: var(--sp-2) var(--sp-3);
+  font-family: "Josefin Sans", sans-serif; font-size: var(--fs-label);
+  letter-spacing: .2em; color: rgba(247,240,223,.4);
+}
+
+/* ── news ── */
+.news-list { list-style: none; margin: 0; padding: 0; }
+.news-list li {
+  display: flex; gap: var(--sp-6); align-items: baseline;
+  padding: var(--sp-4) 0;
+  border-bottom: 1px solid rgba(247,240,223,.12);
+}
+.news-list time {
+  font-family: "Josefin Sans", sans-serif; font-size: var(--fs-small);
+  color: var(--yolo-light); flex-shrink: 0; letter-spacing: .08em;
+}
+
+/* ── join ── */
+.join { overflow: hidden; text-align: center; }
+.join-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 100%, rgba(240,169,44,.18), transparent 70%);
+}
+.join .section-inner { position: relative; }
+.join-steps {
+  list-style: none; margin: 0 auto var(--sp-8); padding: 0;
+  max-width: 560px; text-align: left;
+}
+.join-steps li {
+  display: flex; gap: var(--sp-4); align-items: baseline;
+  padding: var(--sp-4) 0; border-bottom: 1px solid rgba(247,240,223,.1);
+}
+.step-num {
+  font-family: "Josefin Sans", sans-serif; font-weight: 600;
+  color: var(--yolo-light); flex-shrink: 0; font-size: 1.2rem;
+}
+.join-note { color: var(--yolo-muted); font-size: var(--fs-small); margin-bottom: var(--sp-8); }
+.join-cta { margin: 0 0 var(--sp-8); }
+.join-biz { font-size: var(--fs-small); color: var(--yolo-muted); }
+.join-biz a { color: var(--yolo-light); }
+
+/* ── footer（共通フッター：01-ECOSYSTEM-IA §3） ── */
+.site-footer {
+  border-top: 1px solid rgba(247,240,223,.12);
+  padding: var(--sp-16) var(--sp-6);
+}
+.footer-inner { max-width: 1120px; margin: 0 auto; text-align: center; }
+.footer-brand { font-family: "Shippori Mincho B1", serif; font-size: 1.05rem; margin: 0 0 var(--sp-2); }
+.footer-tagline { color: var(--yolo-muted); font-size: var(--fs-small); margin: 0 0 var(--sp-8); }
+.footer-links {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: var(--sp-4) var(--sp-6); margin-bottom: var(--sp-6);
+}
+.footer-links a {
+  font-size: var(--fs-small); color: var(--yolo-muted); text-decoration: none;
+}
+.footer-links a:hover, .footer-links a:focus-visible { color: var(--yolo-light); }
+.footer-copy { font-size: var(--fs-label); color: rgba(247,240,223,.4); margin: var(--sp-8) 0 0; }
+
+/* ── reveal motion（§3：フェード＋上方向。reduced-motionで無効）
+     JS無効環境でも内容が見えるよう、html.js の下でのみ初期非表示にする ── */
+html.js [data-reveal] {
+  opacity: 0; transform: translateY(12px);
+  transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+}
+html.js [data-reveal].is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  html.js [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .button:hover { transform: none; }
+}
+
+/* ── focus ── */
+:focus-visible { outline: 2px solid var(--yolo-light); outline-offset: 3px; }
