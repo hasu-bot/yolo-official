@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Creative YOLO ｜ 熊本のクリエイティブコミュニティ</title>
+  <meta name="description" content="熊本で写真・映像・演技・音楽を「やってみたい」人のコミュニティ。撮影会から写真展・映画祭まで、入口から発表の場までを熊本のまちなかに作っています。スマホ1台から、どうぞ。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Creative YOLO ｜ 熊本のクリエイティブコミュニティ" />
+  <meta property="og:description" content="熊本で写真・映像・演技・音楽を「やってみたい」人のコミュニティ。スマホ1台から、どうぞ。" />
+  <meta property="og:url" content="https://yolo-official.vercel.app/" />
+  <meta property="og:image" content="https://yolo-official.vercel.app/assets/ogp.png" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23101014'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23f0a92c'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600&family=Noto+Sans+JP:wght@400;500&family=Shippori+Mincho+B1:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="yolo-tokens.css" />
+  <link rel="stylesheet" href="site.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+
+  <header class="site-header" data-header>
+    <a class="brand" href="#top" aria-label="Creative YOLO トップへ">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">Creative YOLO</span>
+    </a>
+    <nav class="desktop-nav" aria-label="メインナビゲーション">
+      <a href="#about">YOLOとは</a>
+      <a href="#projects">やっていること</a>
+      <a href="#community">コミュニティ</a>
+      <a href="#news">お知らせ</a>
+      <a class="nav-join" href="#join">参加する</a>
+    </nav>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav" data-menu-button>
+      <span></span><span></span>
+      <span class="sr-only">メニュー</span>
+    </button>
+  </header>
+
+  <div class="mobile-nav" id="mobile-nav" aria-hidden="true" data-mobile-nav>
+    <a href="#about">YOLOとは</a>
+    <a href="#projects">やっていること</a>
+    <a href="#community">コミュニティ</a>
+    <a href="#news">お知らせ</a>
+    <a href="#join">参加する</a>
+  </div>
+
+  <main id="main">
+    <!-- 1. HERO -->
+    <section class="hero" id="top" aria-label="Creative YOLO">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-grain" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <p class="hero-eyebrow">CREATIVE YOLO — KUMAMOTO</p>
+        <h1><span class="nowrap">人生の主人公、</span><wbr /><span class="nowrap">やってみない？</span></h1>
+        <p class="hero-lead">熊本で、撮る・演じる・歌う・作る。<br />スマホ1台から始まるクリエイティブコミュニティ。</p>
+        <div class="hero-cta">
+          <a class="button button-primary" href="#join">Discordをのぞいてみる →</a>
+          <a class="hero-sub-link" href="#about">活動を見る ↓</a>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#about" aria-hidden="true">Scroll</a>
+    </section>
+
+    <!-- 2. YOLOとは -->
+    <section class="section" id="about">
+      <div class="section-inner narrow" data-reveal>
+        <p class="kicker">About</p>
+        <h2>才能の問題じゃない。<br class="sp-only" />場所の問題だった。</h2>
+        <div class="prose">
+          <p>撮りたい人、演じたい人、歌いたい人、作りたい人。<br />熊本にはたくさんいるのに、多くが「仲間がいない」「発表の場がない」で止まってしまう。</p>
+          <p>Creative YOLO は、その全部の受け皿です。<br />毎月の撮影会や練習会で始めて、年に一度の写真展と映画祭で発表する。<br />入口から舞台までの階段を、このまちに作っています。</p>
+          <p class="prose-strong">合言葉はひとつ。<strong>まず、投げてみよう。</strong><br />うまくなくていい。始めたことが、もう作品です。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. PROJECTS -->
+    <section class="section section-alt" id="projects">
+      <div class="section-inner" data-reveal>
+        <p class="kicker">Projects</p>
+        <h2>やっていること</h2>
+      </div>
+      <div class="project-grid section-inner">
+        <a class="project-card" href="https://hasu-bot.github.io/yolo-film-festival/" target="_blank" rel="noopener noreferrer" data-reveal>
+          <p class="card-label">FILM FESTIVAL</p>
+          <h3>あなたのまちの映画祭</h3>
+          <p>テーマは「地元」。九州の短編映画が、新市街・電気館のスクリーンに集まる。実写部門とAI部門——機材がなくても、挑戦できる。</p>
+          <span class="card-link">公式サイト →</span>
+        </a>
+        <a class="project-card" href="https://lumina-site-ecru.vercel.app/" target="_blank" rel="noopener noreferrer" data-reveal>
+          <p class="card-label">EXHIBITION</p>
+          <h3>写真映像展 lumina</h3>
+          <p>光を集める、年に一度の写真映像展。観るだけじゃない。モデルと出会い、撮影まで体験できる展示。</p>
+          <span class="card-link">公式サイト →</span>
+        </a>
+        <a class="project-card" href="https://last-call-movie.vercel.app/" target="_blank" rel="noopener noreferrer" data-reveal>
+          <p class="card-label">FILM</p>
+          <h3>映画『ラストコール』</h3>
+          <p>天草で撮った、高校最後の夏の物語。コミュニティから生まれた長編級の一本。2026年8月上映。</p>
+          <span class="card-link">公式サイト →</span>
+        </a>
+        <a class="project-card" href="https://yolo-members.vercel.app/#events" target="_blank" rel="noopener noreferrer" data-reveal>
+          <p class="card-label">MONTHLY</p>
+          <h3>撮影会・フォトウォーク</h3>
+          <p>スマホ1台でOK。まちを歩いて、撮って、見せ合う。いちばん敷居の低い入口です。</p>
+          <span class="card-link">イベント一覧 →</span>
+        </a>
+        <a class="project-card" href="https://yolo-members.vercel.app/#events" target="_blank" rel="noopener noreferrer" data-reveal>
+          <p class="card-label">MONTHLY</p>
+          <h3>演技練習会</h3>
+          <p>演じてみたい人の練習場。映画祭やMVのキャストへの道もここから。</p>
+          <span class="card-link">イベント一覧 →</span>
+        </a>
+        <a class="project-card" href="https://yolo-soudan-production.up.railway.app/" target="_blank" rel="noopener noreferrer" data-reveal>
+          <p class="card-label">FOR BUSINESS</p>
+          <h3>YOLO相談</h3>
+          <p>「撮ってほしい」「作ってほしい」はこちらへ。熊本のお店・企業の制作相談を無料で受けています。</p>
+          <span class="card-link">相談サイト →</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 4. COMMUNITY -->
+    <section class="section" id="community">
+      <div class="section-inner narrow" data-reveal>
+        <p class="kicker">Community</p>
+        <h2>いま、約100人。</h2>
+        <div class="prose">
+          <p>写真家、俳優の卵、映像作家、モデル、音楽を作る人、そして「まだ何者でもない人」。<br />10代から30代を中心に、約100名が参加しています。</p>
+          <p>ここでは順位をつけません。残すのは「参加した」という記録と、心が動いた瞬間だけ。<br />私たちはそれを<strong class="light-word">光</strong>と呼んでいます。</p>
+        </div>
+      </div>
+      <div class="gallery section-inner" aria-label="活動の様子（写真は準備中）">
+        <!-- TODO: 公開前に実際の活動写真6〜8枚へ差し替え（撮影会の背中・打ち上げ・展示設営・上映前の客席） -->
+        <figure class="gallery-item dummy" data-reveal><figcaption>Still Image / Coming Soon</figcaption></figure>
+        <figure class="gallery-item dummy" data-reveal><figcaption>Still Image / Coming Soon</figcaption></figure>
+        <figure class="gallery-item dummy" data-reveal><figcaption>Still Image / Coming Soon</figcaption></figure>
+        <figure class="gallery-item dummy" data-reveal><figcaption>Still Image / Coming Soon</figcaption></figure>
+        <figure class="gallery-item dummy" data-reveal><figcaption>Still Image / Coming Soon</figcaption></figure>
+        <figure class="gallery-item dummy" data-reveal><figcaption>Still Image / Coming Soon</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- 5. YOLO HUB 紹介 -->
+    <section class="section section-alt" id="hub">
+      <div class="section-inner narrow" data-reveal>
+        <p class="kicker">YOLO HUB</p>
+        <h2>参加すると、拠点がある。</h2>
+        <div class="prose">
+          <p><strong>YOLO HUB</strong> は、メンバーだけのホームです。<br />イベントの予定、メンバー名鑑、あなたの活動記録。<br />参加したイベントが増えるほど、あなたのページに物語が積み上がっていく。</p>
+          <p>名鑑に載ったあなたを見て、次の誰かが「依頼したい」「一緒にやりたい」と声をかける——そういう場所に育てています。</p>
+        </div>
+        <p class="section-cta"><a class="button button-secondary" href="https://yolo-members.vercel.app/" target="_blank" rel="noopener noreferrer">HUBを見てみる →</a></p>
+      </div>
+    </section>
+
+    <!-- 6. NEWS -->
+    <section class="section" id="news">
+      <div class="section-inner narrow" data-reveal>
+        <p class="kicker">News</p>
+        <h2>お知らせ</h2>
+        <ul class="news-list">
+          <li><time>2026.12</time><span>あなたのまちの映画祭 第2回、電気館で開催</span></li>
+          <li><time>2026.10</time><span>写真映像展「lumina — 光 —」開催</span></li>
+          <li><time>2026.08</time><span>映画『ラストコール』上映</span></li>
+        </ul>
+        <p class="section-cta"><a class="text-link" href="https://yolo-magazine.rencame.net" target="_blank" rel="noopener noreferrer">読みものは YOLO MAGAZINE へ →</a></p>
+      </div>
+    </section>
+
+    <!-- 7. JOIN -->
+    <section class="section join" id="join">
+      <div class="join-glow" aria-hidden="true"></div>
+      <div class="section-inner narrow" data-reveal>
+        <p class="kicker">Join</p>
+        <h2>入り方は、これだけ。</h2>
+        <ol class="join-steps">
+          <li><span class="step-num">1</span>下のボタンからDiscordに入る（無料・匿名OK）</li>
+          <li><span class="step-num">2</span>自己紹介チャンネルで、好きなものをひとつ教えてください</li>
+          <li><span class="step-num">3</span>気になるイベントに🙋を押す——それで、もう冒険が始まっています</li>
+        </ol>
+        <p class="join-note">見てるだけの参加も歓迎です。話しかけられたくない日は、黙っていて大丈夫。</p>
+        <p class="join-cta">
+          <a class="button button-primary button-large" href="#" data-discord hidden>Discordに参加する（無料）</a>
+          <a class="button button-primary button-large" href="https://www.instagram.com/creative.yolo/" target="_blank" rel="noopener noreferrer" data-discord-fallback>Instagram のDMで「参加したい」と送る</a>
+        </p>
+        <p class="join-biz">※企業・行政・メディアの方へ：ご相談・ご取材は <a href="https://yolo-soudan-production.up.railway.app/" target="_blank" rel="noopener noreferrer">こちらの窓口</a> からお願いします。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-brand">Creative YOLO — 熊本のクリエイティブコミュニティ</p>
+      <p class="footer-tagline">「人生の主人公を増やす。」</p>
+      <nav class="footer-links" aria-label="関連サイト">
+        <a href="https://yolo-members.vercel.app/" target="_blank" rel="noopener noreferrer">YOLO HUB</a>
+        <a href="https://yolo-magazine.rencame.net" target="_blank" rel="noopener noreferrer">YOLO MAGAZINE</a>
+        <a href="https://yolo-soudan-production.up.railway.app/" target="_blank" rel="noopener noreferrer">相談する</a>
+        <a href="https://hasu-bot.github.io/yolo-film-festival/" target="_blank" rel="noopener noreferrer">映画祭</a>
+        <a href="https://lumina-site-ecru.vercel.app/" target="_blank" rel="noopener noreferrer">lumina</a>
+        <a href="https://last-call-movie.vercel.app/" target="_blank" rel="noopener noreferrer">ラストコール</a>
+      </nav>
+      <nav class="footer-links footer-sns" aria-label="SNS">
+        <a href="#join" data-discord-footer>Discord</a>
+        <a href="https://www.instagram.com/creative.yolo/" target="_blank" rel="noopener noreferrer">Instagram @creative.yolo</a>
+      </nav>
+      <p class="footer-copy">© Creative YOLO</p>
+    </div>
+  </footer>
+
+  <script src="site.js"></script>
+</body>
+</html>

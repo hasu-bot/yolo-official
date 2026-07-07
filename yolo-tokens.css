@@ -1,0 +1,27 @@
+/* yolo-tokens.css — 正本: yolo-members/docs/creative-yolo/09-DESIGN-SYSTEM.md §1
+   更新はドキュメントを先に直し、6サイトへコピー反映する（SOP-7） */
+:root {
+  /* color — 層1: 夜と光（Brand Book §2） */
+  --yolo-night: #101014;
+  --yolo-light: #f0a92c;   /* HUB実装値を正とする */
+  --yolo-ember: #c0432c;   /* 映画祭実装値 */
+  --yolo-paper: #f7f0df;
+  --yolo-ink:   #1c1c22;   /* 明背景時の文字 */
+  --yolo-muted: rgba(255,255,255,.64); /* 暗背景の補助文字 */
+
+  /* spacing — 4pxベース。中間値を勝手に作らない */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+  --sp-6: 24px; --sp-8: 32px; --sp-12: 48px; --sp-16: 64px; --sp-24: 96px;
+
+  /* radius */
+  --rad-s: 6px; --rad-m: 12px; --rad-pill: 999px;
+
+  /* type scale（clampでモバイル対応） */
+  --fs-hero: clamp(2rem, 5vw, 3.5rem);
+  --fs-h2:   clamp(1.4rem, 3vw, 2rem);
+  --fs-body: 1rem;  --fs-small: .875rem; --fs-label: .75rem;
+
+  /* motion */
+  --ease-out: cubic-bezier(.22,.61,.36,1);
+  --dur-fast: 160ms; --dur-base: 320ms; --dur-slow: 640ms;
+}
