@@ -28,8 +28,8 @@
       <span class="brand-name">Creative YOLO</span>
     </a>
     <nav class="desktop-nav" aria-label="メインナビゲーション">
-      <a href="#about">YOLOとは</a>
-      <a href="#projects">やっていること</a>
+      <a href="#yolo">YOLOとは？</a>
+      <a href="#projects">クエスト</a>
       <a href="#community">コミュニティ</a>
       <a href="#news">お知らせ</a>
       <a class="nav-join" href="#join">参加する</a>
@@ -41,8 +41,8 @@
   </header>
 
   <div class="mobile-nav" id="mobile-nav" aria-hidden="true" data-mobile-nav>
-    <a href="#about">YOLOとは</a>
-    <a href="#projects">やっていること</a>
+    <a href="#yolo">YOLOとは？</a>
+    <a href="#projects">クエスト</a>
     <a href="#community">コミュニティ</a>
     <a href="#news">お知らせ</a>
     <a href="#join">参加する</a>
@@ -52,21 +52,69 @@
     <!-- 1. HERO -->
     <section class="hero" id="top" aria-label="Creative YOLO">
       <div class="hero-glow" aria-hidden="true"></div>
+      <canvas class="hero-particles" data-particles aria-hidden="true"></canvas>
       <div class="hero-grain" aria-hidden="true"></div>
+      <!-- TODO: 実写真が来たら hero-photo の background-image を差し替え -->
+      <figure class="hero-photo hero-photo-a" aria-hidden="true"><figcaption>PHOTO / COMING SOON</figcaption></figure>
+      <figure class="hero-photo hero-photo-b" aria-hidden="true"><figcaption>PHOTO / COMING SOON</figcaption></figure>
       <div class="hero-inner">
-        <p class="hero-eyebrow">CREATIVE YOLO — KUMAMOTO</p>
-        <h1><span class="nowrap">人生の主人公、</span><wbr /><span class="nowrap">やってみない？</span></h1>
-        <p class="hero-lead">熊本で、撮る・演じる・歌う・作る。<br />スマホ1台から始まるクリエイティブコミュニティ。</p>
-        <div class="hero-cta">
+        <p class="hero-eyebrow" data-stage="1">CREATIVE YOLO — KUMAMOTO</p>
+        <h1 data-stage="2"><span class="nowrap">人生の主人公、</span><wbr /><span class="nowrap">やってみない？</span></h1>
+        <p class="hero-lead" data-stage="3">熊本で、撮る・演じる・歌う・作る。<br />スマホ1台から始まるクリエイティブコミュニティ。</p>
+        <div class="hero-cta" data-stage="4">
           <a class="button button-primary" href="#join">Discordをのぞいてみる →</a>
-          <a class="hero-sub-link" href="#about">活動を見る ↓</a>
+          <a class="hero-sub-link" href="#yolo">YOLOとは？ ↓</a>
         </div>
       </div>
-      <a class="scroll-cue" href="#about" aria-hidden="true">Scroll</a>
+      <a class="scroll-cue" href="#yolo" aria-hidden="true">Scroll</a>
     </section>
 
-    <!-- 2. YOLOとは -->
-    <section class="section" id="about">
+    <!-- ことばのレール -->
+    <div class="word-rail" aria-hidden="true">
+      <div class="word-rail-track">
+        <span>撮る</span><i>✦</i><span>演じる</span><i>✦</i><span>歌う</span><i>✦</i><span>作る</span><i>✦</i><span>光を集める</span><i>✦</i>
+        <span>撮る</span><i>✦</i><span>演じる</span><i>✦</i><span>歌う</span><i>✦</i><span>作る</span><i>✦</i><span>光を集める</span><i>✦</i>
+      </div>
+    </div>
+
+    <!-- 2. YOLOとは？（言葉の意味から） -->
+    <section class="section yolo-meaning" id="yolo">
+      <div class="section-inner" data-reveal>
+        <p class="kicker">What is YOLO?</p>
+        <h2>YOLOとは？</h2>
+      </div>
+      <div class="acronym section-inner" aria-label="YOLO = You Only Live Once">
+        <div class="acronym-letter" data-reveal><b>Y</b><span>You</span></div>
+        <div class="acronym-letter" data-reveal><b>O</b><span>Only</span></div>
+        <div class="acronym-letter" data-reveal><b>L</b><span>Live</span></div>
+        <div class="acronym-letter" data-reveal><b>O</b><span>Once</span></div>
+      </div>
+      <div class="section-inner narrow" data-reveal>
+        <p class="yolo-line">——人生は、一度きり。</p>
+        <div class="prose">
+          <p>一度きりの人生を、観客席で終わらせない。<br />わたしたちはこの言葉を、無謀のいいわけではなく、<strong class="light-word-plain">始めることの理由</strong>として使います。</p>
+        </div>
+      </div>
+      <div class="rpg-block section-inner narrow" data-reveal>
+        <p class="rpg-lead">だから、YOLOは写真コミュニティでも、映画コミュニティでもありません。</p>
+        <p class="rpg-declare"><span class="nowrap">熊本を舞台にした、</span><wbr /><span class="nowrap">現実世界の<em>RPG</em>です。</span></p>
+        <ul class="rpg-roles">
+          <li><span class="rpg-key">参加者は</span><strong>冒険者</strong></li>
+          <li><span class="rpg-key">イベントは</span><strong>クエスト</strong></li>
+          <li><span class="rpg-key">写真展・映画祭は</span><strong>年に一度の祭典</strong></li>
+        </ul>
+        <p class="rpg-note">日常を冒険に変えて、参加した人の人生が、より濃く、より面白くなること。<br />写真も映画も音楽も、ぜんぶそのための手段です。</p>
+      </div>
+      <!-- TODO: 実写真が来たら差し替え（冒険＝撮影会・上映・展示の瞬間） -->
+      <div class="photo-strip section-inner" aria-label="活動写真（準備中）">
+        <figure class="photo-frame tilt-l" data-reveal><figcaption>QUEST PHOTO / COMING SOON</figcaption></figure>
+        <figure class="photo-frame" data-reveal><figcaption>QUEST PHOTO / COMING SOON</figcaption></figure>
+        <figure class="photo-frame tilt-r" data-reveal><figcaption>QUEST PHOTO / COMING SOON</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- 3. 場所の問題 -->
+    <section class="section section-alt" id="about">
       <div class="section-inner narrow" data-reveal>
         <p class="kicker">About</p>
         <h2>才能の問題じゃない。<br class="sp-only" />場所の問題だった。</h2>
@@ -79,43 +127,49 @@
     </section>
 
     <!-- 3. PROJECTS -->
-    <section class="section section-alt" id="projects">
+    <section class="section" id="projects">
       <div class="section-inner" data-reveal>
         <p class="kicker">Projects</p>
         <h2>やっていること</h2>
       </div>
       <div class="project-grid section-inner">
         <a class="project-card" href="https://hasu-bot.github.io/yolo-film-festival/" target="_blank" rel="noopener noreferrer" data-reveal>
+          <figure class="card-photo" aria-hidden="true"><figcaption>PHOTO / COMING SOON</figcaption></figure>
           <p class="card-label">FILM FESTIVAL</p>
           <h3>あなたのまちの映画祭</h3>
           <p>テーマは「地元」。九州の短編映画が、新市街・電気館のスクリーンに集まる。実写部門とAI部門——機材がなくても、挑戦できる。</p>
           <span class="card-link">公式サイト →</span>
         </a>
         <a class="project-card" href="https://lumina-site-ecru.vercel.app/" target="_blank" rel="noopener noreferrer" data-reveal>
+          <figure class="card-photo" aria-hidden="true"><figcaption>PHOTO / COMING SOON</figcaption></figure>
           <p class="card-label">EXHIBITION</p>
           <h3>写真映像展 lumina</h3>
           <p>光を集める、年に一度の写真映像展。観るだけじゃない。モデルと出会い、撮影まで体験できる展示。</p>
           <span class="card-link">公式サイト →</span>
         </a>
         <a class="project-card" href="https://last-call-movie.vercel.app/" target="_blank" rel="noopener noreferrer" data-reveal>
+          <figure class="card-photo" aria-hidden="true"><figcaption>PHOTO / COMING SOON</figcaption></figure>
           <p class="card-label">FILM</p>
           <h3>映画『ラストコール』</h3>
           <p>天草で撮った、高校最後の夏の物語。コミュニティから生まれた長編級の一本。2026年8月上映。</p>
           <span class="card-link">公式サイト →</span>
         </a>
         <a class="project-card" href="https://yolo-members.vercel.app/#events" target="_blank" rel="noopener noreferrer" data-reveal>
+          <figure class="card-photo" aria-hidden="true"><figcaption>PHOTO / COMING SOON</figcaption></figure>
           <p class="card-label">MONTHLY</p>
           <h3>撮影会・フォトウォーク</h3>
           <p>スマホ1台でOK。まちを歩いて、撮って、見せ合う。いちばん敷居の低い入口です。</p>
           <span class="card-link">イベント一覧 →</span>
         </a>
         <a class="project-card" href="https://yolo-members.vercel.app/#events" target="_blank" rel="noopener noreferrer" data-reveal>
+          <figure class="card-photo" aria-hidden="true"><figcaption>PHOTO / COMING SOON</figcaption></figure>
           <p class="card-label">MONTHLY</p>
           <h3>演技練習会</h3>
           <p>演じてみたい人の練習場。映画祭やMVのキャストへの道もここから。</p>
           <span class="card-link">イベント一覧 →</span>
         </a>
         <a class="project-card" href="https://yolo-soudan-production.up.railway.app/" target="_blank" rel="noopener noreferrer" data-reveal>
+          <figure class="card-photo" aria-hidden="true"><figcaption>PHOTO / COMING SOON</figcaption></figure>
           <p class="card-label">FOR BUSINESS</p>
           <h3>YOLO相談</h3>
           <p>「撮ってほしい」「作ってほしい」はこちらへ。熊本のお店・企業の制作相談を無料で受けています。</p>
@@ -125,7 +179,7 @@
     </section>
 
     <!-- 4. COMMUNITY -->
-    <section class="section" id="community">
+    <section class="section section-alt" id="community">
       <div class="section-inner narrow" data-reveal>
         <p class="kicker">Community</p>
         <h2>いま、約100人。</h2>
@@ -146,7 +200,7 @@
     </section>
 
     <!-- 5. YOLO HUB 紹介 -->
-    <section class="section section-alt" id="hub">
+    <section class="section" id="hub">
       <div class="section-inner narrow" data-reveal>
         <p class="kicker">YOLO HUB</p>
         <h2>参加すると、拠点がある。</h2>
@@ -159,7 +213,7 @@
     </section>
 
     <!-- 6. NEWS -->
-    <section class="section" id="news">
+    <section class="section section-alt" id="news">
       <div class="section-inner narrow" data-reveal>
         <p class="kicker">News</p>
         <h2>お知らせ</h2>
