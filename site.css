@@ -287,3 +287,155 @@ html.js [data-reveal].is-visible { opacity: 1; transform: none; }
 
 /* ── focus ── */
 :focus-visible { outline: 2px solid var(--yolo-light); outline-offset: 3px; }
+
+/* ═══ ワクワク改修（YOLOとは？先頭化・RPG世界観・写真仮枠） ═══ */
+
+/* ── hero 読み込み演出（段階フェード。reduced-motionで無効） ── */
+html.js .hero [data-stage] {
+  opacity: 0; transform: translateY(14px);
+  animation: stage-in var(--dur-slow) var(--ease-out) forwards;
+}
+html.js .hero [data-stage="1"] { animation-delay: 120ms; }
+html.js .hero [data-stage="2"] { animation-delay: 320ms; }
+html.js .hero [data-stage="3"] { animation-delay: 640ms; }
+html.js .hero [data-stage="4"] { animation-delay: 900ms; }
+@keyframes stage-in { to { opacity: 1; transform: none; } }
+
+/* ── 光の粒子 ── */
+.hero-particles { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* ── hero 写真仮枠（実写真が来たら background-image を設定） ── */
+.hero-photo {
+  position: absolute; margin: 0; z-index: 1;
+  border: 1px solid rgba(247,240,223,.2);
+  border-radius: var(--rad-s);
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 100%, rgba(240,169,44,.2), transparent 70%),
+    linear-gradient(155deg, #1d1d25, #131318);
+  box-shadow: 0 12px 40px rgba(0,0,0,.5);
+  display: flex; align-items: flex-end;
+  background-size: cover; background-position: center;
+}
+.hero-photo figcaption {
+  width: 100%; padding: var(--sp-2) var(--sp-3);
+  font-family: "Josefin Sans", sans-serif; font-size: 10px;
+  letter-spacing: .22em; color: rgba(247,240,223,.38);
+}
+.hero-photo-a { width: 180px; aspect-ratio: 3/4; left: 4%; bottom: 16%; transform: rotate(-5deg); }
+.hero-photo-b { width: 200px; aspect-ratio: 4/3; right: 4%; top: 20%; transform: rotate(4deg); }
+@media (max-width: 959px) { .hero-photo { display: none; } }
+html.js .hero-photo { opacity: 0; animation: stage-in var(--dur-slow) var(--ease-out) 1100ms forwards; }
+
+/* ── ことばのレール ── */
+.word-rail {
+  overflow: hidden; border-top: 1px solid rgba(240,169,44,.25); border-bottom: 1px solid rgba(240,169,44,.25);
+  background: rgba(240,169,44,.05); padding: var(--sp-3) 0;
+}
+.word-rail-track {
+  display: flex; gap: var(--sp-8); width: max-content;
+  font-family: "Shippori Mincho B1", serif; font-size: 1rem; letter-spacing: .2em;
+  color: rgba(247,240,223,.75); white-space: nowrap;
+  animation: rail-scroll 28s linear infinite;
+}
+.word-rail-track i { font-style: normal; color: var(--yolo-light); }
+@keyframes rail-scroll { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .word-rail-track { animation: none; } }
+
+/* ── YOLOとは？ ── */
+.yolo-meaning { text-align: center; overflow: hidden; }
+.yolo-meaning h2 { margin-bottom: var(--sp-12); }
+.acronym {
+  display: flex; justify-content: center; gap: clamp(12px, 4vw, 48px);
+  margin-bottom: var(--sp-12);
+}
+.acronym-letter b {
+  display: block;
+  font-family: "Josefin Sans", sans-serif; font-weight: 600;
+  font-size: clamp(3rem, 11vw, 7rem); line-height: 1;
+  color: var(--yolo-light);
+  text-shadow: 0 0 32px rgba(240,169,44,.45);
+}
+.acronym-letter span {
+  display: block; margin-top: var(--sp-2);
+  font-family: "Josefin Sans", sans-serif; font-size: var(--fs-label);
+  letter-spacing: .3em; color: var(--yolo-muted); text-transform: uppercase;
+}
+/* 1文字ずつ順に灯る */
+html.js .acronym-letter { transition-delay: 0ms; }
+html.js .acronym-letter:nth-child(2) { transition-delay: 140ms; }
+html.js .acronym-letter:nth-child(3) { transition-delay: 280ms; }
+html.js .acronym-letter:nth-child(4) { transition-delay: 420ms; }
+.yolo-line {
+  font-family: "Shippori Mincho B1", serif; font-size: clamp(1.2rem, 3vw, 1.6rem);
+  margin: 0 0 var(--sp-6);
+}
+.light-word-plain { color: var(--yolo-light); }
+
+.rpg-block { margin-top: var(--sp-12); }
+.rpg-lead { color: var(--yolo-muted); margin: 0 0 var(--sp-4); }
+.rpg-declare {
+  font-family: "Shippori Mincho B1", serif; font-weight: 600;
+  font-size: clamp(1.5rem, 4.5vw, 2.4rem); line-height: 1.6; margin: 0 0 var(--sp-8);
+}
+.rpg-declare em {
+  font-style: normal; color: var(--yolo-light);
+  text-shadow: 0 0 24px rgba(240,169,44,.5);
+  font-family: "Josefin Sans", sans-serif; letter-spacing: .06em;
+}
+.rpg-roles {
+  list-style: none; margin: 0 auto var(--sp-8); padding: 0;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: var(--sp-3);
+}
+.rpg-roles li {
+  border: 1px solid rgba(240,169,44,.4); border-radius: var(--rad-pill);
+  padding: var(--sp-2) var(--sp-6); font-size: var(--fs-small);
+  background: rgba(240,169,44,.06);
+}
+.rpg-roles .rpg-key { color: var(--yolo-muted); margin-right: var(--sp-2); }
+.rpg-roles strong { color: var(--yolo-light); font-weight: 600; }
+.rpg-note { color: rgba(247,240,223,.86); margin: 0; }
+
+/* ── 写真ストリップ（仮枠） ── */
+.photo-strip {
+  display: flex; justify-content: center; gap: var(--sp-6);
+  margin-top: var(--sp-16); flex-wrap: wrap;
+}
+.photo-frame {
+  margin: 0; width: min(260px, 80vw); aspect-ratio: 4/3;
+  border: 1px solid rgba(247,240,223,.18); border-radius: var(--rad-s);
+  background:
+    radial-gradient(ellipse 80% 60% at 55% 100%, rgba(240,169,44,.18), transparent 70%),
+    linear-gradient(160deg, #1b1b22, #121216);
+  box-shadow: 0 10px 32px rgba(0,0,0,.45);
+  display: flex; align-items: flex-end;
+  background-size: cover; background-position: center;
+}
+.photo-frame figcaption {
+  width: 100%; padding: var(--sp-2) var(--sp-3);
+  font-family: "Josefin Sans", sans-serif; font-size: 10px;
+  letter-spacing: .22em; color: rgba(247,240,223,.38);
+}
+.photo-frame.tilt-l { transform: rotate(-2.5deg); }
+.photo-frame.tilt-r { transform: rotate(2.5deg); }
+
+/* ── プロジェクトカードの写真スロット ── */
+.card-photo {
+  margin: calc(var(--sp-8) * -1) calc(var(--sp-6) * -1) 0;
+  aspect-ratio: 16/9;
+  border-radius: var(--rad-m) var(--rad-m) 0 0;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 100%, rgba(240,169,44,.14), transparent 70%),
+    linear-gradient(160deg, #1c1c23, #131317);
+  border-bottom: 1px solid rgba(247,240,223,.1);
+  display: flex; align-items: flex-end;
+  background-size: cover; background-position: center;
+  margin-bottom: var(--sp-4);
+}
+.card-photo figcaption {
+  width: 100%; padding: var(--sp-2) var(--sp-3);
+  font-family: "Josefin Sans", sans-serif; font-size: 10px;
+  letter-spacing: .22em; color: rgba(247,240,223,.34);
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js .hero [data-stage], html.js .hero-photo { animation: none; opacity: 1; transform: none; }
+}
