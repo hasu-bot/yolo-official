@@ -21,6 +21,8 @@
 </head>
 <body>
   <a class="skip-link" href="#main">本文へ移動</a>
+  <div class="ambient-glow" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"></div>
 
   <header class="site-header" data-header>
     <a class="brand" href="#top" aria-label="Creative YOLO トップへ">
@@ -54,6 +56,8 @@
       <div class="hero-glow" aria-hidden="true"></div>
       <canvas class="hero-particles" data-particles aria-hidden="true"></canvas>
       <div class="hero-grain" aria-hidden="true"></div>
+      <div class="hero-letterbox hero-letterbox-top" aria-hidden="true"></div>
+      <div class="hero-letterbox hero-letterbox-bottom" aria-hidden="true"></div>
       <!-- TODO: 実写真が来たら hero-photo の background-image を差し替え -->
       <figure class="hero-photo hero-photo-a" aria-hidden="true"><figcaption>PHOTO / COMING SOON</figcaption></figure>
       <figure class="hero-photo hero-photo-b" aria-hidden="true"><figcaption>PHOTO / COMING SOON</figcaption></figure>
@@ -80,14 +84,18 @@
     <!-- 2. YOLOとは？（言葉の意味から） -->
     <section class="section yolo-meaning" id="yolo">
       <div class="section-inner" data-reveal>
-        <p class="kicker">What is YOLO?</p>
+        <p class="kicker"><span class="kicker-num" aria-hidden="true">01</span>What is YOLO?</p>
         <h2>YOLOとは？</h2>
       </div>
-      <div class="acronym section-inner" aria-label="YOLO = You Only Live Once">
-        <div class="acronym-letter" data-reveal><b>Y</b><span>You</span></div>
-        <div class="acronym-letter" data-reveal><b>O</b><span>Only</span></div>
-        <div class="acronym-letter" data-reveal><b>L</b><span>Live</span></div>
-        <div class="acronym-letter" data-reveal><b>O</b><span>Once</span></div>
+      <div class="acronym-stage" data-acronym-stage>
+        <div class="acronym-pin">
+          <div class="acronym section-inner" aria-label="YOLO = You Only Live Once">
+            <div class="acronym-letter" data-reveal><b>Y</b><span>You</span></div>
+            <div class="acronym-letter" data-reveal><b>O</b><span>Only</span></div>
+            <div class="acronym-letter" data-reveal><b>L</b><span>Live</span></div>
+            <div class="acronym-letter" data-reveal><b>O</b><span>Once</span></div>
+          </div>
+        </div>
       </div>
       <div class="section-inner narrow" data-reveal>
         <p class="yolo-line">——人生は、一度きり。</p>
@@ -116,7 +124,7 @@
     <!-- 3. 場所の問題 -->
     <section class="section section-alt" id="about">
       <div class="section-inner narrow" data-reveal>
-        <p class="kicker">About</p>
+        <p class="kicker"><span class="kicker-num" aria-hidden="true">02</span>About</p>
         <h2>才能の問題じゃない。<br class="sp-only" />場所の問題だった。</h2>
         <div class="prose">
           <p>撮りたい人、演じたい人、歌いたい人、作りたい人。<br />熊本にはたくさんいるのに、多くが「仲間がいない」「発表の場がない」で止まってしまう。</p>
@@ -129,7 +137,7 @@
     <!-- 3. PROJECTS -->
     <section class="section" id="projects">
       <div class="section-inner" data-reveal>
-        <p class="kicker">Projects</p>
+        <p class="kicker"><span class="kicker-num" aria-hidden="true">03</span>Projects</p>
         <h2>やっていること</h2>
       </div>
       <div class="project-grid section-inner">
@@ -181,7 +189,7 @@
     <!-- 4. COMMUNITY -->
     <section class="section section-alt" id="community">
       <div class="section-inner narrow" data-reveal>
-        <p class="kicker">Community</p>
+        <p class="kicker"><span class="kicker-num" aria-hidden="true">04</span>Community</p>
         <h2>いま、約100人。</h2>
         <div class="prose">
           <p>写真家、俳優の卵、映像作家、モデル、音楽を作る人、そして「まだ何者でもない人」。<br />10代から30代を中心に、約100名が参加しています。</p>
@@ -202,7 +210,7 @@
     <!-- 5. YOLO HUB 紹介 -->
     <section class="section" id="hub">
       <div class="section-inner narrow" data-reveal>
-        <p class="kicker">YOLO HUB</p>
+        <p class="kicker"><span class="kicker-num" aria-hidden="true">05</span>YOLO HUB</p>
         <h2>参加すると、拠点がある。</h2>
         <div class="prose">
           <p><strong>YOLO HUB</strong> は、メンバーだけのホームです。<br />イベントの予定、メンバー名鑑、あなたの活動記録。<br />参加したイベントが増えるほど、あなたのページに物語が積み上がっていく。</p>
@@ -215,7 +223,7 @@
     <!-- 6. NEWS -->
     <section class="section section-alt" id="news">
       <div class="section-inner narrow" data-reveal>
-        <p class="kicker">News</p>
+        <p class="kicker"><span class="kicker-num" aria-hidden="true">06</span>News</p>
         <h2>お知らせ</h2>
         <ul class="news-list">
           <li><time>2026.12</time><span>あなたのまちの映画祭 第2回、電気館で開催</span></li>
@@ -230,7 +238,7 @@
     <section class="section join" id="join">
       <div class="join-glow" aria-hidden="true"></div>
       <div class="section-inner narrow" data-reveal>
-        <p class="kicker">Join</p>
+        <p class="kicker"><span class="kicker-num" aria-hidden="true">07</span>Join</p>
         <h2>入り方は、これだけ。</h2>
         <ol class="join-steps">
           <li><span class="step-num">1</span>下のボタンからDiscordに入る（無料・匿名OK）</li>

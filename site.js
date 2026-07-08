@@ -126,3 +126,85 @@ const DISCORD_INVITE_URL = "";
     }).observe(canvas);
   }
 })();
+
+/* ── スクロール進捗・アンビエントグロー・ヒーローパララックス
+   （scroll-drivenのシーン演出。reduced-motion では何も動かさない） ── */
+(function () {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  var root = document.documentElement;
+  var hero = document.querySelector(".hero");
+  var photoA = document.querySelector(".hero-photo-a");
+  var photoB = document.querySelector(".hero-photo-b");
+  var heroVisible = true;
+  var ticking = false;
+
+  function update() {
+    ticking = false;
+    var max = root.scrollHeight - root.clientHeight;
+    var progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+    root.style.setProperty("--scroll-progress", progress.toFixed(4));
+
+    if (heroVisible && hero && (photoA || photoB)) {
+      var passed = -hero.getBoundingClientRect().top;
+      if (photoA) photoA.style.setProperty("--parallax-y", (passed * 0.12).toFixed(1) + "px");
+      if (photoB) photoB.style.setProperty("--parallax-y", (passed * -0.2).toFixed(1) + "px");
+    }
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+  update();
+
+  if (hero && "IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      heroVisible = entries[0].isIntersecting;
+    }).observe(hero);
+  }
+})();
+
+/* ── YOLOアクロニム：スクロール量に応じて1文字ずつ点灯（tablet以上・JS有効時のみ）
+   モバイル・reduced-motion・IntersectionObserver非対応環境では data-reveal をそのまま残し、
+   通常の一発リビール（stage.jsの先頭ブロック）にフォールバックする ── */
+(function () {
+  var stage = document.querySelector("[data-acronym-stage]");
+  var letters = stage ? Array.prototype.slice.call(stage.querySelectorAll(".acronym-letter")) : [];
+  if (!stage || !letters.length) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (!window.matchMedia("(min-width: 600px)").matches) return;
+  if (!("IntersectionObserver" in window)) return;
+
+  stage.classList.add("is-scrubbing");
+  letters.forEach(function (el) {
+    el.removeAttribute("data-reveal");
+    el.classList.remove("is-visible");
+  });
+
+  var active = false;
+
+  function tick() {
+    if (!active) return;
+    var rect = stage.getBoundingClientRect();
+    var total = rect.height - window.innerHeight;
+    var progress = total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 0;
+    letters.forEach(function (el, i) {
+      var start = i * 0.2;
+      var lp = Math.min(1, Math.max(0, (progress - start) / 0.22));
+      el.style.setProperty("--lp", lp.toFixed(3));
+    });
+    requestAnimationFrame(tick);
+  }
+
+  new IntersectionObserver(function (entries) {
+    var wasActive = active;
+    active = entries[0].isIntersecting;
+    if (active && !wasActive) tick();
+  }, { threshold: 0 }).observe(stage);
+})();

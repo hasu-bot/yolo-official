@@ -2,8 +2,10 @@
    モバイル起点（〜599px）で設計し、960px〜をdesktopとする */
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 [hidden] { display: none !important; }
+
+:root { --scroll-progress: 0; }
 
 body {
   margin: 0;
@@ -42,6 +44,22 @@ a { color: inherit; }
   z-index: 100; transition: top var(--dur-fast) var(--ease-out);
 }
 .skip-link:focus { top: var(--sp-4); }
+
+/* ── アンビエントグロー（「夜に光が集まる」をスクロール全体の物語として可視化。reduced-motionでは無効） ── */
+.ambient-glow {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(ellipse 70% 55% at 50% 100%, rgba(240,169,44,.35), transparent 70%);
+  opacity: calc(var(--scroll-progress, 0) * .9);
+}
+@media (prefers-reduced-motion: reduce) { .ambient-glow { display: none; } }
+
+/* ── スクロール進捗バー（フィルムストリップ。reduced-motionでは常にscaleX(0)で実質非表示） ── */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 60;
+  transform: scaleX(var(--scroll-progress, 0)); transform-origin: left;
+  background: linear-gradient(90deg, var(--yolo-ember), var(--yolo-light));
+  pointer-events: none;
+}
 
 /* ── header ── */
 .site-header {
@@ -161,6 +179,11 @@ a { color: inherit; }
   letter-spacing: .35em; text-transform: uppercase;
   color: var(--yolo-light); margin: 0 0 var(--sp-4);
 }
+.kicker-num {
+  display: inline-block; margin-right: var(--sp-3);
+  padding: 1px var(--sp-2); border: 1px solid rgba(240,169,44,.4); border-radius: var(--rad-s);
+  font-size: 10px; letter-spacing: .1em; color: var(--yolo-muted); vertical-align: middle;
+}
 .section h2 { font-size: var(--fs-h2); margin-bottom: var(--sp-8); }
 .prose p { margin: 0 0 var(--sp-6); color: rgba(247,240,223,.86); }
 .prose-strong strong { color: var(--yolo-light); font-weight: 600; }
@@ -217,6 +240,8 @@ a { color: inherit; }
   font-family: "Josefin Sans", sans-serif; font-size: var(--fs-label);
   letter-spacing: .2em; color: rgba(247,240,223,.4);
 }
+html.js .gallery-item[data-reveal] { transform: translateY(12px) scale(.92); }
+html.js .gallery-item[data-reveal].is-visible { transform: scale(1); }
 
 /* ── news ── */
 .news-list { list-style: none; margin: 0; padding: 0; }
@@ -321,10 +346,27 @@ html.js .hero [data-stage="4"] { animation-delay: 900ms; }
   font-family: "Josefin Sans", sans-serif; font-size: 10px;
   letter-spacing: .22em; color: rgba(247,240,223,.38);
 }
-.hero-photo-a { width: 180px; aspect-ratio: 3/4; left: 4%; bottom: 16%; transform: rotate(-5deg); }
-.hero-photo-b { width: 200px; aspect-ratio: 4/3; right: 4%; top: 20%; transform: rotate(4deg); }
+.hero-photo-a { width: 180px; aspect-ratio: 3/4; left: 4%; bottom: 16%; transform: rotate(-5deg) translateY(var(--parallax-y, 0px)); }
+.hero-photo-b { width: 200px; aspect-ratio: 4/3; right: 4%; top: 20%; transform: rotate(4deg) translateY(var(--parallax-y, 0px)); }
 @media (max-width: 959px) { .hero-photo { display: none; } }
-html.js .hero-photo { opacity: 0; animation: stage-in var(--dur-slow) var(--ease-out) 1100ms forwards; }
+/* stage-in ではなく専用キーフレームを使う：transform を触らないことで、上のrotate+パララックスが常に有効なままにする */
+html.js .hero-photo { opacity: 0; animation: hero-photo-in var(--dur-slow) var(--ease-out) 1100ms forwards; }
+@keyframes hero-photo-in { to { opacity: 1; } }
+
+/* ── ヒーローのレターボックス（映画が始まる開幕カット。reduced-motionでは非表示） ── */
+.hero-letterbox {
+  position: absolute; left: 0; right: 0; z-index: 2;
+  height: clamp(24px, 8vh, 80px);
+  background: var(--yolo-night);
+  pointer-events: none;
+}
+.hero-letterbox-top { top: 0; transform-origin: top; }
+.hero-letterbox-bottom { bottom: 0; transform-origin: bottom; }
+html.js .hero-letterbox { animation: letterbox-open var(--dur-slow) var(--ease-out) 1500ms forwards; }
+@keyframes letterbox-open { to { transform: scaleY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  html.js .hero-letterbox { animation: none; display: none; }
+}
 
 /* ── ことばのレール ── */
 .word-rail {
@@ -342,7 +384,9 @@ html.js .hero-photo { opacity: 0; animation: stage-in var(--dur-slow) var(--ease
 @media (prefers-reduced-motion: reduce) { .word-rail-track { animation: none; } }
 
 /* ── YOLOとは？ ── */
-.yolo-meaning { text-align: center; overflow: hidden; }
+/* overflowは付与しない（overflow-xのみの指定でもUAがoverflow-yをautoに昇格させ、
+   position:stickyのスクラブ演出が無効化されてしまうため。横方向のクリップは html 側で担う） */
+.yolo-meaning { text-align: center; }
 .yolo-meaning h2 { margin-bottom: var(--sp-12); }
 .acronym {
   display: flex; justify-content: center; gap: clamp(12px, 4vw, 48px);
@@ -360,11 +404,28 @@ html.js .hero-photo { opacity: 0; animation: stage-in var(--dur-slow) var(--ease
   font-family: "Josefin Sans", sans-serif; font-size: var(--fs-label);
   letter-spacing: .3em; color: var(--yolo-muted); text-transform: uppercase;
 }
-/* 1文字ずつ順に灯る */
+/* 1文字ずつ順に灯る（モバイル・reduced-motion時のフォールバック：一発リビール） */
 html.js .acronym-letter { transition-delay: 0ms; }
 html.js .acronym-letter:nth-child(2) { transition-delay: 140ms; }
 html.js .acronym-letter:nth-child(3) { transition-delay: 280ms; }
 html.js .acronym-letter:nth-child(4) { transition-delay: 420ms; }
+
+/* ── YOLOアクロニムのピン留めスクラブ（tablet以上・JS有効時のみ。§4計画）
+     JS が data-reveal を外して .is-scrubbing を付与し、--lp をスクロール量に応じて更新する ── */
+@media (min-width: 600px) {
+  html.js .acronym-stage.is-scrubbing { height: 190vh; }
+  html.js .acronym-stage.is-scrubbing .acronym-pin {
+    position: sticky; top: 0; min-height: 100vh;
+    display: flex; align-items: center;
+  }
+  html.js .acronym-stage.is-scrubbing .acronym-letter {
+    opacity: var(--lp, 0);
+    transform: translateY(calc((1 - var(--lp, 0)) * 18px));
+  }
+  html.js .acronym-stage.is-scrubbing .acronym-letter b {
+    text-shadow: 0 0 calc(var(--lp, 0) * 32px) rgba(240, 169, 44, calc(var(--lp, 0) * .45));
+  }
+}
 .yolo-line {
   font-family: "Shippori Mincho B1", serif; font-size: clamp(1.2rem, 3vw, 1.6rem);
   margin: 0 0 var(--sp-6);
@@ -417,6 +478,13 @@ html.js .acronym-letter:nth-child(4) { transition-delay: 420ms; }
 }
 .photo-frame.tilt-l { transform: rotate(-2.5deg); }
 .photo-frame.tilt-r { transform: rotate(2.5deg); }
+/* リビール時、ポラロイドを置くように回転+拡大で着地させる（data-revealの標準フェードを拡張） */
+html.js .photo-frame.tilt-l[data-reveal] { transform: translateY(12px) rotate(0deg) scale(.94); }
+html.js .photo-frame.tilt-l[data-reveal].is-visible { transform: rotate(-2.5deg) scale(1); }
+html.js .photo-frame.tilt-r[data-reveal] { transform: translateY(12px) rotate(0deg) scale(.94); }
+html.js .photo-frame.tilt-r[data-reveal].is-visible { transform: rotate(2.5deg) scale(1); }
+html.js .photo-frame:not(.tilt-l):not(.tilt-r)[data-reveal] { transform: translateY(12px) scale(.94); }
+html.js .photo-frame:not(.tilt-l):not(.tilt-r)[data-reveal].is-visible { transform: scale(1); }
 
 /* ── プロジェクトカードの写真スロット ── */
 .card-photo {
@@ -438,4 +506,22 @@ html.js .acronym-letter:nth-child(4) { transition-delay: 420ms; }
 }
 @media (prefers-reduced-motion: reduce) {
   html.js .hero [data-stage], html.js .hero-photo { animation: none; opacity: 1; transform: none; }
+}
+
+/* ── セクションの「カメラが落ち着く」演出（対応ブラウザのみの追加装飾。data-revealと競合しないよう
+     section-innerではなくsection自体にscale/明るさで付与する）
+     .yolo-meaningは除外：親要素のtransformはposition:stickyの基準をおかしくし、
+     アクロニムのピン留めスクラブ演出を壊してしまうため ── */
+@supports (animation-timeline: view()) {
+  @media (min-width: 600px) and (prefers-reduced-motion: no-preference) {
+    .section:not(.hero):not(.yolo-meaning) {
+      animation: section-settle linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 35%;
+    }
+  }
+  @keyframes section-settle {
+    from { transform: scale(1.02); filter: brightness(.85); }
+    to { transform: scale(1); filter: brightness(1); }
+  }
 }
