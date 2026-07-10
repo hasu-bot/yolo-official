@@ -1,38 +1,24 @@
 /*
  * Creative YOLO 公式サイト 共通JS
  *
- * ▼▼▼ 公開前に必ず設定（1箇所だけ）▼▼▼
- * Discord の招待URL（https://discord.gg/xxxx）を下の定数に入れると、
- * JOIN の大ボタンとフッターの Discord リンクが実URLに切り替わります。
- * 空のままの間は、Instagram DM 経由の参加案内が表示されます
- * （プレースホルダーリンクを公開しないため：04-UX-AUDIT P0 の教訓）。
+ * ▼▼▼ 参加導線のURLはここ（1箇所だけ）で管理 ▼▼▼
+ * 参加の入口は公式LINE。Discordへは LINE の案内から誘導する
+ * （LINEアカウントを変更したら下の定数を差し替えると、
+ *   JOIN の大ボタンとフッターの LINE リンクがすべて切り替わります）。
  * ▲▲▲
  */
-const DISCORD_INVITE_URL = "";
+const LINE_OFFICIAL_URL = "https://line.me/R/ti/p/@140irxqh";
 
 (function () {
   // reveal はJSが動く環境でのみ初期非表示にする（no-JSフォールバック）
   document.documentElement.classList.add("js");
 
-  // Discord リンクの解決
-  var joinButton = document.querySelector("[data-discord]");
-  var fallbackButton = document.querySelector("[data-discord-fallback]");
-  var footerLink = document.querySelector("[data-discord-footer]");
-
-  if (DISCORD_INVITE_URL) {
-    if (joinButton) {
-      joinButton.href = DISCORD_INVITE_URL;
-      joinButton.hidden = false;
-      joinButton.target = "_blank";
-      joinButton.rel = "noopener noreferrer";
-    }
-    if (fallbackButton) fallbackButton.hidden = true;
-    if (footerLink) {
-      footerLink.href = DISCORD_INVITE_URL;
-      footerLink.target = "_blank";
-      footerLink.rel = "noopener noreferrer";
-    }
-  }
+  // LINE リンクの解決（HTML側の href は実URLのフォールバック）
+  document.querySelectorAll("[data-line]").forEach(function (link) {
+    link.href = LINE_OFFICIAL_URL;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+  });
 
   // モバイルメニュー
   var menuButton = document.querySelector("[data-menu-button]");
