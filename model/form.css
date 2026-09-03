@@ -7,11 +7,11 @@
 .form-section {
   display: grid;
   gap: 1.05rem;
-  padding: 1.4rem;
-  border: 1px solid rgba(255,255,255,.12);
+  padding: 1.45rem;
+  border: 1px solid rgba(25,25,25,.1);
   border-radius: 18px;
-  background: rgba(255,255,255,.035);
-  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,.62);
+  box-shadow: 0 18px 40px rgba(35,30,20,.035);
 }
 
 .form-section h3 {
@@ -19,6 +19,7 @@
   font-family: "Shippori Mincho B1", serif;
   font-size: clamp(1.05rem, 2.5vw, 1.3rem);
   font-weight: 500;
+  color: #191919;
 }
 
 .form-grid {
@@ -41,11 +42,12 @@
   font-size: .88rem;
   font-weight: 500;
   letter-spacing: .02em;
+  color: #242424;
 }
 
 .form-required {
   margin-left: .35rem;
-  color: #f0a92c;
+  color: #a86a05;
   font-size: .72rem;
 }
 
@@ -57,14 +59,19 @@
 .application-form textarea {
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid rgba(255,255,255,.16);
+  border: 1px solid rgba(25,25,25,.15);
   border-radius: 12px;
-  background: rgba(8,8,12,.72);
-  color: #f7f4ec;
+  background: rgba(255,255,255,.82);
+  color: #191919;
   font: inherit;
-  padding: .82rem .9rem;
+  padding: .84rem .92rem;
   outline: none;
   transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.application-form input::placeholder,
+.application-form textarea::placeholder {
+  color: rgba(25,25,25,.38);
 }
 
 .application-form textarea {
@@ -76,14 +83,14 @@
 .application-form input:focus,
 .application-form select:focus,
 .application-form textarea:focus {
-  border-color: rgba(240,169,44,.8);
-  box-shadow: 0 0 0 3px rgba(240,169,44,.12);
-  background: rgba(12,12,18,.9);
+  border-color: rgba(168,106,5,.72);
+  box-shadow: 0 0 0 3px rgba(240,169,44,.14);
+  background: #fff;
 }
 
 .form-help {
   margin: 0;
-  color: rgba(255,255,255,.6);
+  color: rgba(25,25,25,.54);
   font-size: .78rem;
   line-height: 1.65;
 }
@@ -99,8 +106,10 @@
   align-items: center;
   gap: .45rem;
   padding: .65rem .8rem;
-  border: 1px solid rgba(255,255,255,.14);
+  border: 1px solid rgba(25,25,25,.13);
   border-radius: 999px;
+  background: rgba(255,255,255,.55);
+  color: #242424;
   cursor: pointer;
 }
 
@@ -119,16 +128,17 @@
   gap: .55rem;
   min-height: 150px;
   padding: 1rem;
-  border: 1px dashed rgba(255,255,255,.25);
+  border: 1px dashed rgba(25,25,25,.24);
   border-radius: 15px;
-  background: rgba(255,255,255,.025);
+  background: rgba(255,255,255,.42);
+  color: #242424;
 }
 
 .photo-field input[type="file"] {
   width: 100%;
   font: inherit;
   font-size: .82rem;
-  color: rgba(255,255,255,.78);
+  color: rgba(25,25,25,.72);
 }
 
 .consent-box {
@@ -137,8 +147,9 @@
   align-items: flex-start;
   padding: 1rem;
   border-radius: 12px;
-  background: rgba(240,169,44,.08);
-  border: 1px solid rgba(240,169,44,.22);
+  background: rgba(240,169,44,.11);
+  border: 1px solid rgba(168,106,5,.2);
+  color: #2a261f;
   font-size: .86rem;
   line-height: 1.7;
 }
@@ -167,16 +178,17 @@
   line-height: 1.6;
 }
 
-.form-status[data-state="error"] { color: #ffb4b4; }
-.form-status[data-state="success"] { color: #d7f5c3; }
+.form-status[data-state="error"] { color: #a53434; }
+.form-status[data-state="success"] { color: #426a28; }
 
 .form-success {
   margin-top: 2rem;
   padding: 2rem 1.4rem;
-  border: 1px solid rgba(240,169,44,.3);
+  border: 1px solid rgba(168,106,5,.24);
   border-radius: 18px;
-  background: rgba(240,169,44,.07);
+  background: rgba(240,169,44,.1);
   text-align: center;
+  color: #191919;
 }
 
 .form-success h3 {
@@ -188,7 +200,7 @@
 .form-success p {
   margin: .4rem 0 0;
   line-height: 1.8;
-  color: rgba(255,255,255,.78);
+  color: rgba(25,25,25,.68);
 }
 
 .form-honeypot {
