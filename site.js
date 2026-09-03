@@ -20,10 +20,85 @@ const LINE_OFFICIAL_URL = "https://line.me/R/ti/p/@140irxqh";
     link.rel = "noopener noreferrer";
   });
 
-  // 公式トップからモデル・俳優応募ページへたどれる導線を追加
+  // 公式トップのみ、明るいエディトリアル方向＋現在のYOLOに合わせたコピーへ
   var path = window.location.pathname;
   var isHome = path === "/" || path.endsWith("/index.html");
   if (isHome) {
+    document.body.classList.add("home-light");
+
+    var homeTheme = document.createElement("link");
+    homeTheme.rel = "stylesheet";
+    homeTheme.href = "/home-light.css";
+    document.head.appendChild(homeTheme);
+
+    function setText(selector, text) {
+      var el = document.querySelector(selector);
+      if (el) el.textContent = text;
+    }
+    function setHTML(selector, html) {
+      var el = document.querySelector(selector);
+      if (el) el.innerHTML = html;
+    }
+
+    // ナビ：RPG用語は前面に出さず、初見でも意味が通る言葉へ
+    document.querySelectorAll('a[href="#projects"]').forEach(function (el) {
+      el.textContent = "活動";
+    });
+
+    // HERO
+    setHTML('.hero h1', '<span class="nowrap">「やってみたい」を、</span><wbr /><span class="nowrap">ここから。</span>');
+    setHTML('.hero-lead', '熊本で、撮る・演じる・歌う・作る。<br />仲間と出会い、挑戦を作品にしていくクリエイティブコミュニティ。');
+    setText('.hero-cta .button-primary', 'コミュニティをのぞいてみる →');
+
+    // 言葉のレール
+    var rail = document.querySelector('.word-rail-track');
+    if (rail) {
+      rail.innerHTML = '<span>撮る</span><i>✦</i><span>演じる</span><i>✦</i><span>歌う</span><i>✦</i><span>作る</span><i>✦</i><span>出会う</span><i>✦</i><span>発表する</span><i>✦</i>' +
+        '<span>撮る</span><i>✦</i><span>演じる</span><i>✦</i><span>歌う</span><i>✦</i><span>作る</span><i>✦</i><span>出会う</span><i>✦</i><span>発表する</span><i>✦</i>';
+    }
+
+    // YOLOとは？：RPGは世界観の裏側に残し、まず活動の意味が伝わるようにする
+    setText('.rpg-lead', 'YOLOは、写真だけの場所でも、映画だけの場所でもありません。');
+    setHTML('.rpg-declare', '<span class="nowrap">「やってみたい」を、</span><wbr /><span class="nowrap"><em>作品と経験</em>に変える場所です。</span>');
+    setHTML('.rpg-roles',
+      '<li><span class="rpg-key">まずは</span><strong>小さく始める</strong></li>' +
+      '<li><span class="rpg-key">そこで</span><strong>仲間と出会う</strong></li>' +
+      '<li><span class="rpg-key">できたものを</span><strong>発表する</strong></li>'
+    );
+    setHTML('.rpg-note', '撮影会、演技練習、映画制作、展示、映画祭。<br />活動の形は違っても、中心にあるのは誰かの「やってみたい」です。');
+
+    // About
+    var aboutParas = document.querySelectorAll('#about .prose p');
+    if (aboutParas[0]) aboutParas[0].innerHTML = '撮りたい人、演じたい人、歌いたい人、作りたい人。<br />熊本にはたくさんいるのに、「仲間がいない」「きっかけがない」「発表する場所がない」で止まってしまうことがあります。';
+    if (aboutParas[1]) aboutParas[1].innerHTML = 'Creative YOLOは、その最初の一歩を始める場所です。<br />撮影会や練習会で試して、作品をつくり、写真展や映画祭で届ける。<br />やってみたいと思った人が、次へ進める道をこのまちにつくっています。';
+    if (aboutParas[2]) aboutParas[2].innerHTML = '大切にしているのは、<strong>まず、やってみること。</strong><br />経験がなくても大丈夫。最初の一歩から、一緒に始められます。';
+
+    // 演技練習会：仕事を保証するように見えない表現へ
+    var projectCards = document.querySelectorAll('.project-card');
+    projectCards.forEach(function (card) {
+      var title = card.querySelector('h3');
+      var body = card.querySelector('p:not(.card-label)');
+      if (title && body && title.textContent.trim() === '演技練習会') {
+        body.textContent = '演じてみたい人が、実際に声を出し、身体を動かして試せる練習の場。作品づくりにつながることもあります。';
+      }
+    });
+
+    // Community：抽象的な「光」説明より、参加のしやすさを先に伝える
+    var communityParas = document.querySelectorAll('#community .prose p');
+    if (communityParas[0]) communityParas[0].innerHTML = '写真を撮る人、俳優を目指す人、映像をつくる人、モデル、音楽をつくる人、そして「まだ何をやるか決まっていない人」。<br />10代から30代を中心に、約100名が参加しています。';
+    if (communityParas[1]) communityParas[1].innerHTML = '経験や肩書きより、何かを「やってみたい」と思っていることを大切にしています。<br />まずは見るだけでも、イベントに1回だけ参加してみるところからでも大丈夫です。';
+
+    // HUB
+    var hubParas = document.querySelectorAll('#hub .prose p');
+    if (hubParas[0]) hubParas[0].innerHTML = '<strong>YOLO HUB</strong> は、メンバーのための活動拠点です。<br />イベント予定、メンバー情報、これまでの参加履歴などをまとめて確認できます。';
+    if (hubParas[1]) hubParas[1].textContent = '活動を続けるほど、自分が何をしてきたのかが残り、次の企画や新しいつながりにつながっていく場所を目指しています。';
+
+    // JOIN
+    var joinSteps = document.querySelectorAll('.join-steps li');
+    if (joinSteps[2]) joinSteps[2].innerHTML = '<span class="step-num">3</span>気になるイベントや活動があれば、まず一度参加してみてください';
+    setText('.join-note', 'まずは見るだけでも大丈夫です。自分のペースで参加できます。');
+
+    // 公式トップからモデル・俳優応募ページへたどれる導線を追加
     var desktopNav = document.querySelector(".desktop-nav");
     var desktopJoin = desktopNav && desktopNav.querySelector(".nav-join");
     if (desktopNav && desktopJoin && !desktopNav.querySelector('[href="/model/"]')) {
@@ -103,8 +178,9 @@ const LINE_OFFICIAL_URL = "https://line.me/R/ti/p/@140irxqh";
   }
 })();
 
-/* ── 光の粒子（「光」の哲学の可視化。reduced-motion では描画しない） ── */
+/* ── 光の粒子（暗い世界観ページのみ。公式トップの明るいテーマでは停止） ── */
 (function () {
+  if (document.body.classList.contains("home-light")) return;
   var canvas = document.querySelector("[data-particles]");
   if (!canvas || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   var ctx = canvas.getContext("2d");
