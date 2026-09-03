@@ -236,9 +236,49 @@ body.home-light {
 }
 
 @media (max-width: 599px) {
-  .home-light .hero { padding-top: 8.5rem; }
-  .home-light .hero h1 { font-size: clamp(2.8rem, 14vw, 4.4rem); line-height: 1.22; }
-  .home-light .hero-lead { font-size: .98rem; line-height: 1.9; }
+  .home-light .hero {
+    min-height: 100svh;
+    padding: 7.5rem 1.25rem 4.5rem;
+    align-items: center;
+  }
+  .home-light .hero-inner {
+    width: 100%;
+    max-width: none;
+  }
+  .home-light .hero-eyebrow {
+    margin-bottom: 1.25rem;
+    font-size: .68rem;
+    letter-spacing: .22em;
+    line-height: 1.5;
+  }
+  .home-light .hero h1 {
+    font-size: clamp(1.9rem, 8vw, 2.2rem);
+    line-height: 1.35;
+    letter-spacing: 0;
+  }
+  .home-light .hero h1 .nowrap {
+    display: block;
+    white-space: nowrap;
+  }
+  .home-light .hero-lead {
+    max-width: 22rem;
+    margin: 1.5rem 0 1.75rem;
+    font-size: .94rem;
+    line-height: 1.85;
+  }
+  .home-light .hero-cta {
+    width: 100%;
+    gap: .75rem;
+  }
+  .home-light .hero-cta .button {
+    width: 100%;
+    max-width: 320px;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  .home-light .hero-sub-link {
+    font-size: .8rem;
+  }
   .home-light .word-rail-track { font-size: .88rem; }
   .home-light #news { padding-top: 3.5rem; padding-bottom: 3.5rem; }
 }
