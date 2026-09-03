@@ -1,0 +1,183 @@
+/* Creative YOLO official homepage — light editorial direction */
+body.home-light {
+  background: #f5f1e8;
+  color: #1b1b1b;
+}
+
+.home-light .site-header {
+  background: rgba(248,245,238,.9);
+  border-bottom: 1px solid rgba(20,20,20,.08);
+  backdrop-filter: blur(14px);
+  color: #1b1b1b;
+}
+.home-light .brand-name { color: #1b1b1b; }
+.home-light .desktop-nav a { color: rgba(27,27,27,.62); }
+.home-light .desktop-nav a:hover,
+.home-light .desktop-nav a:focus-visible { color: #1b1b1b; }
+.home-light .desktop-nav .nav-join {
+  background: #f0a92c;
+  color: #171717;
+}
+.home-light .menu-button span:not(.sr-only) { background: #1b1b1b; }
+.home-light .mobile-nav {
+  background: rgba(248,245,238,.98);
+  color: #1b1b1b;
+}
+.home-light .mobile-nav a { color: #1b1b1b; }
+
+.home-light .hero {
+  min-height: 100svh;
+  background:
+    radial-gradient(circle at 78% 18%, rgba(240,169,44,.17), transparent 27%),
+    radial-gradient(circle at 14% 78%, rgba(196,153,81,.08), transparent 28%),
+    #f8f5ee;
+  color: #191919;
+}
+.home-light .hero-glow {
+  background:
+    radial-gradient(ellipse 60% 42% at 50% 92%, rgba(240,169,44,.15), transparent 72%);
+}
+.home-light .hero-grain { opacity: .14; mix-blend-mode: multiply; }
+.home-light .hero-particles { display: none; }
+.home-light .hero-inner { max-width: 760px; }
+.home-light .hero-eyebrow { color: #9d6205; }
+.home-light .hero h1 {
+  color: #171717;
+  font-weight: 500;
+  letter-spacing: .02em;
+}
+.home-light .hero-lead { color: rgba(25,25,25,.66); }
+.home-light .hero-sub-link { color: rgba(25,25,25,.55); }
+.home-light .hero-sub-link:hover,
+.home-light .hero-sub-link:focus-visible { color: #191919; }
+.home-light .scroll-cue { color: rgba(25,25,25,.42); }
+
+.home-light .hero-photo {
+  border-color: rgba(25,25,25,.11);
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 100%, rgba(240,169,44,.13), transparent 72%),
+    linear-gradient(155deg, #d9d2c7, #bdb5aa);
+  box-shadow: 0 18px 44px rgba(30,27,20,.13);
+}
+.home-light .hero-photo figcaption { color: rgba(25,25,25,.4); }
+
+.home-light .word-rail {
+  border-color: rgba(157,98,5,.18);
+  background: #eee7db;
+}
+.home-light .word-rail-track { color: rgba(25,25,25,.64); }
+.home-light .word-rail-track i { color: #a86a05; }
+
+.home-light .section {
+  background: #f8f5ee;
+  color: #1c1c1c;
+}
+.home-light .section-alt { background: #eee8dd; }
+.home-light .kicker { color: #9d6205; }
+.home-light .section h2 { color: #191919; font-weight: 500; }
+.home-light .prose p { color: rgba(25,25,25,.72); }
+.home-light .prose strong,
+.home-light .prose-strong strong,
+.home-light .light-word,
+.home-light .light-word-plain { color: #9d6205; text-shadow: none; }
+
+.home-light .button-primary { background: #f0a92c; color: #171717; }
+.home-light .button-secondary {
+  border-color: rgba(25,25,25,.28);
+  color: #1b1b1b;
+  background: transparent;
+}
+.home-light .text-link { color: #9d6205; }
+
+.home-light .yolo-meaning { background: #f8f5ee; }
+.home-light .acronym-letter b { color: #b17412; text-shadow: none; }
+.home-light .acronym-letter span { color: rgba(25,25,25,.46); }
+.home-light .yolo-line { color: #242424; }
+.home-light .rpg-lead { color: rgba(25,25,25,.56); }
+.home-light .rpg-declare { color: #1d1d1d; }
+.home-light .rpg-declare em { color: #a86a05; text-shadow: none; }
+.home-light .rpg-roles li {
+  border-color: rgba(25,25,25,.13);
+  background: rgba(255,255,255,.58);
+}
+.home-light .rpg-roles .rpg-key { color: rgba(25,25,25,.5); }
+.home-light .rpg-roles strong { color: #1b1b1b; }
+.home-light .rpg-note { color: rgba(25,25,25,.7); }
+
+.home-light .photo-frame,
+.home-light .gallery-item.dummy,
+.home-light .card-photo {
+  border-color: rgba(25,25,25,.11);
+  background:
+    radial-gradient(ellipse 80% 65% at 55% 100%, rgba(240,169,44,.12), transparent 72%),
+    linear-gradient(160deg, #d9d3c9, #bbb3a8);
+  box-shadow: 0 12px 32px rgba(31,28,20,.08);
+}
+.home-light .photo-frame figcaption,
+.home-light .gallery-item.dummy figcaption,
+.home-light .card-photo figcaption { color: rgba(25,25,25,.38); }
+
+.home-light .project-card {
+  background: #fcfaf6;
+  border-color: rgba(25,25,25,.1);
+  box-shadow: 0 14px 32px rgba(31,28,20,.035);
+}
+.home-light .project-card:hover,
+.home-light .project-card:focus-visible {
+  border-color: rgba(168,106,5,.38);
+  background: #fffdf8;
+}
+.home-light .card-label,
+.home-light .card-link { color: #9d6205; }
+.home-light .project-card h3 { color: #1b1b1b; }
+.home-light .project-card p { color: rgba(25,25,25,.63); }
+
+.home-light .news-list li { border-bottom-color: rgba(25,25,25,.12); }
+.home-light .news-list time { color: #9d6205; }
+
+.home-light #community { background: #eee8dd; }
+.home-light #hub { background: #f8f5ee; }
+.home-light #news { background: #eee8dd; }
+
+/* Keep one strong dark scene for the final invitation. */
+.home-light .join {
+  background: #171719;
+  color: #f7f3e9;
+}
+.home-light .join .kicker { color: #f0a92c; }
+.home-light .join h2 { color: #f7f3e9; }
+.home-light .join-glow {
+  background: radial-gradient(ellipse 60% 50% at 50% 100%, rgba(240,169,44,.16), transparent 72%);
+}
+.home-light .join-steps li { border-bottom-color: rgba(247,243,233,.11); }
+.home-light .join .step-num { color: #f0a92c; }
+.home-light .join-note,
+.home-light .join-biz { color: rgba(247,243,233,.6); }
+.home-light .join-biz a { color: #f0a92c; }
+
+.home-light .site-footer {
+  background: #f8f5ee;
+  color: #1b1b1b;
+  border-top-color: rgba(25,25,25,.1);
+}
+.home-light .footer-tagline,
+.home-light .footer-links a { color: rgba(25,25,25,.55); }
+.home-light .footer-links a:hover,
+.home-light .footer-links a:focus-visible { color: #9d6205; }
+.home-light .footer-copy { color: rgba(25,25,25,.34); }
+
+.home-light :focus-visible { outline-color: #b17412; }
+
+@media (max-width: 959px) {
+  .home-light .hero { text-align: left; }
+  .home-light .hero-inner { max-width: 680px; }
+  .home-light .hero-cta { align-items: flex-start; }
+  .home-light .scroll-cue { display: none; }
+}
+
+@media (max-width: 599px) {
+  .home-light .hero { padding-top: 8.5rem; }
+  .home-light .hero h1 { font-size: clamp(2.8rem, 14vw, 4.4rem); line-height: 1.22; }
+  .home-light .hero-lead { font-size: .98rem; line-height: 1.9; }
+  .home-light .word-rail-track { font-size: .88rem; }
+}
