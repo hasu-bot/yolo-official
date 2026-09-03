@@ -34,8 +34,7 @@ body.home-light {
   color: #191919;
 }
 .home-light .hero-glow {
-  background:
-    radial-gradient(ellipse 60% 42% at 50% 92%, rgba(240,169,44,.15), transparent 72%);
+  background: radial-gradient(ellipse 60% 42% at 50% 92%, rgba(240,169,44,.15), transparent 72%);
 }
 .home-light .hero-grain { opacity: .14; mix-blend-mode: multiply; }
 .home-light .hero-particles { display: none; }
@@ -54,12 +53,18 @@ body.home-light {
 
 .home-light .hero-photo {
   border-color: rgba(25,25,25,.11);
-  background:
-    radial-gradient(ellipse 90% 70% at 50% 100%, rgba(240,169,44,.13), transparent 72%),
-    linear-gradient(155deg, #d9d2c7, #bdb5aa);
+  background: linear-gradient(155deg, #d9d2c7, #bdb5aa);
   box-shadow: 0 18px 44px rgba(30,27,20,.13);
+  background-size: cover;
+  background-position: center;
 }
-.home-light .hero-photo figcaption { color: rgba(25,25,25,.4); }
+.home-light .hero-photo-a {
+  background-image: url("https://raw.githubusercontent.com/hasu-bot/last-call-movie/main/img/gallery-2.jpg");
+}
+.home-light .hero-photo-b {
+  background-image: url("https://raw.githubusercontent.com/hasu-bot/lumina-site/main/assets/past-03.jpg");
+}
+.home-light .hero-photo figcaption { display: none; }
 
 .home-light .word-rail {
   border-color: rgba(157,98,5,.18);
@@ -67,6 +72,20 @@ body.home-light {
 }
 .home-light .word-rail-track { color: rgba(25,25,25,.64); }
 .home-light .word-rail-track i { color: #a86a05; }
+
+.home-light main {
+  display: flex;
+  flex-direction: column;
+}
+.home-light .hero { order: 1; }
+.home-light .word-rail { order: 2; }
+.home-light #news { order: 3; }
+.home-light #yolo { order: 4; }
+.home-light #about { order: 5; }
+.home-light #projects { order: 6; }
+.home-light #community { order: 7; }
+.home-light #hub { order: 8; }
+.home-light #join { order: 9; }
 
 .home-light .section {
   background: #f8f5ee;
@@ -108,14 +127,23 @@ body.home-light {
 .home-light .gallery-item.dummy,
 .home-light .card-photo {
   border-color: rgba(25,25,25,.11);
-  background:
-    radial-gradient(ellipse 80% 65% at 55% 100%, rgba(240,169,44,.12), transparent 72%),
-    linear-gradient(160deg, #d9d3c9, #bbb3a8);
+  background-size: cover;
+  background-position: center;
   box-shadow: 0 12px 32px rgba(31,28,20,.08);
 }
 .home-light .photo-frame figcaption,
 .home-light .gallery-item.dummy figcaption,
-.home-light .card-photo figcaption { color: rgba(25,25,25,.38); }
+.home-light .card-photo figcaption { display: none; }
+
+.home-light .photo-strip .photo-frame:nth-child(1) {
+  background-image: url("https://raw.githubusercontent.com/hasu-bot/lumina-site/main/assets/past-01.jpg");
+}
+.home-light .photo-strip .photo-frame:nth-child(2) {
+  background-image: url("https://raw.githubusercontent.com/hasu-bot/last-call-movie/main/img/gallery-3.jpg");
+}
+.home-light .photo-strip .photo-frame:nth-child(3) {
+  background-image: url("https://raw.githubusercontent.com/hasu-bot/yolo-film-festival/main/assets/hero-2025.jpg");
+}
 
 .home-light .project-card {
   background: #fcfaf6;
@@ -131,13 +159,45 @@ body.home-light {
 .home-light .card-link { color: #9d6205; }
 .home-light .project-card h3 { color: #1b1b1b; }
 .home-light .project-card p { color: rgba(25,25,25,.63); }
+.home-light .project-grid .project-card:nth-child(1) .card-photo {
+  background-image: url("https://raw.githubusercontent.com/hasu-bot/yolo-film-festival/main/assets/hero-wide.jpg");
+}
+.home-light .project-grid .project-card:nth-child(2) .card-photo {
+  background-image: url("https://raw.githubusercontent.com/hasu-bot/lumina-site/main/assets/past-01.jpg");
+}
+.home-light .project-grid .project-card:nth-child(3) .card-photo {
+  background-image: url("https://raw.githubusercontent.com/hasu-bot/last-call-movie/main/img/gallery-1.jpg");
+}
+
+.home-light .gallery .gallery-item:nth-child(1) {
+  background-image: url("https://raw.githubusercontent.com/hasu-bot/last-call-movie/main/img/gallery-2.jpg");
+}
+.home-light .gallery .gallery-item:nth-child(2) {
+  background-image: url("https://raw.githubusercontent.com/hasu-bot/lumina-site/main/assets/past-02.jpg");
+}
+.home-light .gallery .gallery-item:nth-child(3) {
+  background-image: url("https://raw.githubusercontent.com/hasu-bot/yolo-film-festival/main/assets/hero-2025.jpg");
+}
+.home-light .gallery .gallery-item:nth-child(4) {
+  background-image: url("https://raw.githubusercontent.com/hasu-bot/last-call-movie/main/img/gallery-4.jpg");
+}
+.home-light .gallery .gallery-item:nth-child(5) {
+  background-image: url("https://raw.githubusercontent.com/hasu-bot/lumina-site/main/assets/past-04.jpg");
+}
+.home-light .gallery .gallery-item:nth-child(6) {
+  background-image: url("https://raw.githubusercontent.com/hasu-bot/yolo-film-festival/main/assets/still-03.jpg");
+}
 
 .home-light .news-list li { border-bottom-color: rgba(25,25,25,.12); }
 .home-light .news-list time { color: #9d6205; }
-
+.home-light #news {
+  background: #eee8dd;
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
+}
+.home-light #news h2 { margin-bottom: var(--sp-6); }
 .home-light #community { background: #eee8dd; }
 .home-light #hub { background: #f8f5ee; }
-.home-light #news { background: #eee8dd; }
 
 /* Keep one strong dark scene for the final invitation. */
 .home-light .join {
@@ -180,4 +240,5 @@ body.home-light {
   .home-light .hero h1 { font-size: clamp(2.8rem, 14vw, 4.4rem); line-height: 1.22; }
   .home-light .hero-lead { font-size: .98rem; line-height: 1.9; }
   .home-light .word-rail-track { font-size: .88rem; }
+  .home-light #news { padding-top: 3.5rem; padding-bottom: 3.5rem; }
 }
