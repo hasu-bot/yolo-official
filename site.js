@@ -156,3 +156,24 @@ const LINE_OFFICIAL_URL = "https://line.me/R/ti/p/@140irxqh";
     }).observe(canvas);
   }
 })();
+
+/* ── モデル・俳優応募フォーム（JS利用時はDM案内をフォームへ置き換える） ── */
+(function () {
+  var entryHost = document.querySelector('.model-entry .model-wrap');
+  if (!entryHost) return;
+
+  var formCss = document.createElement('link');
+  formCss.rel = 'stylesheet';
+  formCss.href = './form.css';
+  document.head.appendChild(formCss);
+
+  var sdk = document.createElement('script');
+  sdk.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.114.0/dist/umd/supabase.min.js';
+  sdk.crossOrigin = 'anonymous';
+  sdk.onload = function () {
+    var formScript = document.createElement('script');
+    formScript.src = './form.js';
+    document.body.appendChild(formScript);
+  };
+  document.head.appendChild(sdk);
+})();
