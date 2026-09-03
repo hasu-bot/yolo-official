@@ -20,6 +20,50 @@ const LINE_OFFICIAL_URL = "https://line.me/R/ti/p/@140irxqh";
     link.rel = "noopener noreferrer";
   });
 
+  // 公式トップからモデル・俳優応募ページへたどれる導線を追加
+  var path = window.location.pathname;
+  var isHome = path === "/" || path.endsWith("/index.html");
+  if (isHome) {
+    var desktopNav = document.querySelector(".desktop-nav");
+    var desktopJoin = desktopNav && desktopNav.querySelector(".nav-join");
+    if (desktopNav && desktopJoin && !desktopNav.querySelector('[href="/model/"]')) {
+      var desktopModelLink = document.createElement("a");
+      desktopModelLink.href = "/model/";
+      desktopModelLink.textContent = "モデル・俳優募集";
+      desktopNav.insertBefore(desktopModelLink, desktopJoin);
+    }
+
+    var mobileNavRoot = document.querySelector("[data-mobile-nav]");
+    var mobileJoin = mobileNavRoot && mobileNavRoot.querySelector('a[href="#join"]');
+    if (mobileNavRoot && mobileJoin && !mobileNavRoot.querySelector('[href="/model/"]')) {
+      var mobileModelLink = document.createElement("a");
+      mobileModelLink.href = "/model/";
+      mobileModelLink.textContent = "モデル・俳優募集";
+      mobileNavRoot.insertBefore(mobileModelLink, mobileJoin);
+    }
+
+    var communityInner = document.querySelector("#community .section-inner.narrow");
+    if (communityInner && !communityInner.querySelector("[data-model-entry-link]")) {
+      var modelCta = document.createElement("p");
+      modelCta.className = "section-cta";
+      modelCta.setAttribute("data-model-entry-link", "");
+      var modelButton = document.createElement("a");
+      modelButton.className = "button button-secondary";
+      modelButton.href = "/model/";
+      modelButton.textContent = "モデル・俳優として応募する →";
+      modelCta.appendChild(modelButton);
+      communityInner.appendChild(modelCta);
+    }
+
+    var footerLinks = document.querySelector(".site-footer .footer-links");
+    if (footerLinks && !footerLinks.querySelector('[href="/model/"]')) {
+      var footerModelLink = document.createElement("a");
+      footerModelLink.href = "/model/";
+      footerModelLink.textContent = "モデル・俳優募集";
+      footerLinks.appendChild(footerModelLink);
+    }
+  }
+
   // モバイルメニュー
   var menuButton = document.querySelector("[data-menu-button]");
   var mobileNav = document.querySelector("[data-mobile-nav]");
