@@ -11,7 +11,6 @@
   padding-top: clamp(5rem, 8vw, 8rem);
   padding-bottom: clamp(5rem, 8vw, 8rem);
 }
-
 .home-light .talent-entry::before {
   content: "TALENT";
   position: absolute;
@@ -25,7 +24,6 @@
   color: rgba(27,27,27,.035);
   pointer-events: none;
 }
-
 .home-light .talent-shell {
   position: relative;
   display: grid;
@@ -33,25 +31,15 @@
   gap: clamp(3rem, 7vw, 7rem);
   align-items: center;
 }
-
-.home-light .talent-copy {
-  position: relative;
-  z-index: 2;
-  max-width: 520px;
-}
-
-.home-light .talent-entry .kicker {
-  margin-bottom: .75rem;
-}
-
+.home-light .talent-copy { position: relative; z-index: 2; max-width: 520px; }
+.home-light .talent-entry .kicker { margin-bottom: .75rem; }
 .home-light .talent-overline {
   margin: 0 0 1.25rem;
   font-family: "Josefin Sans", sans-serif;
   font-size: .72rem;
   letter-spacing: .22em;
-  color: rgba(27,27,27,.42);
+  color: rgba(27,27,27,.52);
 }
-
 .home-light .talent-entry h2 {
   margin: 0 0 1.5rem;
   font-size: clamp(2.6rem, 5vw, 5rem);
@@ -59,68 +47,51 @@
   letter-spacing: -.025em;
   font-weight: 500;
 }
-
 .home-light .talent-lead {
   margin: 0 0 1.6rem;
   max-width: 30rem;
   font-size: 1.03rem;
   line-height: 1.95;
-  color: rgba(27,27,27,.72);
+  color: rgba(27,27,27,.76);
 }
-
-.home-light .talent-points {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .55rem;
-  margin: 0 0 1.6rem;
-}
-
+.home-light .talent-points { display: flex; flex-wrap: wrap; gap: .55rem; margin: 0 0 1.6rem; }
 .home-light .talent-points span {
   display: inline-flex;
   align-items: center;
   min-height: 34px;
   padding: .35rem .8rem;
-  border: 1px solid rgba(27,27,27,.15);
+  border: 1px solid rgba(27,27,27,.18);
   border-radius: 999px;
-  background: rgba(255,255,255,.45);
+  background: rgba(255,255,255,.6);
   font-size: .78rem;
   letter-spacing: .03em;
-  color: rgba(27,27,27,.72);
+  color: rgba(27,27,27,.78);
 }
-
 .home-light .talent-note {
   margin: 0 0 1.75rem;
   padding-left: 1rem;
   border-left: 2px solid #f0a92c;
-  font-size: .9rem;
+  font-size: .92rem;
   line-height: 1.85;
-  color: rgba(27,27,27,.6);
+  color: rgba(27,27,27,.72);
 }
-
 .home-light .talent-entry .button-primary {
   background: #191919;
   color: #f8f5ee;
   box-shadow: 0 12px 28px rgba(25,25,25,.12);
 }
-
 .home-light .talent-entry .button-primary:hover,
 .home-light .talent-entry .button-primary:focus-visible {
   color: #f8f5ee;
   background: #242424;
 }
-
 .home-light .talent-small {
   margin: .8rem 0 0;
-  font-size: .72rem;
-  line-height: 1.6;
-  color: rgba(27,27,27,.42);
+  font-size: .78rem;
+  line-height: 1.65;
+  color: rgba(27,27,27,.58);
 }
-
-.home-light .talent-visual {
-  position: relative;
-  min-height: 590px;
-}
-
+.home-light .talent-visual { position: relative; min-height: 590px; }
 .home-light .talent-photo {
   position: absolute;
   margin: 0;
@@ -129,7 +100,6 @@
   background-position: center;
   box-shadow: 0 22px 55px rgba(35,31,24,.16);
 }
-
 .home-light .talent-photo-main {
   width: 68%;
   aspect-ratio: 3 / 4;
@@ -137,7 +107,6 @@
   top: 0;
   background-image: url("https://raw.githubusercontent.com/hasu-bot/last-call-movie/main/img/gallery-1.jpg");
 }
-
 .home-light .talent-photo-sub {
   width: 45%;
   aspect-ratio: 4 / 5;
@@ -146,7 +115,6 @@
   border: 8px solid #f1ece3;
   background-image: url("https://raw.githubusercontent.com/hasu-bot/yolo-photo-walk/main/images/hero-photo-walk-together-v1.jpg");
 }
-
 .home-light .talent-word {
   position: absolute;
   left: 4%;
@@ -163,60 +131,47 @@
 }
 
 @media (max-width: 959px) {
-  .home-light .talent-shell {
-    grid-template-columns: 1fr;
-    gap: 3.5rem;
-  }
+  .home-light .talent-shell { grid-template-columns: 1fr; gap: 3.5rem; }
   .home-light .talent-copy { max-width: 620px; }
-  .home-light .talent-visual {
-    width: min(100%, 650px);
-    min-height: 520px;
-    margin: 0 auto;
-  }
+  .home-light .talent-visual { width: min(100%, 650px); min-height: 520px; margin: 0 auto; }
 }
 
 @media (max-width: 599px) {
-  .home-light .talent-entry {
-    padding: 4.5rem 1.25rem;
-  }
-  .home-light .talent-entry::before {
-    top: -.08em;
-    font-size: 7rem;
-  }
-  .home-light .talent-shell {
-    gap: 2.75rem;
+  .home-light .talent-entry { padding: 4.5rem 1.25rem; }
+  .home-light .talent-entry::before { top: -.02em; font-size: 5.8rem; }
+  .home-light .talent-shell { gap: 2.5rem; }
+  .home-light .talent-overline {
+    margin-bottom: .9rem;
+    font-size: .66rem;
+    letter-spacing: .17em;
   }
   .home-light .talent-entry h2 {
-    font-size: clamp(2.45rem, 12vw, 3.35rem);
-    line-height: 1.18;
+    font-size: clamp(2rem, 9.2vw, 2.55rem);
+    line-height: 1.28;
+    letter-spacing: 0;
+    margin-bottom: 1.25rem;
   }
   .home-light .talent-lead {
     font-size: .96rem;
     line-height: 1.9;
+    margin-bottom: 1.35rem;
   }
-  .home-light .talent-points {
-    gap: .45rem;
+  .home-light .talent-points { gap: .45rem; margin-bottom: 1.35rem; }
+  .home-light .talent-points span { font-size: .75rem; min-height: 32px; padding: .3rem .7rem; }
+  .home-light .talent-note {
+    font-size: .88rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
   }
-  .home-light .talent-points span {
-    font-size: .72rem;
-  }
-  .home-light .talent-entry .button {
-    width: 100%;
-    max-width: 340px;
-  }
-  .home-light .talent-visual {
-    min-height: 390px;
-  }
-  .home-light .talent-photo-main {
-    width: 72%;
-  }
-  .home-light .talent-photo-sub {
-    width: 46%;
-    border-width: 5px;
-  }
+  .home-light .talent-entry .button { width: 100%; max-width: 340px; padding-left: 1rem; padding-right: 1rem; }
+  .home-light .talent-small { font-size: .76rem; color: rgba(27,27,27,.62); }
+  .home-light .talent-visual { min-height: 350px; }
+  .home-light .talent-photo-main { width: 70%; }
+  .home-light .talent-photo-sub { width: 44%; border-width: 5px; }
   .home-light .talent-word {
-    left: 1%;
-    top: 8%;
-    font-size: clamp(3.3rem, 17vw, 4.7rem);
+    left: 2%;
+    top: 10%;
+    font-size: clamp(2.7rem, 14vw, 3.8rem);
+    line-height: .88;
   }
 }
