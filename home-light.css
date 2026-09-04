@@ -203,28 +203,65 @@ body.home-light {
 .home-light .join {
   background: #171719;
   color: #f7f3e9;
+  padding-top: clamp(5rem, 8vw, 7rem);
+  padding-bottom: clamp(5rem, 8vw, 7rem);
 }
 .home-light .join .kicker { color: #f0a92c; }
-.home-light .join h2 { color: #f7f3e9; }
+.home-light .join h2 {
+  color: #fffaf0;
+  font-size: clamp(1.9rem, 3.6vw, 2.5rem);
+  line-height: 1.35;
+  margin-bottom: 2rem;
+}
 .home-light .join-glow {
   background: radial-gradient(ellipse 60% 50% at 50% 100%, rgba(240,169,44,.16), transparent 72%);
 }
-.home-light .join-steps li { border-bottom-color: rgba(247,243,233,.11); }
+.home-light .join-steps {
+  color: #f8f3e8;
+}
+.home-light .join-steps li {
+  border-bottom-color: rgba(247,243,233,.2);
+  line-height: 1.75;
+}
 .home-light .join .step-num { color: #f0a92c; }
-.home-light .join-note,
-.home-light .join-biz { color: rgba(247,243,233,.6); }
-.home-light .join-biz a { color: #f0a92c; }
+.home-light .join-note {
+  color: rgba(255,250,240,.82);
+  font-size: .95rem;
+  line-height: 1.8;
+}
+.home-light .join-biz {
+  color: rgba(255,250,240,.78);
+  font-size: .88rem;
+  line-height: 1.8;
+}
+.home-light .join-biz a { color: #f3b94e; }
 
 .home-light .site-footer {
-  background: #f8f5ee;
+  background: #fbf8f1;
   color: #1b1b1b;
-  border-top-color: rgba(25,25,25,.1);
+  border-top-color: rgba(25,25,25,.12);
+  padding-top: 3.75rem;
+  padding-bottom: 3rem;
 }
-.home-light .footer-tagline,
-.home-light .footer-links a { color: rgba(25,25,25,.55); }
+.home-light .footer-brand {
+  color: #1b1b1b;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.home-light .footer-tagline {
+  color: rgba(25,25,25,.72);
+  font-size: .9rem;
+}
+.home-light .footer-links a {
+  color: rgba(25,25,25,.76);
+  line-height: 1.5;
+}
 .home-light .footer-links a:hover,
-.home-light .footer-links a:focus-visible { color: #9d6205; }
-.home-light .footer-copy { color: rgba(25,25,25,.34); }
+.home-light .footer-links a:focus-visible { color: #8b5704; }
+.home-light .footer-copy {
+  color: rgba(25,25,25,.58);
+  font-size: .75rem;
+}
 
 .home-light :focus-visible { outline-color: #b17412; }
 
@@ -236,6 +273,22 @@ body.home-light {
 }
 
 @media (max-width: 599px) {
+  .home-light .section {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
+  .home-light .section h2 {
+    font-size: clamp(1.75rem, 8vw, 2.15rem);
+    line-height: 1.4;
+    letter-spacing: 0;
+    margin-bottom: 1.5rem;
+  }
+  .home-light .prose p {
+    font-size: .96rem;
+    line-height: 1.9;
+  }
   .home-light .hero {
     min-height: 100svh;
     padding: 7.5rem 1.25rem 4.5rem;
@@ -276,9 +329,57 @@ body.home-light {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
   }
-  .home-light .hero-sub-link {
-    font-size: .8rem;
-  }
-  .home-light .word-rail-track { font-size: .88rem; }
+  .home-light .hero-sub-link { font-size: .8rem; }
+  .home-light .word-rail-track { font-size: .82rem; }
   .home-light #news { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+  .home-light .news-list li {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .25rem;
+    padding: 1rem 0;
+  }
+  .home-light .news-list time { font-size: .78rem; }
+  .home-light .join {
+    padding: 4.5rem 1.25rem;
+    text-align: left;
+  }
+  .home-light .join h2 {
+    font-size: 1.9rem;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+  }
+  .home-light .join-steps {
+    margin-bottom: 1.5rem;
+  }
+  .home-light .join-steps li {
+    align-items: flex-start;
+    gap: .8rem;
+    padding: 1rem 0;
+    font-size: .95rem;
+  }
+  .home-light .join .step-num {
+    padding-top: .05rem;
+    font-size: 1rem;
+  }
+  .home-light .join-note { margin-bottom: 1.5rem; }
+  .home-light .join-cta { text-align: left; }
+  .home-light .join-cta .button {
+    width: 100%;
+    max-width: 340px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .home-light .join-biz { margin-top: 1.5rem; }
+  .home-light .site-footer {
+    padding: 3rem 1.25rem 2.5rem;
+  }
+  .home-light .footer-inner { text-align: left; }
+  .home-light .footer-tagline { margin-bottom: 1.5rem; }
+  .home-light .footer-links {
+    justify-content: flex-start;
+    gap: .65rem 1.1rem;
+    margin-bottom: 1.25rem;
+  }
+  .home-light .footer-links a { font-size: .82rem; }
+  .home-light .footer-copy { margin-top: 1.5rem; }
 }
