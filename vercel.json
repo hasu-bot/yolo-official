@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/hub/",
+      "destination": "https://yolo-members.vercel.app/",
+      "permanent": false
+    },
+    {
       "source": "/hub",
       "destination": "https://yolo-members.vercel.app/",
       "permanent": false
