@@ -18,6 +18,10 @@ body:has(.model-page) .desktop-nav .nav-join {
   background: #f0a92c;
   color: #171717;
 }
+body:has(.model-page) .desktop-nav .nav-hub {
+  color: #191919;
+  font-weight: 600;
+}
 body:has(.model-page) .menu-button span:not(.sr-only) { background: #191919; }
 body:has(.model-page) .site-header:has(.menu-button[aria-expanded="true"]) {
   background: #101014;

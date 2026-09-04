@@ -18,6 +18,20 @@ body.home-light {
   background: #f0a92c;
   color: #171717;
 }
+.home-light .desktop-nav .nav-hub {
+  color: #171717;
+  font-weight: 600;
+}
+.home-light .desktop-nav .nav-hub::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: #f0a92c;
+  vertical-align: 1px;
+}
 .home-light .menu-button span:not(.sr-only) { background: #1b1b1b; }
 .home-light .mobile-nav {
   background: rgba(248,245,238,.98);
@@ -198,6 +212,35 @@ body.home-light {
 .home-light #news h2 { margin-bottom: var(--sp-6); }
 .home-light #community { background: #eee8dd; }
 .home-light #hub { background: #f8f5ee; }
+.home-light .hub-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem 1.4rem;
+  margin-top: 2rem;
+}
+.home-light .hub-login-link {
+  color: #1b1b1b;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(27,27,27,.35);
+  padding: .3rem 0;
+}
+.home-light .hub-login-link:hover,
+.home-light .hub-login-link:focus-visible {
+  color: #8b5704;
+  border-color: #8b5704;
+}
+.home-light .hub-note {
+  max-width: 42rem;
+  margin-top: 1.2rem;
+  color: rgba(25,25,25,.58);
+  font-size: .84rem;
+  line-height: 1.8;
+}
+.home-light .mobile-hub-login {
+  color: #8b5704;
+  font-weight: 600;
+}
 
 /* Keep one strong dark scene for the final invitation. */
 .home-light .join {
