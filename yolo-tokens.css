@@ -1,56 +1,69 @@
 /* yolo-tokens.css — 正本: yolo-members/docs/creative-yolo/09-DESIGN-SYSTEM.md §1
-   色・書体・質感の根拠: 同 25-WEB-DESIGN-SYSTEM.md
+   色・書体・質感の根拠: 同 25-WEB-DESIGN-SYSTEM.md ＋ 26-YOLO-TALENTS-SITE.md §7
    更新はドキュメントを先に直し、各サイトへコピー反映する（SOP-7） */
 :root {
-  /* ── color: YOLO BLUE ──
+  /* ══ 紙面は白黒、行動は青 ══（26 §7-3）
+     人物写真を主役に据えるため、地は白と黒に振り切る。
+     青は「押す場所」だけに残す——地が白黒になることで、青の意味はむしろ純化する。 */
+
+  /* ── 面（surface）── */
+  --yolo-paper:  #f7f7f3;  /* 基本の紙。ほとんどのセクションはこれ */
+  --yolo-white:  #ffffff;  /* もう一枚の紙。紙の変化として使う */
+  --yolo-ink:    #0b0b0b;  /* 黒ベタ。ページで2〜3面まで（間・JOIN・footer） */
+  --surface:     var(--yolo-paper);  /* 「今いる面」の地色。暗い面スコープで --yolo-ink に切り替わる。
+                                        ボタンのホバー反転など、地の色に抜きたいときに使う */
+
+  /* ── 面に対する意味 ──
+     明るい面が既定。暗い面（写真の上・黒ベタ）では site.css 側でこの4つを上書きする。
+     色を直接書かず必ずこれを経由すること——面が変わっても文字が読めなくならない */
+  --ink-1: #111111;              /* 主文字・見出し・太い罫線（on paper 17.58:1 AAA） */
+  --ink-2: #5b6472;              /* 補助文字（on paper 5.74:1 AA） */
+  --rule:  #e2e2dc;              /* 細い罫線 */
+  --accent: #1769e0;             /* kicker・ラベル・数字。明るい面では青、暗い面では白 */
+
+  /* 地の模様。読ませるものではないので、コントラストは限界まで低く */
+  --ghost-stroke: rgba(17, 17, 17, .09);   /* 背面の巨大な文字の輪郭 */
+  --grid-line:    rgba(17, 17, 17, .05);   /* 縦の罫線グリッド */
+
+  /* ── 暗い面用の値 ──
+     site.css の「暗い面スコープ」が上の4つに代入する。単独では使わない */
+  --ink-1-dark: #ffffff;
+  --ink-2-dark: rgba(255, 255, 255, .74);
+  --rule-dark:  rgba(255, 255, 255, .22);
+  --ghost-stroke-dark: rgba(255, 255, 255, .10);
+  --grid-line-dark:    rgba(255, 255, 255, .045);
+
+  /* ── YOLO BLUE ──
      青は装飾ではなく意味。YOLO BLUE = 行動・挑戦・参加。
-     「青いところ＝YOLOに一歩入るところ」。本文を読ませる面では青を使わない（25 §1） */
-  --yolo-blue:      #1769e0;  /* 主役。CTA・リンク・重要ワード・現在位置 */
-  --yolo-blue-deep: #0a2860;  /* 締めの濃い面（はじめ方） */
-  --yolo-blue-ink:  #080d18;  /* 濃紺の面 */
-  --yolo-void:      #05060a;  /* 基本背景。ほぼ黒 */
-  --yolo-off-white: #f7f7f3;  /* 基本背景 */
-  --yolo-white:     #ffffff;  /* 写真が主役の面 */
-  --yolo-black:     #111111;  /* 文字 */
-  --yolo-gray:      #5b6472;  /* 補助文字（明背景） */
-  --yolo-line:      #e2e2dc;  /* 罫線（明背景） */
+     使う: CTAボタン／リンク／ナビの現在位置。
+     使わない: 見出し・罫線・セクションの地色・装飾（26 §7-3） */
+  --yolo-blue: #1769e0;
+  /* on paper = 4.73:1（AAぎりぎり）。14px以下の文字には使わず黒にする。
+     白 on blue = 5.08:1（AA）＝ CTAボタンはこの組み合わせ */
 
-  /* ── 暗い面（群青ベース）用 ──
-     #1769e0 は #080d18 の上だと 3.82:1 しかなく本文に使えない。
-     暗い面ではこの明るい青を「光」として使う（ink 8.01:1 / deep 5.83:1） */
-  --yolo-blue-glow: #6aa8ff;
-  --yolo-on-dark:   #b9c4d6;  /* 暗い面の補助文字（ink 11.0:1） */
-  --yolo-line-dark: rgba(255, 255, 255, .18);
-  --glow-s: 0 0 24px rgba(23, 105, 224, .45);
-  --glow-l: 0 0 80px rgba(23, 105, 224, .55);
+  --yolo-black: #111111;  /* = --ink-1。既存コード互換 */
+  --yolo-gray:  #5b6472;  /* = --ink-2。既存コード互換 */
+  --yolo-line:  #e2e2dc;  /* = --rule。既存コード互換 */
 
-  /* 蛍光アクセント。マーカー／ステータス専用・1画面1点・CTA禁止・必ず黒文字と組む（25 §2-2） */
-  --yolo-accent:    #d8ff3e;
+  /* 写真の上に白文字を置くときの最低オーバーレイ（25 §2-4）。
+     写真の明るさに依存させない */
+  --yolo-scrim: rgba(11, 11, 11, .45);
+
+  /* 蛍光アクセント。マーカー／ステータス専用・1画面1点・CTA禁止・必ず黒文字と組む（25 §2-2）。
+     写真主役の紙面には乗らないので、TALENTS 面では使わない（26 §7-2） */
+  --yolo-accent: #d8ff3e;
 
   /* 警告専用。強調やタグには使わない */
-  --yolo-danger:    #c8322a;
+  --yolo-danger: #c8322a;
 
   /* 認定マーク専用色。配色ではない。他用途禁止（23-OFFICIAL-MODEL-PROGRAM §8） */
   --yolo-badge-official: #f0a92c;
 
-  /* 写真の上に白文字を置くときの最低オーバーレイ（25 §2-4） */
-  --yolo-scrim: rgba(8, 13, 24, .45);
-
-  /* ── DEPRECATED: 旧「夜と光」の値 ──
-     2026-08-09 に概念としては廃止（Brand Book §2）。既存の site.css がまだ参照しているため
-     実値のまま残す。新色へのエイリアスにはしない（見た目が黙って変わるのを防ぐため）。
-     HOME の刷新が済んだら削除する（25 付録B） */
-  --yolo-night: #101014;
-  --yolo-light: #f0a92c;
-  --yolo-ember: #c0432c;
-  --yolo-paper: #f7f0df;
-  --yolo-ink:   #1c1c22;
-  --yolo-muted: rgba(255,255,255,.64);
-
   /* ── font ──（25 §4）
      和文は本文・UIまでぜんぶ明朝で通す。ゴシックは1か所も混ぜない——
      ロゴタイプも例外にしない（最初に目に入るものがゴシックだと、全部ゴシックに見える）。
-     欧文はハイコントラストのセリフ（Cormorant Garamond）で受ける。 */
+     欧文はハイコントラストのセリフ（Cormorant Garamond）で受ける。
+     白黒に振ったことで、明朝の細い線がいちばん効く紙面になった */
   --font-display: "Zen Old Mincho", serif;                 /* 900。見出し・宣言 */
   --font-body:    "Zen Old Mincho", serif;                 /* 400。本文・UI もすべて明朝 */
   --font-en:      "Cormorant Garamond", "Zen Old Mincho", serif;  /* 数字・地名・ラベル */
@@ -85,6 +98,7 @@
   --ease-out: cubic-bezier(.22,.61,.36,1);
   --dur-fast: 160ms; --dur-base: 320ms; --dur-slow: 640ms;
 
-  /* ── grain ──（映画祭 tokens.css の実装を共用。青ベタ面と写真の上だけ・opacity .04〜.06） */
+  /* ── grain ──（映画祭 tokens.css の実装を共用）
+     白い紙の上では黒すぎるので、暗い面と写真の上だけに使う。opacity は .03〜.05 */
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
 }

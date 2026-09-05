@@ -7,12 +7,12 @@
 <title>YOLO Web デザインシステム — スタイルガイド</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;700;900&family=Shippori+Mincho+B1:wght@600&display=swap" />
-<link rel="stylesheet" href="yolo-tokens.css" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Zen+Old+Mincho:wght@400;600;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="yolo-tokens.css?v=20260905" />
 <style>
   * { box-sizing: border-box; }
   body {
-    margin: 0; background: var(--yolo-off-white); color: var(--yolo-black);
+    margin: 0; background: var(--yolo-paper); color: var(--ink-1);
     font-family: var(--font-body); font-size: var(--fs-body); line-height: 1.9;
     -webkit-font-smoothing: antialiased;
   }
@@ -71,11 +71,11 @@
   .band .note { font-size: var(--fs-small); opacity: .8; }
   .b-rail { background: #050810; color: #fff; }
   .b-footer { background: #050810; color: #fff; }
-  .b-off { background: var(--yolo-off-white); color: var(--yolo-black); }
+  .b-off { background: var(--yolo-paper); color: var(--ink-1); }
   .b-blue { background: var(--yolo-blue); color: #fff; }
   .b-white { background: var(--yolo-white); color: var(--yolo-black); }
-  .b-deep { background: var(--yolo-blue-deep); color: #fff; }
-  .b-ink { background: var(--yolo-blue-ink); color: #fff; }
+  .b-deep { background: var(--yolo-white); color: var(--ink-1); box-shadow: inset 0 0 0 1px var(--yolo-line); }
+  .b-ink { background: var(--yolo-ink); color: #fff; }
 
   /* grain */
   .grain { position: relative; }
@@ -85,9 +85,9 @@
   .demo-grid { display: grid; gap: var(--sp-6); grid-template-columns: 1fr; }
   @media (min-width: 800px) { .demo-grid { grid-template-columns: 1fr 1fr; } }
   .demo { border-radius: var(--rad-m); overflow: hidden; border: 1px solid var(--yolo-line); }
-  .demo-hero { background: linear-gradient(120deg, var(--yolo-blue) 0%, var(--yolo-blue-deep) 100%); color: #fff; padding: var(--sp-16) var(--sp-6); min-height: 260px; display: flex; align-items: flex-end; }
+  .demo-hero { background: linear-gradient(120deg, #2a2a2a 0%, var(--yolo-ink) 100%); color: #fff; padding: var(--sp-16) var(--sp-6); min-height: 260px; display: flex; align-items: flex-end; }
   .demo-hero h3 { font-size: var(--fs-hero); }
-  .demo-local { background: var(--yolo-blue-deep); color: #fff; padding: var(--sp-16) var(--sp-6); min-height: 260px; display: flex; align-items: flex-end; }
+  .demo-local { background: var(--yolo-ink); color: #fff; padding: var(--sp-16) var(--sp-6); min-height: 260px; display: flex; align-items: flex-end; }
   .demo-local .place { font-family: var(--font-label); font-size: clamp(3rem, 10vw, 6rem); letter-spacing: .04em; line-height: .95; }
   .voice-card { background: var(--yolo-white); border: 1px solid var(--yolo-line); border-radius: var(--rad-m); padding: var(--sp-6); }
   .voice-card p { margin: 0 0 var(--sp-2); font-family: var(--font-heading); font-weight: 700; font-size: var(--fs-h3); }
@@ -95,7 +95,7 @@
   .voice-card .who b { color: var(--yolo-blue); }
 
   /* numerals */
-  .steps { background: var(--yolo-blue-deep); color: #fff; border-radius: var(--rad-m); padding: var(--sp-12) var(--sp-6); position: relative; overflow: hidden; }
+  .steps { background: var(--yolo-ink); color: #fff; border-radius: var(--rad-m); padding: var(--sp-12) var(--sp-6); position: relative; overflow: hidden; }
   .step { position: relative; padding: var(--sp-6) 0; }
   .step .n { font-family: var(--font-label); font-size: var(--fs-numeral); line-height: .8; color: rgba(255,255,255,.14); position: absolute; right: 0; top: 0; pointer-events: none; }
   .step .t { font-family: var(--font-heading); font-weight: 900; font-size: var(--fs-h3); position: relative; }
@@ -131,20 +131,20 @@
   <section>
     <p class="kicker">01 COLOR</p>
     <h2>カラートークン</h2>
-    <p class="lead">カテゴリ（PHOTO / FILM / ACTING…）で色を変えない。差は青の濃淡と白罫線でつける。</p>
+    <p class="lead">紙面は白黒、行動は青（26 §7-3）。カテゴリ（PHOTO / FILM / ACTING…）で色を変えない。差は紙の白さと罫線でつける。</p>
     <div class="swatches">
-      <div class="sw"><div class="chip" style="background:var(--yolo-blue);color:#fff">#1769E0</div><div class="meta"><b>--yolo-blue</b><span>主役。CTA・リンク・重要ワード・現在位置</span></div></div>
-      <div class="sw"><div class="chip" style="background:var(--yolo-blue-deep);color:#fff">#0A2860</div><div class="meta"><b>--yolo-blue-deep</b><span>締めの濃い面（はじめ方）</span></div></div>
-      <div class="sw"><div class="chip" style="background:var(--yolo-blue-ink);color:#fff">#080D18</div><div class="meta"><b>--yolo-blue-ink</b><span>最暗面（フッター）</span></div></div>
-      <div class="sw"><div class="chip" style="background:var(--yolo-off-white);color:#111">#F7F7F3</div><div class="meta"><b>--yolo-off-white</b><span>基本背景</span></div></div>
-      <div class="sw"><div class="chip" style="background:var(--yolo-white);color:#111;box-shadow:inset 0 0 0 1px var(--yolo-line)">#FFFFFF</div><div class="meta"><b>--yolo-white</b><span>写真が主役の面</span></div></div>
-      <div class="sw"><div class="chip" style="background:var(--yolo-black);color:#fff">#111111</div><div class="meta"><b>--yolo-black</b><span>文字</span></div></div>
-      <div class="sw"><div class="chip" style="background:var(--yolo-gray);color:#fff">#5B6472</div><div class="meta"><b>--yolo-gray</b><span>補助文字（明背景）</span></div></div>
-      <div class="sw"><div class="chip" style="background:var(--yolo-blue-ink);color:var(--yolo-blue-glow)">#6AA8FF</div><div class="meta"><b>--yolo-blue-glow</b><span>暗い面での文字の青。#1769E0 は暗い面で 3.82:1 しかなく本文に使えない</span></div></div>
-      <div class="sw"><div class="chip" style="background:var(--yolo-blue-ink);color:var(--yolo-on-dark)">#B9C4D6</div><div class="meta"><b>--yolo-on-dark</b><span>暗い面の補助文字</span></div></div>
-      <div class="sw"><div class="chip" style="background:var(--yolo-accent);color:#111">#D8FF3E</div><div class="meta"><b>--yolo-accent</b><span>マーカー／ステータス専用。1画面1点・CTA禁止・必ず黒文字</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--yolo-paper);color:#111;box-shadow:inset 0 0 0 1px var(--yolo-line)">#F7F7F3</div><div class="meta"><b>--yolo-paper</b><span>基本の紙。ほとんどのセクションはこれ</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--yolo-white);color:#111;box-shadow:inset 0 0 0 1px var(--yolo-line)">#FFFFFF</div><div class="meta"><b>--yolo-white</b><span>もう一枚の紙。紙の変化として使う</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--yolo-ink);color:#fff">#0B0B0B</div><div class="meta"><b>--yolo-ink</b><span>黒ベタ。ページで2〜3面まで（間・JOIN・footer）</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--yolo-blue);color:#fff">#1769E0</div><div class="meta"><b>--yolo-blue</b><span>押す場所だけ。CTA・リンク・現在位置。見出しや罫線には使わない</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--ink-1);color:#fff">#111111</div><div class="meta"><b>--ink-1</b><span>主文字・見出し・太い罫線。暗い面では白に反転する</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--ink-2);color:#fff">#5B6472</div><div class="meta"><b>--ink-2</b><span>補助文字。暗い面では rgba(255,255,255,.74)</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--rule);color:#111">#E2E2DC</div><div class="meta"><b>--rule</b><span>細い罫線。暗い面では rgba(255,255,255,.22)</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--yolo-ink);color:var(--ink-1-dark)">#FFFFFF</div><div class="meta"><b>--ink-1-dark</b><span>暗い面の主文字。site.css の暗い面スコープが --ink-1 に代入する</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--yolo-ink);color:var(--ink-2-dark)">rgba(255,255,255,.74)</div><div class="meta"><b>--ink-2-dark</b><span>暗い面の補助文字</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--yolo-accent);color:#111">#D8FF3E</div><div class="meta"><b>--yolo-accent</b><span>マーカー／ステータス専用。1画面1点・CTA禁止・必ず黒文字。写真主役の面では使わない</span></div></div>
       <div class="sw"><div class="chip" style="background:var(--yolo-danger);color:#fff">#C8322A</div><div class="meta"><b>--yolo-danger</b><span>警告専用。強調やタグに使わない</span></div></div>
-      <div class="sw"><div class="chip" style="background:var(--yolo-badge-official);color:#1c1c22">#F0A92C</div><div class="meta"><b>--yolo-badge-official</b><span>公式モデルバッジ専用（認定マーク）。他用途禁止</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--yolo-badge-official);color:#111">#F0A92C</div><div class="meta"><b>--yolo-badge-official</b><span>公式モデルバッジ専用（認定マーク）。他用途禁止</span></div></div>
     </div>
   </section>
 
@@ -154,14 +154,15 @@
     <table>
       <thead><tr><th>組み合わせ</th><th>見本</th><th>比</th><th>判定</th></tr></thead>
       <tbody>
-        <tr><td>白 on <code>--yolo-blue</code></td><td><span class="pair" style="background:#1769E0;color:#fff">参加する</span></td><td>5.08:1</td><td class="ok">AA ✓</td></tr>
-        <tr><td><code>--yolo-blue</code> on <code>--yolo-off-white</code></td><td><span class="pair" style="background:#F7F7F3;color:#1769E0">リンク</span></td><td>4.73:1</td><td class="warn">AA ぎりぎり — 14px以下・細字は黒に</td></tr>
-        <tr><td>白 on <code>--yolo-blue-deep</code></td><td><span class="pair" style="background:#0A2860;color:#fff">見出し</span></td><td>14.14:1</td><td class="ok">AAA ✓</td></tr>
-        <tr><td>白 on <code>--yolo-blue-ink</code></td><td><span class="pair" style="background:#080D18;color:#fff">フッター</span></td><td>19.42:1</td><td class="ok">AAA ✓</td></tr>
-        <tr><td>黒 on <code>--yolo-off-white</code></td><td><span class="pair" style="background:#F7F7F3;color:#111">本文</span></td><td>17.58:1</td><td class="ok">AAA ✓</td></tr>
+        <tr><td><code>--ink-1</code> on <code>--yolo-paper</code></td><td><span class="pair" style="background:#F7F7F3;color:#111">本文・見出し</span></td><td>17.58:1</td><td class="ok">AAA ✓</td></tr>
+        <tr><td><code>--ink-2</code> on <code>--yolo-paper</code></td><td><span class="pair" style="background:#F7F7F3;color:#5B6472">補助文字</span></td><td>5.74:1</td><td class="ok">AA ✓</td></tr>
+        <tr><td>白 on <code>--yolo-ink</code></td><td><span class="pair" style="background:#0B0B0B;color:#fff">黒ベタの見出し</span></td><td>19.68:1</td><td class="ok">AAA ✓</td></tr>
+        <tr><td><code>--ink-2-dark</code> on <code>--yolo-ink</code></td><td><span class="pair" style="background:#0B0B0B;color:rgba(255,255,255,.74)">黒ベタの補助文字</span></td><td>10.77:1</td><td class="ok">AAA ✓</td></tr>
+        <tr><td>白 on <code>--yolo-blue</code></td><td><span class="pair" style="background:#1769E0;color:#fff">参加する</span></td><td>5.08:1</td><td class="ok">AA ✓（CTAボタンはこの組み合わせ）</td></tr>
+        <tr><td><code>--yolo-blue</code> on <code>--yolo-paper</code></td><td><span class="pair" style="background:#F7F7F3;color:#1769E0">リンク</span></td><td>4.73:1</td><td class="warn">AA ぎりぎり — 14px以下は黒に</td></tr>
+        <tr><td><code>--yolo-blue</code> on <code>--yolo-ink</code></td><td><span class="pair" style="background:#0B0B0B;color:#1769E0">読みにくい</span></td><td>3.40:1</td><td class="ng">黒ベタの面で青は使わない（白ベタ＋黒文字にする）</td></tr>
         <tr><td>黒 on <code>--yolo-accent</code></td><td><span class="pair" style="background:#D8FF3E;color:#111">受付中</span></td><td>16.45:1</td><td class="ok">AAA ✓</td></tr>
         <tr><td>白 on <code>--yolo-accent</code></td><td><span class="pair" style="background:#D8FF3E;color:#fff">読めない</span></td><td>1.15:1</td><td class="ng">禁止</td></tr>
-        <tr><td><code>--yolo-accent</code> on <code>--yolo-blue</code></td><td><span class="pair" style="background:#1769E0;color:#D8FF3E">大きい文字のみ</span></td><td>4.43:1</td><td class="warn">24px以上／18.66px太字のみ</td></tr>
       </tbody>
     </table>
     <div class="rule">写真の上に白文字を置くときは、必ず <code>--yolo-scrim</code>（rgba(8,13,24,.45)）以上のオーバーレイを敷く。写真の明るさに依存しない。</div>
@@ -171,13 +172,13 @@
     <p class="kicker">03 TYPE</p>
     <h2>タイポグラフィ</h2>
     <p class="lead">明朝＝物語の声、ゴシック＝案内の声。公式サイトは案内なので見出しはゴシック、STORIES だけ明朝。</p>
-    <div class="type-row"><span class="tag">--fs-display / Noto Sans JP 900</span><div class="t-display">やってみたい。</div></div>
-    <div class="type-row"><span class="tag">--fs-hero / Noto Sans JP 900</span><div class="t-hero">「やってみたい。」から、始まる。</div></div>
-    <div class="type-row"><span class="tag">--fs-h2 / Noto Sans JP 900</span><div class="t-h2">才能の問題じゃない。場所の問題だった。</div></div>
-    <div class="type-row"><span class="tag">--fs-h3 / Noto Sans JP 900</span><div class="t-h3">撮る。撮られる。</div></div>
+    <div class="type-row"><span class="tag">--fs-display / Zen Old Mincho 900</span><div class="t-display">やってみたい。</div></div>
+    <div class="type-row"><span class="tag">--fs-hero / Zen Old Mincho 900</span><div class="t-hero">「やってみたい。」から、始まる。</div></div>
+    <div class="type-row"><span class="tag">--fs-h2 / Zen Old Mincho 900</span><div class="t-h2">才能の問題じゃない。場所の問題だった。</div></div>
+    <div class="type-row"><span class="tag">--fs-h3 / Zen Old Mincho 900</span><div class="t-h3">撮る。撮られる。</div></div>
     <div class="type-row"><span class="tag">--fs-h2 / Shippori Mincho B1（STORIES のみ）</span><div class="t-story">映画経験ゼロから、一本の映画が完成するまで。</div></div>
-    <div class="type-row"><span class="tag">--font-label / Bebas Neue</span><div class="t-label">WHAT YOU CAN DO — 2026.08</div></div>
-    <div class="type-row"><span class="tag">--fs-body / Noto Sans JP 400</span><div>スマホ1台でOK。まちを歩いて、撮って、見せ合う。いちばん敷居の低い入口です。</div></div>
+    <div class="type-row"><span class="tag">--font-label / Cormorant Garamond</span><div class="t-label">WHAT YOU CAN DO — 2026.08</div></div>
+    <div class="type-row"><span class="tag">--fs-body / Zen Old Mincho 400</span><div>スマホ1台でOK。まちを歩いて、撮って、見せ合う。いちばん敷居の低い入口です。</div></div>
   </section>
 
   <section>
