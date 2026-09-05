@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ja">
+<!--
+  タレント個人ページのテンプレート。
+  このフォルダごとコピーして talents/<活動名のローマ字小文字>/ にリネームし、{{ }} を置き換える。
+  設計: yolo-members/docs/creative-yolo/26-YOLO-TALENTS-SITE.md §4-2 / §5
+
+  ■ 公開前に必ず 26番 付録B のチェックリストを通す。特に：
+     - 掲載・肖像利用の同意を取得済みで、版と日付が記録してある
+     - 写真が実写である（生成画像は不可）
+     - 本名・連絡先・完全な生年月日を出していない
+     - 年齢は「年齢」または「生年月」まで。日は出さない
+     - 16〜17歳は保護者同意が記録済み
+  ■ 出さない項目は <div> ごと消す。空欄で残さない
+-->
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{NAME}}｜YOLO TALENTS</title>
+  <meta name="description" content="{{NAME}}（{{ROLE_JA}}）のプロフィール。出演・撮影・広告へのキャスティングは Creative YOLO までお問い合わせください。" />
+  <!-- 公開する日にこの1行を消す -->
+  <meta name="robots" content="noindex, nofollow" />
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="{{NAME}}｜YOLO TALENTS" />
+  <meta property="og:description" content="{{NAME}}（{{ROLE_JA}}）のプロフィール。キャスティングのご相談は Creative YOLO まで。" />
+  <meta property="og:url" content="https://yolo-official.vercel.app/talents/{{SLUG}}/" />
+  <meta property="og:image" content="https://yolo-official.vercel.app/assets/talents/{{SLUG}}-1.jpg" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#0b0b0b" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230b0b0b'/%3E%3Crect x='8' y='30' width='48' height='4' fill='%23ffffff'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Zen+Old+Mincho:wght@400;600;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../yolo-tokens.css?v=20260905" />
+  <link rel="stylesheet" href="../../site.css?v=20260905" />
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+
+  <header class="site-header is-solid" data-header>
+    <a class="brand" href="../../" aria-label="Creative YOLO トップへ">CREATIVE YOLO</a>
+    <nav class="desktop-nav" aria-label="メインナビゲーション">
+      <a href="../../#yolo">YOLOとは</a>
+      <a href="../../#can">できること</a>
+      <a href="../" class="is-current">TALENTS</a>
+      <a href="../../#local">地域との活動</a>
+      <a class="nav-join" href="../../#join">参加する</a>
+    </nav>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav" data-menu-button>
+      <span></span><span></span>
+      <span class="sr-only">メニュー</span>
+    </button>
+  </header>
+
+  <div class="mobile-nav" id="mobile-nav" aria-hidden="true" data-mobile-nav>
+    <a href="../../#yolo">YOLOとは</a>
+    <a href="../../#can">できること</a>
+    <a href="../">TALENTS</a>
+    <a href="../../#local">地域との活動</a>
+    <a href="../../#join">参加する</a>
+  </div>
+
+  <main id="main">
+    <div class="talent-head">
+      <div class="talent-hero-photo" style="--talent-photo: url(../../assets/talents/{{SLUG}}-main.jpg)" role="img" aria-label="{{NAME}}"></div>
+      <div>
+        <h1 class="talent-profile-name">{{NAME}}</h1>
+        <p class="talent-profile-role">{{ROLE_EN}}</p>
+
+        <!-- 出さない項目は dt/dd ごと消す。空欄で残さない（26 §5） -->
+        <dl class="talent-facts">
+          <dt>Age</dt>       <dd>{{生年月 例 2001.03}}</dd>
+          <dt>Height</dt>    <dd>{{160cm}}</dd>
+          <dt>Based in</dt>  <dd>{{Kumamoto}}</dd>
+          <dt>Specialty</dt> <dd>{{ポートレート / ファッション / イベント}}</dd>
+        </dl>
+      </div>
+    </div>
+
+    <section class="talent-section">
+      <h2>Profile</h2>
+      <div class="prose">
+        <p>{{本人紹介文。100〜200字。実績がゼロでも構わない（23 §3-3）}}</p>
+      </div>
+    </section>
+
+    <!-- 写真が6点に満たない間はこのセクションごと消す -->
+    <section class="talent-section">
+      <h2>Gallery</h2>
+      <ul class="talent-gallery">
+        <li style="background-image: url(../../assets/talents/{{SLUG}}-1.jpg)"></li>
+        <li style="background-image: url(../../assets/talents/{{SLUG}}-2.jpg)"></li>
+        <li style="background-image: url(../../assets/talents/{{SLUG}}-3.jpg)"></li>
+        <li style="background-image: url(../../assets/talents/{{SLUG}}-4.jpg)"></li>
+      </ul>
+    </section>
+
+    <!-- 実績が無い人はこのセクションごと消す。「準備中」と書かない -->
+    <section class="talent-section">
+      <h2>Works</h2>
+      <ul class="talent-list">
+        <li>{{広告}}</li><li>{{MV}}</li><li>{{イベント}}</li>
+      </ul>
+    </section>
+
+    <section class="talent-section">
+      <h2>Skills</h2>
+      <ul class="talent-list">
+        <li>{{ダンス}}</li><li>{{カメラ}}</li>
+      </ul>
+    </section>
+
+    <section class="talent-section">
+      <h2>SNS</h2>
+      <div class="talent-sns">
+        <a href="{{https://instagram.com/...}}" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <span class="talent-sns-note">お仕事のご依頼はYOLOへお願いします</span>
+      </div>
+    </section>
+
+    <section class="casting-block">
+      <div class="casting-block-inner">
+        <h2>CASTING &amp; BOOKING</h2>
+        <p>出演・撮影・広告・作品へのキャスティングについては、YOLOまでお問い合わせください。</p>
+        <p><a class="button button-solid" href="https://www.instagram.com/creative.yolo/" target="_blank" rel="noopener noreferrer">お問い合わせはこちら</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="../../">TOP</a>
+        <a href="../">TALENTS</a>
+        <a href="../../#join">参加する</a>
+      </div>
+      <p class="footer-copy">© Creative YOLO</p>
+    </div>
+  </footer>
+
+  <script src="../../site.js?v=20260905"></script>
+</body>
+</html>

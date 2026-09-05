@@ -289,8 +289,8 @@ button { font: inherit; color: inherit; }
 .button-solid { background: var(--yolo-blue); color: var(--yolo-white); border-color: var(--yolo-blue); }
 .button-solid:hover { background: var(--yolo-blue); color: var(--yolo-white); border-color: var(--yolo-blue); opacity: .86; }
 /* 黒ベタの面では青が沈む（#1769e0 on #0b0b0b = 3.4:1）ので、白ベタ＋黒文字にする */
-.join .button-solid, .site-footer .button-solid { background: var(--ink-1); color: var(--yolo-ink); border-color: var(--ink-1); }
-.join .button-solid:hover, .site-footer .button-solid:hover { background: var(--ink-1); color: var(--yolo-ink); border-color: var(--ink-1); opacity: .86; }
+.join .button-solid, .site-footer .button-solid, .casting-block .button-solid { background: var(--ink-1); color: var(--yolo-ink); border-color: var(--ink-1); }
+.join .button-solid:hover, .site-footer .button-solid:hover, .casting-block .button-solid:hover { background: var(--ink-1); color: var(--yolo-ink); border-color: var(--ink-1); opacity: .86; }
 .button-ghost { border-color: var(--rule); color: var(--ink-2); }
 .button-ghost:hover { border-color: var(--ink-1); background: transparent; color: var(--ink-1); }
 .button-large { font-size: 1.0625rem; min-height: 62px; padding: var(--sp-4) var(--sp-16); }
@@ -915,3 +915,201 @@ html { scrollbar-color: #c9c9c2 var(--yolo-paper); scrollbar-width: thin; }
 .nf-head { margin: var(--sp-8) 0 0; font-size: var(--fs-mega); line-height: 1.35; letter-spacing: .04em; }
 .nf-sub { margin: var(--sp-6) 0 0; font-size: var(--fs-small); color: var(--ink-2); }
 .nf-cta { margin: var(--sp-16) 0 0; }
+
+/* ══════════════════════════════════════════════════════════════
+   TALENTS ／ 表現する人を外に見せる面
+   設計: yolo-members/docs/creative-yolo/26-YOLO-TALENTS-SITE.md §4
+   写真が主役。情報を詰めない。カードは写真・活動名・職種だけ（§4-1）
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── 一覧のヒーロー ── 白地。写真は右に1枚だけ置く */
+.talents-hero {
+  position: relative;
+  padding: clamp(120px, 16vw, 220px) 0 clamp(64px, 9vw, 130px);
+  overflow: hidden;
+}
+.talents-hero-inner {
+  width: min(1240px, 100% - var(--sp-12)); margin-inline: auto;
+  display: grid; gap: var(--sp-12); position: relative; z-index: 2;
+}
+@media (min-width: 900px) {
+  .talents-hero-inner { grid-template-columns: 6fr 5fr; gap: var(--sp-24); align-items: center; }
+}
+.talents-title {
+  margin: 0;
+  font-family: var(--font-en); font-weight: 400;
+  font-size: clamp(3rem, 9vw, 7.5rem); line-height: .95;
+  letter-spacing: .02em;
+}
+.talents-title span { display: block; }
+.talents-sub {
+  margin: var(--sp-6) 0 0;
+  font-family: var(--font-label); font-weight: 400;
+  font-size: clamp(.8125rem, 1.4vw, 1rem);
+  letter-spacing: .28em; text-indent: .28em;
+  color: var(--ink-2);
+}
+.talents-lead { margin: var(--sp-12) 0 0; max-width: 34em; }
+/* 写真が来たら --talents-hero-media に url(...) を入れる。無い間は枠ごと出さない（26 §8-3） */
+.talents-hero-media { display: none; }
+.talents-hero[style*="--talents-hero-media"] .talents-hero-media {
+  display: block; aspect-ratio: 3 / 4;
+  background-image: var(--talents-hero-media);
+  background-size: cover; background-position: center;
+  filter: saturate(.55) contrast(1.04);
+}
+
+/* ── カテゴリ切替 ── 罫線1本の上に並べる。ボタンに見せない */
+.talent-filter {
+  width: min(1240px, 100% - var(--sp-12)); margin: 0 auto;
+  display: flex; flex-wrap: wrap; gap: var(--sp-8);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: var(--sp-4);
+}
+.talent-filter button {
+  background: none; border: 0; padding: var(--sp-2) 0; cursor: pointer;
+  font-family: var(--font-label); font-weight: 400;
+  font-size: .75rem; letter-spacing: .28em; text-indent: .28em;
+  text-transform: uppercase; color: var(--ink-2);
+  border-bottom: 2px solid transparent;
+  transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+.talent-filter button:hover { color: var(--ink-1); }
+.talent-filter button[aria-selected="true"] { color: var(--ink-1); border-bottom-color: var(--ink-1); }
+
+/* ── グリッド ── 並び順に意味を持たせない。序列を作らない（26 §4-1） */
+.talent-grid {
+  width: min(1240px, 100% - var(--sp-12)); margin: clamp(48px, 7vw, 90px) auto 0;
+  display: grid; gap: clamp(32px, 4vw, 56px) clamp(20px, 2.5vw, 32px);
+  grid-template-columns: repeat(2, 1fr);
+  list-style: none; padding: 0;
+}
+@media (min-width: 700px)  { .talent-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1000px) { .talent-grid { grid-template-columns: repeat(4, 1fr); } }
+
+.talent-card { display: block; text-decoration: none; position: relative; }
+.talent-photo {
+  aspect-ratio: 3 / 4;
+  background-color: var(--rule);
+  background-image: var(--talent-photo);
+  background-size: cover; background-position: center;
+  filter: saturate(.55) contrast(1.04);
+  transition: filter var(--dur-base) var(--ease-out), opacity var(--dur-base) var(--ease-out);
+}
+.talent-card:hover .talent-photo { filter: saturate(.7) contrast(1.04); }
+.talent-name {
+  margin: var(--sp-4) 0 0;
+  font-family: var(--font-en); font-weight: 400;
+  font-size: clamp(1.125rem, 1.8vw, 1.5rem); line-height: 1.2;
+  letter-spacing: .06em;
+}
+.talent-role {
+  margin: var(--sp-1) 0 0;
+  font-family: var(--font-label); font-weight: 400;
+  font-size: .625rem; letter-spacing: .3em; text-indent: .3em;
+  text-transform: uppercase; color: var(--ink-2);
+}
+/* バッジは1枚のカードに1つまで（23 §8）。専属が付くときは公式モデルバッジを出さない */
+.talent-badge {
+  position: absolute; top: var(--sp-3); left: var(--sp-3);
+  background: var(--yolo-badge-official); color: #111;
+  font-family: var(--font-label); font-weight: 600;
+  font-size: .625rem; letter-spacing: .18em;
+  padding: 3px var(--sp-2);
+}
+
+/* ══ 個人プロフィール ══ */
+.talent-head {
+  width: min(1240px, 100% - var(--sp-12));
+  margin: clamp(110px, 14vw, 180px) auto 0;
+  display: grid; gap: var(--sp-12);
+}
+@media (min-width: 900px) {
+  .talent-head { grid-template-columns: 5fr 6fr; gap: var(--sp-24); align-items: start; }
+}
+.talent-hero-photo {
+  aspect-ratio: 3 / 4;
+  background-color: var(--rule);
+  background-image: var(--talent-photo);
+  background-size: cover; background-position: center;
+  filter: saturate(.55) contrast(1.04);
+}
+.talent-profile-name {
+  margin: 0;
+  font-family: var(--font-en); font-weight: 400;
+  font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1;
+  letter-spacing: .04em;
+}
+.talent-profile-role {
+  margin: var(--sp-3) 0 0;
+  font-family: var(--font-label); font-size: .75rem;
+  letter-spacing: .3em; text-indent: .3em;
+  text-transform: uppercase; color: var(--ink-2);
+}
+/* 基本情報。項目が減ってもレイアウトが崩れない組みにする（26 §5 — 身長などは本人の申告次第） */
+.talent-facts {
+  margin: clamp(32px, 5vw, 56px) 0 0;
+  display: grid; grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--sp-3) var(--sp-8);
+  border-top: 3px solid var(--ink-1); padding-top: var(--sp-6);
+  font-size: var(--fs-small);
+}
+.talent-facts dt {
+  font-family: var(--font-label); font-size: .6875rem;
+  letter-spacing: .24em; text-transform: uppercase; color: var(--ink-2);
+}
+.talent-facts dd { margin: 0; }
+
+.talent-section { width: min(1240px, 100% - var(--sp-12)); margin: clamp(64px, 9vw, 120px) auto 0; }
+.talent-section h2 {
+  font-family: var(--font-label); font-weight: 400;
+  font-size: .75rem; letter-spacing: .3em; text-indent: .3em;
+  text-transform: uppercase; color: var(--ink-2);
+  border-top: 1px solid var(--rule); padding-top: var(--sp-4);
+}
+.talent-section .prose, .talent-section .talent-list { margin-top: var(--sp-6); }
+.talent-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: var(--sp-3) var(--sp-6); }
+.talent-list li { font-size: var(--fs-small); }
+.talent-list li::after { content: "／"; margin-left: var(--sp-6); color: var(--ink-2); }
+.talent-list li:last-child::after { content: ""; }
+
+.talent-gallery {
+  margin-top: var(--sp-6);
+  display: grid; gap: var(--sp-3);
+  grid-template-columns: repeat(2, 1fr);
+  list-style: none; padding: 0;
+}
+@media (min-width: 700px) { .talent-gallery { grid-template-columns: repeat(4, 1fr); } }
+.talent-gallery li {
+  aspect-ratio: 1 / 1; background-color: var(--rule);
+  background-size: cover; background-position: center;
+  filter: saturate(.55) contrast(1.04);
+}
+
+/* SNS。本人の発信のために置くが、仕事の依頼はYOLOが窓口（26 §4-2） */
+.talent-sns { display: flex; flex-wrap: wrap; gap: var(--sp-6); align-items: baseline; margin-top: var(--sp-6); }
+/* 押す場所なので青。ただし 4.73:1 は 14px以下だと基準に触れるので 16px 以上で使う（25 §2-4） */
+.talent-sns a { font-size: 1rem; color: var(--yolo-blue); text-decoration: none; border-bottom: 1px solid currentColor; }
+.talent-sns-note { font-size: .75rem; color: var(--ink-2); }
+
+/* ══ CASTING & BOOKING ══ 個人ページと一覧の最下部に必ず置く。
+   個人に直接DMさせず、窓口をYOLOに一本化する（26 §4-2） */
+.casting-block {
+  margin-top: clamp(90px, 12vw, 160px);
+  background: var(--yolo-ink);
+  --ink-1: var(--ink-1-dark);
+  --ink-2: var(--ink-2-dark);
+  --rule:  var(--rule-dark);
+  --surface: var(--yolo-ink);
+  color: var(--ink-1);
+  padding: clamp(64px, 9vw, 120px) 0;
+  text-align: center;
+}
+.casting-block-inner { width: min(720px, 100% - var(--sp-12)); margin-inline: auto; }
+.casting-block h2 {
+  margin: 0;
+  font-family: var(--font-en); font-weight: 400;
+  font-size: clamp(1.5rem, 3.4vw, 2.5rem); letter-spacing: .1em;
+}
+.casting-block p { margin: var(--sp-6) 0 0; font-size: var(--fs-small); color: var(--ink-2); }
+.casting-block .button { margin-top: clamp(32px, 5vw, 48px); }

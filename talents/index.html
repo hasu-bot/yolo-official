@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>YOLO TALENTS ｜ Creative YOLO</title>
+  <meta name="description" content="熊本を中心に活動するモデル・俳優・クリエイター。広告・映像作品・イベント・撮影など、企画に応じたキャスティングのご相談を承っています。" />
+  <!-- 掲載する人の写真とプロフィールが揃うまで公開しない（26 §8-3）。
+       準備中のTALENTSは、無いより悪い。公開する日にこの1行を消す -->
+  <meta name="robots" content="noindex, nofollow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="YOLO TALENTS ｜ Creative YOLO" />
+  <meta property="og:description" content="熊本を中心に活動するモデル・俳優・クリエイター。キャスティングのご相談を承っています。" />
+  <meta property="og:url" content="https://yolo-official.vercel.app/talents/" />
+  <meta property="og:image" content="https://yolo-official.vercel.app/assets/ogp.png" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#0b0b0b" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230b0b0b'/%3E%3Crect x='8' y='30' width='48' height='4' fill='%23ffffff'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Zen+Old+Mincho:wght@400;600;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../yolo-tokens.css?v=20260905" />
+  <link rel="stylesheet" href="../site.css?v=20260905" />
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+
+  <header class="site-header is-solid" data-header>
+    <a class="brand" href="../" aria-label="Creative YOLO トップへ">CREATIVE YOLO</a>
+    <nav class="desktop-nav" aria-label="メインナビゲーション">
+      <a href="../#yolo">YOLOとは</a>
+      <a href="../#can">できること</a>
+      <a href="./" class="is-current" aria-current="page">TALENTS</a>
+      <a href="../#local">地域との活動</a>
+      <a class="nav-join" href="../#join">参加する</a>
+    </nav>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav" data-menu-button>
+      <span></span><span></span>
+      <span class="sr-only">メニュー</span>
+    </button>
+  </header>
+
+  <div class="mobile-nav" id="mobile-nav" aria-hidden="true" data-mobile-nav>
+    <a href="../#yolo">YOLOとは</a>
+    <a href="../#can">できること</a>
+    <a href="./">TALENTS</a>
+    <a href="../#local">地域との活動</a>
+    <a href="../#join">参加する</a>
+  </div>
+
+  <main id="main">
+    <!-- 写真が来たら talents-hero に style="--talents-hero-media: url(../assets/talents-hero.jpg)" を足す -->
+    <section class="talents-hero">
+      <div class="talents-hero-inner">
+        <div>
+          <h1 class="talents-title"><span>YOLO</span><span>TALENTS</span></h1>
+          <p class="talents-sub">Models / Actors / Creators</p>
+          <p class="talents-lead">
+            YOLOでは、熊本を中心に活動するモデル・俳優・クリエイターの発掘・育成・活動支援を行っています。<br />
+            広告、映像作品、イベント、撮影など、企画内容に応じたキャスティングのご相談も承っています。
+          </p>
+        </div>
+        <div class="talents-hero-media" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- 該当者が出てから ACTOR / CREATOR を有効化する（26 §2-3）。
+         今は MODEL だけを出す前提で、切替UIは先に組んでおく -->
+    <div class="talent-filter" role="tablist" aria-label="職種で絞り込む">
+      <button type="button" role="tab" aria-selected="true" data-filter="all">All</button>
+      <button type="button" role="tab" aria-selected="false" data-filter="model">Model</button>
+      <button type="button" role="tab" aria-selected="false" data-filter="actor" hidden>Actor</button>
+      <button type="button" role="tab" aria-selected="false" data-filter="creator" hidden>Creator</button>
+    </div>
+
+    <!-- ★ ここに掲載する人のカードを足す。
+         載せる前に 26番 付録B のチェックリストを必ず通すこと（同意・実写・年齢の粒度・本名と連絡先を出さない）。
+
+         1人 = 1つの <li>。写真は実写のみ（生成画像不可）。テンプレートは下記のとおり：
+
+         <li class="talent-item" data-role="model">
+           <a class="talent-card" href="./junka/">
+             <span class="talent-badge">専属</span>          ← 専属のときだけ。バッジは1枚に1つまで
+             <span class="talent-photo" style="--talent-photo: url(../assets/talents/junka-1.jpg)"></span>
+             <span class="talent-name">JUNKA</span>
+             <span class="talent-role">Model</span>
+           </a>
+         </li>
+    -->
+    <ul class="talent-grid" data-talent-grid></ul>
+
+    <section class="casting-block">
+      <div class="casting-block-inner">
+        <h2>CASTING &amp; BOOKING</h2>
+        <p>出演・撮影・広告・作品へのキャスティングについては、YOLOまでお問い合わせください。</p>
+        <p><a class="button button-solid" href="https://www.instagram.com/creative.yolo/" target="_blank" rel="noopener noreferrer">お問い合わせはこちら</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="../">TOP</a>
+        <a href="../#yolo">YOLOとは</a>
+        <a href="./">TALENTS</a>
+        <a href="../#local">地域との活動</a>
+        <a href="../#join">参加する</a>
+      </div>
+      <p class="footer-copy">© Creative YOLO</p>
+    </div>
+  </footer>
+
+  <script src="../site.js?v=20260905"></script>
+</body>
+</html>
