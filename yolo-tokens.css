@@ -1,27 +1,90 @@
 /* yolo-tokens.css — 正本: yolo-members/docs/creative-yolo/09-DESIGN-SYSTEM.md §1
-   更新はドキュメントを先に直し、6サイトへコピー反映する（SOP-7） */
+   色・書体・質感の根拠: 同 25-WEB-DESIGN-SYSTEM.md
+   更新はドキュメントを先に直し、各サイトへコピー反映する（SOP-7） */
 :root {
-  /* color — 層1: 夜と光（Brand Book §2） */
-  --yolo-night: #101014;
-  --yolo-light: #f0a92c;   /* HUB実装値を正とする */
-  --yolo-ember: #c0432c;   /* 映画祭実装値 */
-  --yolo-paper: #f7f0df;
-  --yolo-ink:   #1c1c22;   /* 明背景時の文字 */
-  --yolo-muted: rgba(255,255,255,.64); /* 暗背景の補助文字 */
+  /* ── color: YOLO BLUE ──
+     青は装飾ではなく意味。YOLO BLUE = 行動・挑戦・参加。
+     「青いところ＝YOLOに一歩入るところ」。本文を読ませる面では青を使わない（25 §1） */
+  --yolo-blue:      #1769e0;  /* 主役。CTA・リンク・重要ワード・現在位置 */
+  --yolo-blue-deep: #0a2860;  /* 締めの濃い面（はじめ方） */
+  --yolo-blue-ink:  #080d18;  /* 濃紺の面 */
+  --yolo-void:      #05060a;  /* 基本背景。ほぼ黒 */
+  --yolo-off-white: #f7f7f3;  /* 基本背景 */
+  --yolo-white:     #ffffff;  /* 写真が主役の面 */
+  --yolo-black:     #111111;  /* 文字 */
+  --yolo-gray:      #5b6472;  /* 補助文字（明背景） */
+  --yolo-line:      #e2e2dc;  /* 罫線（明背景） */
 
-  /* spacing — 4pxベース。中間値を勝手に作らない */
+  /* ── 暗い面（群青ベース）用 ──
+     #1769e0 は #080d18 の上だと 3.82:1 しかなく本文に使えない。
+     暗い面ではこの明るい青を「光」として使う（ink 8.01:1 / deep 5.83:1） */
+  --yolo-blue-glow: #6aa8ff;
+  --yolo-on-dark:   #b9c4d6;  /* 暗い面の補助文字（ink 11.0:1） */
+  --yolo-line-dark: rgba(255, 255, 255, .18);
+  --glow-s: 0 0 24px rgba(23, 105, 224, .45);
+  --glow-l: 0 0 80px rgba(23, 105, 224, .55);
+
+  /* 蛍光アクセント。マーカー／ステータス専用・1画面1点・CTA禁止・必ず黒文字と組む（25 §2-2） */
+  --yolo-accent:    #d8ff3e;
+
+  /* 警告専用。強調やタグには使わない */
+  --yolo-danger:    #c8322a;
+
+  /* 認定マーク専用色。配色ではない。他用途禁止（23-OFFICIAL-MODEL-PROGRAM §8） */
+  --yolo-badge-official: #f0a92c;
+
+  /* 写真の上に白文字を置くときの最低オーバーレイ（25 §2-4） */
+  --yolo-scrim: rgba(8, 13, 24, .45);
+
+  /* ── DEPRECATED: 旧「夜と光」の値 ──
+     2026-08-09 に概念としては廃止（Brand Book §2）。既存の site.css がまだ参照しているため
+     実値のまま残す。新色へのエイリアスにはしない（見た目が黙って変わるのを防ぐため）。
+     HOME の刷新が済んだら削除する（25 付録B） */
+  --yolo-night: #101014;
+  --yolo-light: #f0a92c;
+  --yolo-ember: #c0432c;
+  --yolo-paper: #f7f0df;
+  --yolo-ink:   #1c1c22;
+  --yolo-muted: rgba(255,255,255,.64);
+
+  /* ── font ──（25 §4）
+     和文は本文・UIまでぜんぶ明朝で通す。ゴシックは1か所も混ぜない——
+     ロゴタイプも例外にしない（最初に目に入るものがゴシックだと、全部ゴシックに見える）。
+     欧文はハイコントラストのセリフ（Cormorant Garamond）で受ける。 */
+  --font-display: "Zen Old Mincho", serif;                 /* 900。見出し・宣言 */
+  --font-body:    "Zen Old Mincho", serif;                 /* 400。本文・UI もすべて明朝 */
+  --font-en:      "Cormorant Garamond", "Zen Old Mincho", serif;  /* 数字・地名・ラベル */
+  --font-logo:    "Zen Old Mincho", serif;                 /* ロゴタイプ。900の和文明朝で欧文を組む */
+  --font-label:   var(--font-en);
+  /* 後方互換（styleguide.html などが参照） */
+  --font-heading: var(--font-display);
+  --font-story:   var(--font-display);
+
+  /* ── spacing ── 4pxベース。中間値を勝手に作らない */
   --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
   --sp-6: 24px; --sp-8: 32px; --sp-12: 48px; --sp-16: 64px; --sp-24: 96px;
 
-  /* radius */
+  /* ── radius ── */
   --rad-s: 6px; --rad-m: 12px; --rad-pill: 999px;
 
-  /* type scale（clampでモバイル対応） */
-  --fs-hero: clamp(2rem, 5vw, 3.5rem);
-  --fs-h2:   clamp(1.4rem, 3vw, 2rem);
-  --fs-body: 1rem;  --fs-small: .875rem; --fs-label: .75rem;
+  /* ── type scale ──（clampでモバイル対応） */
+  /* ロゴタイプがページで一番大きい。見出しはそれより必ず小さく置く。
+     極太明朝はゴシックより字面が強いので、同じ迫力なら一回り小さくてよい */
+  --fs-logo:    clamp(4.5rem, 19vw, 17rem);     /* HERO 中央のロゴタイプ */
+  --fs-giant:   clamp(2rem, 6.4vw, 5.5rem);     /* JOIN の見出し */
+  --fs-display: clamp(1.5rem, 4.2vw, 3.25rem);  /* HERO のキャッチ（ロゴを主役にするため抑える） */
+  --fs-mega:    clamp(1.75rem, 5vw, 4rem);      /* 各セクションのH2 */
+  --fs-hero:    clamp(2rem, 5vw, 3.5rem);
+  --fs-h2:      clamp(1.5rem, 3.5vw, 2.5rem);
+  --fs-h3:      clamp(1.125rem, 2vw, 1.75rem);
+  --fs-body:    1rem;  --fs-small: .875rem; --fs-label: .75rem;
+  --fs-numeral: clamp(6rem, 26vw, 22rem);       /* はじめ方の数字。画面外へはみ出させる */
+  --fs-place:   clamp(3.5rem, 16vw, 15rem);     /* 地名のタイポウォール */
 
-  /* motion */
+  /* ── motion ── */
   --ease-out: cubic-bezier(.22,.61,.36,1);
   --dur-fast: 160ms; --dur-base: 320ms; --dur-slow: 640ms;
+
+  /* ── grain ──（映画祭 tokens.css の実装を共用。青ベタ面と写真の上だけ・opacity .04〜.06） */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
 }

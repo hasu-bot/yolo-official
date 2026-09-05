@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>YOLO Web デザインシステム — スタイルガイド</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;700;900&family=Shippori+Mincho+B1:wght@600&display=swap" />
+<link rel="stylesheet" href="yolo-tokens.css" />
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--yolo-off-white); color: var(--yolo-black);
+    font-family: var(--font-body); font-size: var(--fs-body); line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: var(--sp-16) var(--sp-6) var(--sp-24); }
+  h1, h2, h3 { font-family: var(--font-heading); font-weight: 900; line-height: 1.35; margin: 0; text-wrap: balance; }
+  .kicker { font-family: var(--font-label); font-size: var(--fs-label); letter-spacing: .18em; color: var(--yolo-blue); margin: 0 0 var(--sp-2); }
+  section { margin-top: var(--sp-24); }
+  section > h2 { font-size: var(--fs-h2); margin-bottom: var(--sp-2); }
+  .lead { color: var(--yolo-gray); margin: 0 0 var(--sp-8); }
+  hr { border: 0; border-top: 1px solid var(--yolo-line); margin: var(--sp-12) 0; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .85em; }
+
+  /* swatches */
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--sp-4); }
+  .sw { border: 1px solid var(--yolo-line); border-radius: var(--rad-m); overflow: hidden; background: var(--yolo-white); }
+  .sw .chip { height: 92px; display: flex; align-items: flex-end; padding: var(--sp-3); font-size: var(--fs-small); }
+  .sw .meta { padding: var(--sp-3); font-size: var(--fs-small); line-height: 1.6; }
+  .sw .meta b { display: block; font-size: var(--fs-body); }
+  .sw .meta span { color: var(--yolo-gray); }
+
+  /* contrast table */
+  table { width: 100%; border-collapse: collapse; font-size: var(--fs-small); }
+  th, td { text-align: left; padding: var(--sp-3); border-bottom: 1px solid var(--yolo-line); }
+  th { font-weight: 700; }
+  .pair { display: inline-flex; align-items: center; justify-content: center; min-width: 108px; padding: var(--sp-2) var(--sp-3); border-radius: var(--rad-s); font-weight: 700; }
+  .ok { color: #1b7a3d; font-weight: 700; }
+  .warn { color: #9a6a00; font-weight: 700; }
+  .ng { color: var(--yolo-danger); font-weight: 700; }
+
+  /* type scale */
+  .type-row { border-bottom: 1px solid var(--yolo-line); padding: var(--sp-4) 0; }
+  .type-row .tag { font-family: var(--font-label); font-size: var(--fs-label); letter-spacing: .18em; color: var(--yolo-gray); }
+  .t-display { font-family: var(--font-heading); font-weight: 900; font-size: var(--fs-display); line-height: 1.1; }
+  .t-hero { font-family: var(--font-heading); font-weight: 900; font-size: var(--fs-hero); line-height: 1.25; }
+  .t-h2 { font-family: var(--font-heading); font-weight: 900; font-size: var(--fs-h2); }
+  .t-h3 { font-family: var(--font-heading); font-weight: 900; font-size: var(--fs-h3); }
+  .t-story { font-family: var(--font-story); font-weight: 600; font-size: var(--fs-h2); }
+  .t-label { font-family: var(--font-label); font-size: 1.25rem; letter-spacing: .18em; }
+
+  /* buttons */
+  .btn-row { display: flex; flex-wrap: wrap; gap: var(--sp-4); align-items: center; }
+  .button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: var(--sp-3) var(--sp-8); border-radius: var(--rad-pill); font-weight: 700; text-decoration: none; border: 1px solid transparent; cursor: pointer; }
+  .button-primary { background: var(--yolo-blue); color: var(--yolo-white); }
+  .button-on-blue { background: var(--yolo-white); color: var(--yolo-blue); }
+  .button-secondary { border-color: currentColor; color: inherit; }
+  .button-business { background: var(--yolo-white); color: var(--yolo-black); border-color: var(--yolo-black); }
+  .button:focus-visible { outline: 2px solid var(--yolo-blue); outline-offset: 3px; }
+  .on-blue { background: var(--yolo-blue); color: var(--yolo-white); padding: var(--sp-8); border-radius: var(--rad-m); }
+  .on-blue .button:focus-visible { outline-color: var(--yolo-white); }
+
+  /* rhythm */
+  .rhythm { border: 1px solid var(--yolo-line); border-radius: var(--rad-m); overflow: hidden; }
+  .band { padding: var(--sp-8) var(--sp-6); display: flex; gap: var(--sp-4); align-items: baseline; flex-wrap: wrap; }
+  .band .no { font-family: var(--font-label); font-size: 1.5rem; letter-spacing: .1em; opacity: .8; }
+  .band .name { font-family: var(--font-heading); font-weight: 900; font-size: var(--fs-h3); }
+  .band .note { font-size: var(--fs-small); opacity: .8; }
+  .b-rail { background: #050810; color: #fff; }
+  .b-footer { background: #050810; color: #fff; }
+  .b-off { background: var(--yolo-off-white); color: var(--yolo-black); }
+  .b-blue { background: var(--yolo-blue); color: #fff; }
+  .b-white { background: var(--yolo-white); color: var(--yolo-black); }
+  .b-deep { background: var(--yolo-blue-deep); color: #fff; }
+  .b-ink { background: var(--yolo-blue-ink); color: #fff; }
+
+  /* grain */
+  .grain { position: relative; }
+  .grain::after { content: ""; position: absolute; inset: 0; background-image: var(--grain); opacity: .05; pointer-events: none; }
+
+  /* fallback demos */
+  .demo-grid { display: grid; gap: var(--sp-6); grid-template-columns: 1fr; }
+  @media (min-width: 800px) { .demo-grid { grid-template-columns: 1fr 1fr; } }
+  .demo { border-radius: var(--rad-m); overflow: hidden; border: 1px solid var(--yolo-line); }
+  .demo-hero { background: linear-gradient(120deg, var(--yolo-blue) 0%, var(--yolo-blue-deep) 100%); color: #fff; padding: var(--sp-16) var(--sp-6); min-height: 260px; display: flex; align-items: flex-end; }
+  .demo-hero h3 { font-size: var(--fs-hero); }
+  .demo-local { background: var(--yolo-blue-deep); color: #fff; padding: var(--sp-16) var(--sp-6); min-height: 260px; display: flex; align-items: flex-end; }
+  .demo-local .place { font-family: var(--font-label); font-size: clamp(3rem, 10vw, 6rem); letter-spacing: .04em; line-height: .95; }
+  .voice-card { background: var(--yolo-white); border: 1px solid var(--yolo-line); border-radius: var(--rad-m); padding: var(--sp-6); }
+  .voice-card p { margin: 0 0 var(--sp-2); font-family: var(--font-heading); font-weight: 700; font-size: var(--fs-h3); }
+  .voice-card .who { font-size: var(--fs-small); color: var(--yolo-gray); }
+  .voice-card .who b { color: var(--yolo-blue); }
+
+  /* numerals */
+  .steps { background: var(--yolo-blue-deep); color: #fff; border-radius: var(--rad-m); padding: var(--sp-12) var(--sp-6); position: relative; overflow: hidden; }
+  .step { position: relative; padding: var(--sp-6) 0; }
+  .step .n { font-family: var(--font-label); font-size: var(--fs-numeral); line-height: .8; color: rgba(255,255,255,.14); position: absolute; right: 0; top: 0; pointer-events: none; }
+  .step .t { font-family: var(--font-heading); font-weight: 900; font-size: var(--fs-h3); position: relative; }
+
+  /* cards on blue */
+  .cards { display: grid; gap: var(--sp-4); grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+  .card { border: 1px solid rgba(255,255,255,.5); border-radius: var(--rad-m); padding: var(--sp-6); }
+  .card .lab { font-family: var(--font-label); font-size: var(--fs-label); letter-spacing: .18em; opacity: .85; }
+  .card .ttl { font-family: var(--font-heading); font-weight: 900; font-size: var(--fs-h3); margin-top: var(--sp-2); }
+
+  /* accent */
+  .marker { background: linear-gradient(transparent 58%, var(--yolo-accent) 58%); padding: 0 .1em; }
+  .badge { display: inline-block; background: var(--yolo-accent); color: var(--yolo-black); font-weight: 700; font-size: var(--fs-small); padding: var(--sp-1) var(--sp-3); border-radius: var(--rad-pill); }
+  .badge-official { display: inline-block; background: var(--yolo-badge-official); color: #1c1c22; font-weight: 700; font-size: var(--fs-small); padding: var(--sp-1) var(--sp-3); border-radius: var(--rad-pill); }
+
+  .rule { border-left: 3px solid var(--yolo-blue); padding-left: var(--sp-4); margin: var(--sp-6) 0; }
+  .rule.no { border-left-color: var(--yolo-danger); }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="kicker">STYLE GUIDE / NOT INDEXED</p>
+  <h1 class="t-hero">YOLO Web デザインシステム</h1>
+  <p class="lead">正本は <code>yolo-members/docs/creative-yolo/25-WEB-DESIGN-SYSTEM.md</code>。このページはトークンの目視確認用で、公開サイトからはリンクしない。</p>
+
+  <div class="rule">
+    <strong>YOLO BLUE ＝ 行動・挑戦・参加。</strong><br />
+    青いところ＝YOLOに一歩入るところ。参加ボタン・「やってみる」系の動詞・リンク・重要ワード・現在位置にだけ使う。
+  </div>
+
+  <section>
+    <p class="kicker">01 COLOR</p>
+    <h2>カラートークン</h2>
+    <p class="lead">カテゴリ（PHOTO / FILM / ACTING…）で色を変えない。差は青の濃淡と白罫線でつける。</p>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:var(--yolo-blue);color:#fff">#1769E0</div><div class="meta"><b>--yolo-blue</b><span>主役。CTA・リンク・重要ワード・現在位置</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--yolo-blue-deep);color:#fff">#0A2860</div><div class="meta"><b>--yolo-blue-deep</b><span>締めの濃い面（はじめ方）</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--yolo-blue-ink);color:#fff">#080D18</div><div class="meta"><b>--yolo-blue-ink</b><span>最暗面（フッター）</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--yolo-off-white);color:#111">#F7F7F3</div><div class="meta"><b>--yolo-off-white</b><span>基本背景</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--yolo-white);color:#111;box-shadow:inset 0 0 0 1px var(--yolo-line)">#FFFFFF</div><div class="meta"><b>--yolo-white</b><span>写真が主役の面</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--yolo-black);color:#fff">#111111</div><div class="meta"><b>--yolo-black</b><span>文字</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--yolo-gray);color:#fff">#5B6472</div><div class="meta"><b>--yolo-gray</b><span>補助文字（明背景）</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--yolo-blue-ink);color:var(--yolo-blue-glow)">#6AA8FF</div><div class="meta"><b>--yolo-blue-glow</b><span>暗い面での文字の青。#1769E0 は暗い面で 3.82:1 しかなく本文に使えない</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--yolo-blue-ink);color:var(--yolo-on-dark)">#B9C4D6</div><div class="meta"><b>--yolo-on-dark</b><span>暗い面の補助文字</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--yolo-accent);color:#111">#D8FF3E</div><div class="meta"><b>--yolo-accent</b><span>マーカー／ステータス専用。1画面1点・CTA禁止・必ず黒文字</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--yolo-danger);color:#fff">#C8322A</div><div class="meta"><b>--yolo-danger</b><span>警告専用。強調やタグに使わない</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--yolo-badge-official);color:#1c1c22">#F0A92C</div><div class="meta"><b>--yolo-badge-official</b><span>公式モデルバッジ専用（認定マーク）。他用途禁止</span></div></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="kicker">02 CONTRAST</p>
+    <h2>コントラスト実測値</h2>
+    <table>
+      <thead><tr><th>組み合わせ</th><th>見本</th><th>比</th><th>判定</th></tr></thead>
+      <tbody>
+        <tr><td>白 on <code>--yolo-blue</code></td><td><span class="pair" style="background:#1769E0;color:#fff">参加する</span></td><td>5.08:1</td><td class="ok">AA ✓</td></tr>
+        <tr><td><code>--yolo-blue</code> on <code>--yolo-off-white</code></td><td><span class="pair" style="background:#F7F7F3;color:#1769E0">リンク</span></td><td>4.73:1</td><td class="warn">AA ぎりぎり — 14px以下・細字は黒に</td></tr>
+        <tr><td>白 on <code>--yolo-blue-deep</code></td><td><span class="pair" style="background:#0A2860;color:#fff">見出し</span></td><td>14.14:1</td><td class="ok">AAA ✓</td></tr>
+        <tr><td>白 on <code>--yolo-blue-ink</code></td><td><span class="pair" style="background:#080D18;color:#fff">フッター</span></td><td>19.42:1</td><td class="ok">AAA ✓</td></tr>
+        <tr><td>黒 on <code>--yolo-off-white</code></td><td><span class="pair" style="background:#F7F7F3;color:#111">本文</span></td><td>17.58:1</td><td class="ok">AAA ✓</td></tr>
+        <tr><td>黒 on <code>--yolo-accent</code></td><td><span class="pair" style="background:#D8FF3E;color:#111">受付中</span></td><td>16.45:1</td><td class="ok">AAA ✓</td></tr>
+        <tr><td>白 on <code>--yolo-accent</code></td><td><span class="pair" style="background:#D8FF3E;color:#fff">読めない</span></td><td>1.15:1</td><td class="ng">禁止</td></tr>
+        <tr><td><code>--yolo-accent</code> on <code>--yolo-blue</code></td><td><span class="pair" style="background:#1769E0;color:#D8FF3E">大きい文字のみ</span></td><td>4.43:1</td><td class="warn">24px以上／18.66px太字のみ</td></tr>
+      </tbody>
+    </table>
+    <div class="rule">写真の上に白文字を置くときは、必ず <code>--yolo-scrim</code>（rgba(8,13,24,.45)）以上のオーバーレイを敷く。写真の明るさに依存しない。</div>
+  </section>
+
+  <section>
+    <p class="kicker">03 TYPE</p>
+    <h2>タイポグラフィ</h2>
+    <p class="lead">明朝＝物語の声、ゴシック＝案内の声。公式サイトは案内なので見出しはゴシック、STORIES だけ明朝。</p>
+    <div class="type-row"><span class="tag">--fs-display / Noto Sans JP 900</span><div class="t-display">やってみたい。</div></div>
+    <div class="type-row"><span class="tag">--fs-hero / Noto Sans JP 900</span><div class="t-hero">「やってみたい。」から、始まる。</div></div>
+    <div class="type-row"><span class="tag">--fs-h2 / Noto Sans JP 900</span><div class="t-h2">才能の問題じゃない。場所の問題だった。</div></div>
+    <div class="type-row"><span class="tag">--fs-h3 / Noto Sans JP 900</span><div class="t-h3">撮る。撮られる。</div></div>
+    <div class="type-row"><span class="tag">--fs-h2 / Shippori Mincho B1（STORIES のみ）</span><div class="t-story">映画経験ゼロから、一本の映画が完成するまで。</div></div>
+    <div class="type-row"><span class="tag">--font-label / Bebas Neue</span><div class="t-label">WHAT YOU CAN DO — 2026.08</div></div>
+    <div class="type-row"><span class="tag">--fs-body / Noto Sans JP 400</span><div>スマホ1台でOK。まちを歩いて、撮って、見せ合う。いちばん敷居の低い入口です。</div></div>
+  </section>
+
+  <section>
+    <p class="kicker">04 BUTTONS</p>
+    <h2>ボタン</h2>
+    <p class="lead">Primary は1画面1個。ラベルは動詞で終える（「こちら」「詳細」単体は禁止）。タップ領域 44×44px 以上。</p>
+    <div class="btn-row">
+      <a class="button button-primary" href="#">LINEで参加する（無料）</a>
+      <a class="button button-secondary" href="#">HUBを見てみる →</a>
+      <a class="button button-business" href="#">相談してみる →</a>
+    </div>
+    <div class="on-blue grain" style="margin-top:var(--sp-6)">
+      <p style="margin:0 0 var(--sp-4);font-family:var(--font-heading);font-weight:900;font-size:var(--fs-h3)">青ベタ面の上では、Primary を反転する</p>
+      <div class="btn-row">
+        <a class="button button-on-blue" href="#">LINEで参加する（無料）</a>
+        <a class="button button-secondary" href="#">くわしく見る →</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="kicker">05 RHYTHM</p>
+    <h2>セクションの配色リズム</h2>
+    <p class="lead">暗いのが基本。明るい面は「読ませる場所」の3つだけ。鮮やかな青を面に使うのは JOIN だけで、他の暗い面では青は発光としてだけ出す。</p>
+    <div class="rhythm">
+      <div class="band b-ink grain"><span class="no">01</span><span class="name">HERO</span><span class="note">INK ＋ 群青グラデ ＋ 光の粒子 ＋ タイトルロゴ ＋ 縦書き明朝</span></div>
+      <div class="band b-rail"><span class="no">—</span><span class="name">ことばのレール</span><span class="note">面と面のあいだに速度を挟む</span></div>
+      <div class="band b-off"><span class="no">02</span><span class="name">YOLOとは</span><span class="note">OFF WHITE ／ 黒文字。明るい面①：読ませる場所</span></div>
+      <div class="band b-deep grain"><span class="no">03</span><span class="name">できること</span><span class="note">DEEP BLUE ／ 罫線が光る番号行</span></div>
+      <div class="band b-ink"><span class="no">04</span><span class="name">PEOPLE</span><span class="note">INK ／ 数字だけが発光</span></div>
+      <div class="band b-deep grain"><span class="no">05</span><span class="name">はじめ方</span><span class="note">DEEP BLUE ／ 数字が画面外へ抜ける</span></div>
+      <div class="band b-off"><span class="no">06</span><span class="name">STORIES</span><span class="note">OFF WHITE ／ 雑誌レイアウト（明朝）。明るい面②</span></div>
+      <div class="band b-ink grain"><span class="no">07</span><span class="name">地域との活動</span><span class="note">INK ＋ 地名のタイポウォール</span></div>
+      <div class="band b-rail"><span class="no">—</span><span class="name">ことばのレール</span><span class="note">逆方向に流す</span></div>
+      <div class="band b-blue grain"><span class="no">08</span><span class="name">JOIN</span><span class="note">BRAND BLUE 全面 ＋ 中央フレア。ページ最大の発光</span></div>
+      <div class="band b-off"><span class="no">09</span><span class="name">BUSINESS</span><span class="note">OFF WHITE ／ 黒枠CTA。明るい面③</span></div>
+      <div class="band b-footer"><span class="no">—</span><span class="name">FOOTER</span><span class="note">#050810 — ページで最も暗い</span></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="kicker">06 COMPONENTS</p>
+    <h2>カード（青ベタ面）／ 数字ステップ</h2>
+    <p class="lead">青の上のカードは塗らない。白1px罫線と余白だけで作る（塗り重ねると青が濁る）。</p>
+    <div class="on-blue grain">
+      <div class="cards">
+        <div class="card"><div class="lab">PHOTO</div><div class="ttl">撮る。撮られる。</div></div>
+        <div class="card"><div class="lab">FILM</div><div class="ttl">映画をつくる。</div></div>
+        <div class="card"><div class="lab">ACTING</div><div class="ttl">演じてみる。</div></div>
+      </div>
+    </div>
+    <div class="steps grain" style="margin-top:var(--sp-6)">
+      <div class="step"><span class="n">01</span><div class="t">見つける</div><div class="note">気になるイベントを見つける</div></div>
+      <div class="step"><span class="n">02</span><div class="t">参加する</div><div class="note">「行きます」と言うだけ。手ぶらでいい</div></div>
+      <div class="step"><span class="n">03</span><div class="t">出会う</div><div class="note">撮る人、演じる人、作る人と知り合う</div></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="kicker">07 NO PHOTO</p>
+    <h2>写真がまだ無い間のフォールバック</h2>
+    <p class="lead">「準備中」「Coming Soon」のダミー枠は出さない。写真が来たら CSS 変数に値を差すだけで切り替わる構造にする。</p>
+    <div class="demo-grid">
+      <div class="demo">
+        <div class="demo-hero grain"><h3>「やってみたい。」から、始まる。</h3></div>
+      </div>
+      <div class="demo">
+        <div class="demo-local grain"><div><div class="note" style="opacity:.8">07 地域との活動</div><div class="place">AMAKUSA</div></div></div>
+      </div>
+    </div>
+    <div class="demo-grid" style="margin-top:var(--sp-6)">
+      <div class="voice-card">
+        <p>「見てるだけ」だった私が、<br />スタッフをやっていた。</p>
+        <div class="who"><b>Yuki</b> ／ 参加2年目</div>
+      </div>
+      <div class="voice-card">
+        <p>カメラを買う前に、<br />撮り始めていた。</p>
+        <div class="who"><b>Sora</b> ／ 参加1年目</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="kicker">08 ACCENT</p>
+    <h2>蛍光アクセントと手書き</h2>
+    <p class="lead">アクセントはブランド色ではない。マーカーとステータスだけ。1画面1点。</p>
+    <p style="font-family:var(--font-heading);font-weight:900;font-size:var(--fs-h3)">合言葉はひとつ。<span class="marker">まず、投げてみよう。</span></p>
+    <p><span class="badge">受付中</span> <span class="badge-official">YOLO公式モデル</span></p>
+    <div class="rule no"><strong>やらないこと</strong>：手書きフォントを使う／アクセントをCTAに使う／アクセントと白文字を組む／グレインを白い面に乗せる／1画面に手書き要素を2つ以上置く</div>
+  </section>
+
+  <hr />
+  <p class="lead">最終更新 2026-08-09 ／ 変更は <code>25-WEB-DESIGN-SYSTEM.md</code> を先に直してからこのページへ反映する。</p>
+</div>
+</body>
+</html>
