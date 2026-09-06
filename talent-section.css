@@ -7,7 +7,7 @@
 .home-light .talent-entry {
   position: relative;
   overflow: hidden;
-  background: #f1ece3;
+  background: #ffffff;
   padding-top: clamp(5rem, 8vw, 8rem);
   padding-bottom: clamp(5rem, 8vw, 8rem);
 }
@@ -21,7 +21,7 @@
   font-size: clamp(7rem, 18vw, 18rem);
   line-height: 1;
   letter-spacing: -.04em;
-  color: rgba(27,27,27,.035);
+  color: rgba(17,17,17,.035);
   pointer-events: none;
 }
 .home-light .talent-shell {
@@ -38,7 +38,7 @@
   font-family: "Josefin Sans", sans-serif;
   font-size: .72rem;
   letter-spacing: .22em;
-  color: rgba(27,27,27,.52);
+  color: rgba(17,17,17,.52);
 }
 .home-light .talent-entry h2 {
   margin: 0 0 1.5rem;
@@ -52,7 +52,7 @@
   max-width: 30rem;
   font-size: 1.03rem;
   line-height: 1.95;
-  color: rgba(27,27,27,.76);
+  color: rgba(17,17,17,.76);
 }
 .home-light .talent-points { display: flex; flex-wrap: wrap; gap: .55rem; margin: 0 0 1.6rem; }
 .home-light .talent-points span {
@@ -60,36 +60,36 @@
   align-items: center;
   min-height: 34px;
   padding: .35rem .8rem;
-  border: 1px solid rgba(27,27,27,.18);
+  border: 1px solid rgba(17,17,17,.18);
   border-radius: 999px;
   background: rgba(255,255,255,.6);
   font-size: .78rem;
   letter-spacing: .03em;
-  color: rgba(27,27,27,.78);
+  color: rgba(17,17,17,.78);
 }
 .home-light .talent-note {
   margin: 0 0 1.75rem;
   padding-left: 1rem;
-  border-left: 2px solid #f0a92c;
+  border-left: 2px solid #111111;
   font-size: .92rem;
   line-height: 1.85;
-  color: rgba(27,27,27,.72);
+  color: rgba(17,17,17,.72);
 }
 .home-light .talent-entry .button-primary {
-  background: #191919;
-  color: #f8f5ee;
-  box-shadow: 0 12px 28px rgba(25,25,25,.12);
+  background: #0b0b0b;
+  color: #ffffff;
+  box-shadow: 0 12px 28px rgba(17,17,17,.12);
 }
 .home-light .talent-entry .button-primary:hover,
 .home-light .talent-entry .button-primary:focus-visible {
-  color: #f8f5ee;
-  background: #242424;
+  color: #ffffff;
+  background: #111111;
 }
 .home-light .talent-small {
   margin: .8rem 0 0;
   font-size: .78rem;
   line-height: 1.65;
-  color: rgba(27,27,27,.58);
+  color: rgba(17,17,17,.58);
 }
 .home-light .talent-visual { position: relative; min-height: 590px; }
 .home-light .talent-photo {
@@ -98,7 +98,7 @@
   overflow: hidden;
   background-size: cover;
   background-position: center;
-  box-shadow: 0 22px 55px rgba(35,31,24,.16);
+  box-shadow: 0 22px 55px rgba(17,17,17,.16);
 }
 .home-light .talent-photo-main {
   width: 68%;
@@ -112,7 +112,7 @@
   aspect-ratio: 4 / 5;
   left: 0;
   bottom: 0;
-  border: 8px solid #f1ece3;
+  border: 8px solid #ffffff;
   background-image: url("https://raw.githubusercontent.com/hasu-bot/yolo-photo-walk/main/images/hero-photo-walk-together-v1.jpg");
 }
 .home-light .talent-word {
@@ -125,7 +125,7 @@
   font-size: clamp(3.6rem, 7vw, 6.5rem);
   line-height: .82;
   letter-spacing: -.05em;
-  color: #f1ece3;
+  color: #ffffff;
   mix-blend-mode: difference;
   pointer-events: none;
 }
@@ -164,7 +164,7 @@
     margin-bottom: 1.5rem;
   }
   .home-light .talent-entry .button { width: 100%; max-width: 340px; padding-left: 1rem; padding-right: 1rem; }
-  .home-light .talent-small { font-size: .76rem; color: rgba(27,27,27,.62); }
+  .home-light .talent-small { font-size: .76rem; color: rgba(17,17,17,.62); }
   .home-light .talent-visual { min-height: 350px; }
   .home-light .talent-photo-main { width: 70%; }
   .home-light .talent-photo-sub { width: 44%; border-width: 5px; }

@@ -1,13 +1,23 @@
 /* yolo-tokens.css — 正本: yolo-members/docs/creative-yolo/09-DESIGN-SYSTEM.md §1
    更新はドキュメントを先に直し、6サイトへコピー反映する（SOP-7） */
 :root {
-  /* color — 層1: 夜と光（Brand Book §2） */
-  --yolo-night: #101014;
-  --yolo-light: #f0a92c;   /* HUB実装値を正とする */
-  --yolo-ember: #c0432c;   /* 映画祭実装値 */
-  --yolo-paper: #f7f0df;
-  --yolo-ink:   #1c1c22;   /* 明背景時の文字 */
-  --yolo-muted: rgba(255,255,255,.64); /* 暗背景の補助文字 */
+  /* color — 紙面は白黒、行動は青
+     正本: 26-YOLO-TALENTS-SITE.md §7。旧「夜と光」（黒×アンバー）は廃止した。
+     トークン名は既存CSSが参照しているため据え置き、値だけ差し替えている */
+  --yolo-night: #0b0b0b;   /* 黒ベタの面（JOIN・フッター） */
+  --yolo-light: #1769e0;   /* YOLO BLUE。押す場所だけ＝CTA・リンク・現在位置 */
+  --yolo-ember: #c0432c;   /* 警告専用。強調やタグには使わない */
+  --yolo-paper: #f7f7f3;   /* 基本の紙 */
+  --yolo-ink:   #111111;   /* 明背景時の文字（on paper 17.58:1 AAA） */
+  --yolo-muted: rgba(255,255,255,.74); /* 暗背景の補助文字 */
+
+  /* 面に対する意味。色を直接書かずここを経由する */
+  --ink-1: #111111;              /* 主文字・見出し・太い罫線 */
+  --ink-2: #5b6472;              /* 補助文字（on paper 5.74:1 AA） */
+  --rule:  #e2e2dc;              /* 細い罫線 */
+  --surface: #f7f7f3;            /* 今いる面の地色 */
+  --yolo-white: #ffffff;
+  --yolo-badge-official: #f0a92c; /* 公式モデルバッジ専用（23 §8）。他用途禁止 */
 
   /* spacing — 4pxベース。中間値を勝手に作らない */
   --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
