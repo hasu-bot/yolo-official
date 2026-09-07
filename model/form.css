@@ -229,3 +229,21 @@
     font-size: 16px;
   }
 }
+
+/* 16〜17歳のときだけ出す保護者欄。
+   本人の入力欄と地続きに見えないよう、枠で囲って別の人が書く場所だと分かるようにする */
+#guardian-wrap {
+  border: 1px solid rgba(25,25,25,.18);
+  border-radius: 10px;
+  padding: 1.1rem 1.15rem 1.25rem;
+  background: rgba(255,255,255,.55);
+}
+#guardian-wrap .form-grid { margin-top: .85rem; }
+#guardian-wrap .consent-box { margin-top: 1rem; }
+.guardian-note {
+  margin: 0;
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  color: #191919;
+}

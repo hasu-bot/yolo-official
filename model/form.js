@@ -23,7 +23,8 @@
           </div>
           <div class="form-field">
             <label for="app-age">年齢<span class="form-required">必須</span></label>
-            <input id="app-age" name="age" type="number" min="0" max="120" inputmode="numeric" required />
+            <input id="app-age" name="age" type="number" min="16" max="120" inputmode="numeric" required />
+            <p class="form-help">16歳以上の方が対象です。</p>
           </div>
           <div class="form-field">
             <label for="app-residence">居住エリア<span class="form-required">必須</span></label>
@@ -33,6 +34,25 @@
             <label for="app-height">身長（cm）</label>
             <input id="app-height" name="height_cm" type="number" min="50" max="250" inputmode="numeric" placeholder="例：165" />
           </div>
+          <div class="form-field full" id="guardian-wrap" hidden>
+            <p class="guardian-note">16〜17歳の方は、保護者の方の同意が必要です。</p>
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="app-guardian-name">保護者の氏名<span class="form-required">必須</span></label>
+                <input id="app-guardian-name" name="guardian_name" type="text" maxlength="100" />
+              </div>
+              <div class="form-field">
+                <label for="app-guardian-contact">保護者の連絡先<span class="form-required">必須</span></label>
+                <input id="app-guardian-contact" name="guardian_contact" type="text" maxlength="320" placeholder="電話番号またはメールアドレス" />
+                <p class="form-help">確認のためご連絡する場合があります。</p>
+              </div>
+            </div>
+            <label class="consent-box">
+              <input id="app-guardian-consent" name="guardian_consent" type="checkbox" />
+              <span>保護者として、本人がYOLOのモデル／俳優に応募し、上記の内容で審査を受けることに同意します。<span class="form-required">必須</span></span>
+            </label>
+          </div>
+
           <div class="form-field full">
             <label for="app-email">連絡用メールアドレス<span class="form-required">必須</span></label>
             <input id="app-email" name="contact_email" type="email" autocomplete="email" maxlength="320" required />
@@ -127,13 +147,37 @@
       </div>
     </form>
 
-    <p class="entry-note">※応募＝登録・所属・出演決定ではありません。審査後に登録可否をご連絡します。<br />※18歳未満の方は、審査・登録の過程で保護者の同意を確認します。</p>
+    <p class="entry-note">※応募＝登録・所属・出演決定ではありません。審査後に登録可否をご連絡します。<br />※16歳以上の方が対象です。16〜17歳の方は、この応募フォームで保護者の同意をいただきます。</p>
   `;
 
   var form = document.getElementById('model-application-form');
   var submitButton = document.getElementById('application-submit');
   var statusEl = document.getElementById('application-status');
+  var ageInput = document.getElementById('app-age');
+  var guardianWrap = document.getElementById('guardian-wrap');
+  var guardianName = document.getElementById('app-guardian-name');
+  var guardianContact = document.getElementById('app-guardian-contact');
+  var guardianConsent = document.getElementById('app-guardian-consent');
   var agencySelect = document.getElementById('app-agency');
+
+  // 16〜17歳のときだけ保護者欄を出して必須にする（23 §4-1）。
+  // 18歳以上・未入力のときは値ごと消す——一度入力してから年齢を変えた人の情報を残さない
+  function syncGuardian() {
+    var age = Number(ageInput.value);
+    var needsGuardian = ageInput.value !== '' && age >= 16 && age <= 17;
+    guardianWrap.hidden = !needsGuardian;
+    guardianName.required = needsGuardian;
+    guardianContact.required = needsGuardian;
+    guardianConsent.required = needsGuardian;
+    if (!needsGuardian) {
+      guardianName.value = '';
+      guardianContact.value = '';
+      guardianConsent.checked = false;
+    }
+  }
+  ageInput.addEventListener('input', syncGuardian);
+  ageInput.addEventListener('change', syncGuardian);
+  syncGuardian();
   var agencyNameWrap = document.getElementById('agency-name-wrap');
   var agencyNameInput = document.getElementById('app-agency-name');
 
@@ -153,10 +197,29 @@
     return map[file.type] || '';
   }
 
+  // 入力内容の誤りは、そのまま画面に出してよいものとして投げる。
+  // Supabase 側のエラーはそのまま見せない（技術的すぎて本人には直せない）
+  function inputError(message) {
+    var e = new Error(message);
+    e.userFacing = true;
+    return e;
+  }
+
   function validatePhoto(file, label) {
-    if (!file) throw new Error(label + 'を選択してください。');
-    if (!getExt(file)) throw new Error(label + 'はJPEG・PNG・WebPで送信してください。');
-    if (file.size > 10 * 1024 * 1024) throw new Error(label + 'は10MB以下にしてください。');
+    if (!file) throw inputError(label + 'を選択してください。');
+    if (!getExt(file)) throw inputError(label + 'はJPEG・PNG・WebPで送信してください。');
+    if (file.size > 10 * 1024 * 1024) throw inputError(label + 'は10MB以下にしてください。');
+  }
+
+  // 年齢と保護者同意の検査（23-OFFICIAL-MODEL-PROGRAM §4-1）。
+  // 15歳以下は登録できない。16〜17歳は保護者の氏名・連絡先・同意が必須
+  function validateAge(age, guardian) {
+    if (!Number.isFinite(age)) throw inputError('年齢を入力してください。');
+    if (age < 16) throw inputError('応募は16歳以上の方が対象です。');
+    if (age > 17) return;
+    if (!guardian.name) throw inputError('保護者の氏名を入力してください。');
+    if (!guardian.contact) throw inputError('保護者の連絡先を入力してください。');
+    if (!guardian.consent) throw inputError('保護者の同意にチェックをお願いします。');
   }
 
   function setStatus(message, state) {
@@ -181,7 +244,14 @@
     var faceFile = data.get('face_photo');
     var fullFile = data.get('full_photo');
 
+    var guardian = {
+      name: String(data.get('guardian_name') || '').trim(),
+      contact: String(data.get('guardian_contact') || '').trim(),
+      consent: data.get('guardian_consent') === 'on'
+    };
+
     try {
+      validateAge(Number(data.get('age')), guardian);
       validatePhoto(faceFile, '顔写真');
       validatePhoto(fullFile, '全身写真');
 
@@ -224,6 +294,9 @@
         availability: String(data.get('availability') || '').trim() || null,
         contact_email: String(data.get('contact_email') || '').trim(),
         is_minor: age < 18,
+        guardian_name: guardian.name || null,
+        guardian_contact: guardian.contact || null,
+        guardian_consent: guardian.consent,
         privacy_consent: data.get('privacy_consent') === 'on',
         face_photo_path: facePath,
         full_photo_path: fullPath,
@@ -245,7 +318,12 @@
       host.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } catch (error) {
       console.error('Model application submit failed:', error);
-      setStatus('送信できませんでした。通信状況をご確認のうえ、もう一度お試しください。', 'error');
+      setStatus(
+        error && error.userFacing
+          ? error.message
+          : '送信できませんでした。通信状況をご確認のうえ、もう一度お試しください。',
+        'error'
+      );
       submitButton.disabled = false;
       submitButton.textContent = '応募を送信する';
     }
