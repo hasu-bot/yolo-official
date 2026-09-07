@@ -424,3 +424,14 @@ body.home-light {
   .home-light .footer-links a { font-size: .82rem; }
   .home-light .footer-copy { margin-top: 1.5rem; }
 }
+
+/* ── 写真のトーン ──
+   紙面を白黒にしたので、写真の色味が揃っていないと1枚だけ浮く。
+   ただしモノクロにはしない——紙面を白黒にするのであって、写真を白黒にするのではない
+   （26-YOLO-TALENTS-SITE.md §8-2）。彩度を少し落として地に馴染ませる */
+.home-light .hero-photo,
+.home-light .photo-frame,
+.home-light .card-photo,
+.home-light .talent-photo {
+  filter: saturate(.72) contrast(1.03);
+}
