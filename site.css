@@ -37,7 +37,7 @@ a { color: inherit; }
 /* ── skip link ── */
 .skip-link {
   position: fixed; top: -48px; left: var(--sp-4);
-  background: var(--yolo-light); color: var(--yolo-night);
+  background: var(--yolo-light); color: #ffffff;
   padding: var(--sp-2) var(--sp-4); border-radius: var(--rad-s);
   z-index: 100; transition: top var(--dur-fast) var(--ease-out);
 }
@@ -54,7 +54,6 @@ a { color: inherit; }
 .brand-mark {
   width: 12px; height: 12px; border-radius: 50%;
   background: var(--yolo-light);
-  box-shadow: 0 0 12px 2px rgba(240,169,44,.55);
 }
 .brand-name {
   font-family: "Josefin Sans", sans-serif; font-weight: 600;
@@ -65,15 +64,15 @@ a { color: inherit; }
   .desktop-nav { display: flex; gap: var(--sp-6); align-items: center; }
   .desktop-nav a {
     text-decoration: none; font-size: var(--fs-small);
-    color: var(--yolo-muted); transition: color var(--dur-fast) var(--ease-out);
+    color: var(--ink-2); transition: color var(--dur-fast) var(--ease-out);
   }
   .desktop-nav a:hover, .desktop-nav a:focus-visible { color: var(--yolo-paper); }
   .desktop-nav .nav-join {
-    color: var(--yolo-night); background: var(--yolo-light);
+    color: #ffffff; background: var(--yolo-light);
     padding: var(--sp-2) var(--sp-6); border-radius: var(--rad-pill);
     font-weight: 500;
   }
-  .desktop-nav .nav-join:hover, .desktop-nav .nav-join:focus-visible { color: var(--yolo-night); opacity: .9; }
+  .desktop-nav .nav-join:hover, .desktop-nav .nav-join:focus-visible { color: #ffffff; opacity: .9; }
   .menu-button { display: none !important; }
 }
 
@@ -110,7 +109,7 @@ a { color: inherit; }
   transition: opacity var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
 }
 .button:hover, .button:focus-visible { opacity: .88; transform: translateY(-1px); }
-.button-primary { background: var(--yolo-light); color: var(--yolo-night); }
+.button-primary { background: var(--yolo-light); color: #ffffff; }
 .button-secondary { border: 1px solid currentColor; color: var(--yolo-paper); }
 .button-large { padding: var(--sp-4) var(--sp-12); font-size: 1.05rem; }
 .text-link { color: var(--yolo-light); text-decoration: none; }
@@ -126,8 +125,6 @@ a { color: inherit; }
 .hero-glow {
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 70% 45% at 50% 88%, rgba(240,169,44,.28), transparent 70%),
-    radial-gradient(ellipse 40% 25% at 50% 96%, rgba(240,169,44,.35), transparent 70%),
     radial-gradient(ellipse 90% 60% at 50% 110%, rgba(192,67,44,.12), transparent 75%);
 }
 .hero-grain {
@@ -140,15 +137,15 @@ a { color: inherit; }
   letter-spacing: .35em; color: var(--yolo-light); margin: 0 0 var(--sp-6);
 }
 .hero h1 { font-size: var(--fs-hero); letter-spacing: .04em; }
-.hero-lead { color: var(--yolo-muted); margin: var(--sp-6) 0 var(--sp-8); }
+.hero-lead { color: var(--ink-2); margin: var(--sp-6) 0 var(--sp-8); }
 .hero-cta { display: flex; flex-direction: column; align-items: center; gap: var(--sp-4); }
 @media (min-width: 600px) { .hero-cta { flex-direction: row; justify-content: center; gap: var(--sp-8); } }
-.hero-sub-link { color: var(--yolo-muted); text-decoration: none; font-size: var(--fs-small); }
+.hero-sub-link { color: var(--ink-2); text-decoration: none; font-size: var(--fs-small); }
 .hero-sub-link:hover, .hero-sub-link:focus-visible { color: var(--yolo-paper); }
 .scroll-cue {
   position: absolute; bottom: var(--sp-6); left: 50%; transform: translateX(-50%);
   font-family: "Josefin Sans", sans-serif; font-size: var(--fs-label);
-  letter-spacing: .3em; color: var(--yolo-muted); text-decoration: none;
+  letter-spacing: .3em; color: var(--ink-2); text-decoration: none;
 }
 
 /* ── sections ── */
@@ -162,11 +159,10 @@ a { color: inherit; }
   color: var(--yolo-light); margin: 0 0 var(--sp-4);
 }
 .section h2 { font-size: var(--fs-h2); margin-bottom: var(--sp-8); }
-.prose p { margin: 0 0 var(--sp-6); color: rgba(247,240,223,.86); }
+.prose p { margin: 0 0 var(--sp-6); color: var(--ink-1); }
 .prose-strong strong { color: var(--yolo-light); font-weight: 600; }
 .light-word {
   color: var(--yolo-light);
-  text-shadow: 0 0 16px rgba(240,169,44,.5);
 }
 .section-cta { margin-top: var(--sp-8); }
 
@@ -180,20 +176,20 @@ a { color: inherit; }
 .project-card {
   display: flex; flex-direction: column; gap: var(--sp-3);
   padding: var(--sp-8) var(--sp-6);
-  background: rgba(247,240,223,.04);
-  border: 1px solid rgba(247,240,223,.12);
+  background: var(--yolo-white);
+  border: 1px solid var(--rule);
   border-radius: var(--rad-m); text-decoration: none;
   transition: border-color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
 }
 .project-card:hover, .project-card:focus-visible {
-  border-color: rgba(240,169,44,.5); background: rgba(240,169,44,.06);
+  border-color: rgba(17,17,17,.28); background: var(--yolo-white);
 }
 .card-label {
   font-family: "Josefin Sans", sans-serif; font-size: var(--fs-label);
   letter-spacing: .25em; color: var(--yolo-light); margin: 0;
 }
 .project-card h3 { font-size: 1.15rem; }
-.project-card p { margin: 0; font-size: var(--fs-small); color: var(--yolo-muted); line-height: 1.9; }
+.project-card p { margin: 0; font-size: var(--fs-small); color: var(--ink-2); line-height: 1.9; }
 .card-link { margin-top: auto; padding-top: var(--sp-3); font-size: var(--fs-small); color: var(--yolo-light); }
 
 /* ── community gallery（写真差し替え待ちのダミー：ダミーであることを隠さない） ── */
@@ -208,14 +204,13 @@ a { color: inherit; }
 }
 .gallery-item.dummy {
   background:
-    radial-gradient(ellipse 80% 60% at 60% 100%, rgba(240,169,44,.16), transparent 70%),
-    linear-gradient(160deg, #1a1a21, #121216);
-  border: 1px dashed rgba(247,240,223,.18);
+    linear-gradient(160deg, #121212, #0b0b0b);
+  border: 1px dashed var(--rule);
 }
 .gallery-item.dummy figcaption {
   width: 100%; padding: var(--sp-2) var(--sp-3);
   font-family: "Josefin Sans", sans-serif; font-size: var(--fs-label);
-  letter-spacing: .2em; color: rgba(247,240,223,.4);
+  letter-spacing: .2em; color: var(--ink-2);
 }
 
 /* ── news ── */
@@ -223,7 +218,7 @@ a { color: inherit; }
 .news-list li {
   display: flex; gap: var(--sp-6); align-items: baseline;
   padding: var(--sp-4) 0;
-  border-bottom: 1px solid rgba(247,240,223,.12);
+  border-bottom: 1px solid var(--rule);
 }
 .news-list time {
   font-family: "Josefin Sans", sans-serif; font-size: var(--fs-small);
@@ -234,7 +229,6 @@ a { color: inherit; }
 .join { overflow: hidden; text-align: center; }
 .join-glow {
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 60% 50% at 50% 100%, rgba(240,169,44,.18), transparent 70%);
 }
 .join .section-inner { position: relative; }
 .join-steps {
@@ -243,34 +237,34 @@ a { color: inherit; }
 }
 .join-steps li {
   display: flex; gap: var(--sp-4); align-items: baseline;
-  padding: var(--sp-4) 0; border-bottom: 1px solid rgba(247,240,223,.1);
+  padding: var(--sp-4) 0; border-bottom: 1px solid var(--rule);
 }
 .step-num {
   font-family: "Josefin Sans", sans-serif; font-weight: 600;
   color: var(--yolo-light); flex-shrink: 0; font-size: 1.2rem;
 }
-.join-note { color: var(--yolo-muted); font-size: var(--fs-small); margin-bottom: var(--sp-8); }
+.join-note { color: var(--ink-2); font-size: var(--fs-small); margin-bottom: var(--sp-8); }
 .join-cta { margin: 0 0 var(--sp-8); }
-.join-biz { font-size: var(--fs-small); color: var(--yolo-muted); }
+.join-biz { font-size: var(--fs-small); color: var(--ink-2); }
 .join-biz a { color: var(--yolo-light); }
 
 /* ── footer（共通フッター：01-ECOSYSTEM-IA §3） ── */
 .site-footer {
-  border-top: 1px solid rgba(247,240,223,.12);
+  border-top: 1px solid var(--rule);
   padding: var(--sp-16) var(--sp-6);
 }
 .footer-inner { max-width: 1120px; margin: 0 auto; text-align: center; }
 .footer-brand { font-family: "Shippori Mincho B1", serif; font-size: 1.05rem; margin: 0 0 var(--sp-2); }
-.footer-tagline { color: var(--yolo-muted); font-size: var(--fs-small); margin: 0 0 var(--sp-8); }
+.footer-tagline { color: var(--ink-2); font-size: var(--fs-small); margin: 0 0 var(--sp-8); }
 .footer-links {
   display: flex; flex-wrap: wrap; justify-content: center;
   gap: var(--sp-4) var(--sp-6); margin-bottom: var(--sp-6);
 }
 .footer-links a {
-  font-size: var(--fs-small); color: var(--yolo-muted); text-decoration: none;
+  font-size: var(--fs-small); color: var(--ink-2); text-decoration: none;
 }
 .footer-links a:hover, .footer-links a:focus-visible { color: var(--yolo-light); }
-.footer-copy { font-size: var(--fs-label); color: rgba(247,240,223,.4); margin: var(--sp-8) 0 0; }
+.footer-copy { font-size: var(--fs-label); color: var(--ink-2); margin: var(--sp-8) 0 0; }
 
 /* ── reveal motion（§3：フェード＋上方向。reduced-motionで無効）
      JS無効環境でも内容が見えるよう、html.js の下でのみ初期非表示にする ── */
@@ -307,10 +301,9 @@ html.js .hero [data-stage="4"] { animation-delay: 900ms; }
 /* ── hero 写真仮枠（実写真が来たら background-image を設定） ── */
 .hero-photo {
   position: absolute; margin: 0; z-index: 1;
-  border: 1px solid rgba(247,240,223,.2);
+  border: 1px solid var(--rule);
   border-radius: var(--rad-s);
   background:
-    radial-gradient(ellipse 90% 70% at 50% 100%, rgba(240,169,44,.2), transparent 70%),
     linear-gradient(155deg, #1d1d25, #131318);
   box-shadow: 0 12px 40px rgba(0,0,0,.5);
   display: flex; align-items: flex-end;
@@ -319,7 +312,7 @@ html.js .hero [data-stage="4"] { animation-delay: 900ms; }
 .hero-photo figcaption {
   width: 100%; padding: var(--sp-2) var(--sp-3);
   font-family: "Josefin Sans", sans-serif; font-size: 10px;
-  letter-spacing: .22em; color: rgba(247,240,223,.38);
+  letter-spacing: .22em; color: var(--ink-2);
 }
 .hero-photo-a { width: 180px; aspect-ratio: 3/4; left: 4%; bottom: 16%; transform: rotate(-5deg); }
 .hero-photo-b { width: 200px; aspect-ratio: 4/3; right: 4%; top: 20%; transform: rotate(4deg); }
@@ -328,13 +321,13 @@ html.js .hero-photo { opacity: 0; animation: stage-in var(--dur-slow) var(--ease
 
 /* ── ことばのレール ── */
 .word-rail {
-  overflow: hidden; border-top: 1px solid rgba(240,169,44,.25); border-bottom: 1px solid rgba(240,169,44,.25);
-  background: rgba(240,169,44,.05); padding: var(--sp-3) 0;
+  overflow: hidden; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  background: var(--yolo-white); padding: var(--sp-3) 0;
 }
 .word-rail-track {
   display: flex; gap: var(--sp-8); width: max-content;
   font-family: "Shippori Mincho B1", serif; font-size: 1rem; letter-spacing: .2em;
-  color: rgba(247,240,223,.75); white-space: nowrap;
+  color: var(--ink-2); white-space: nowrap;
   animation: rail-scroll 28s linear infinite;
 }
 .word-rail-track i { font-style: normal; color: var(--yolo-light); }
@@ -353,12 +346,11 @@ html.js .hero-photo { opacity: 0; animation: stage-in var(--dur-slow) var(--ease
   font-family: "Josefin Sans", sans-serif; font-weight: 600;
   font-size: clamp(3rem, 11vw, 7rem); line-height: 1;
   color: var(--yolo-light);
-  text-shadow: 0 0 32px rgba(240,169,44,.45);
 }
 .acronym-letter span {
   display: block; margin-top: var(--sp-2);
   font-family: "Josefin Sans", sans-serif; font-size: var(--fs-label);
-  letter-spacing: .3em; color: var(--yolo-muted); text-transform: uppercase;
+  letter-spacing: .3em; color: var(--ink-2); text-transform: uppercase;
 }
 /* 1文字ずつ順に灯る */
 html.js .acronym-letter { transition-delay: 0ms; }
@@ -372,14 +364,13 @@ html.js .acronym-letter:nth-child(4) { transition-delay: 420ms; }
 .light-word-plain { color: var(--yolo-light); }
 
 .rpg-block { margin-top: var(--sp-12); }
-.rpg-lead { color: var(--yolo-muted); margin: 0 0 var(--sp-4); }
+.rpg-lead { color: var(--ink-2); margin: 0 0 var(--sp-4); }
 .rpg-declare {
   font-family: "Shippori Mincho B1", serif; font-weight: 600;
   font-size: clamp(1.5rem, 4.5vw, 2.4rem); line-height: 1.6; margin: 0 0 var(--sp-8);
 }
 .rpg-declare em {
   font-style: normal; color: var(--yolo-light);
-  text-shadow: 0 0 24px rgba(240,169,44,.5);
   font-family: "Josefin Sans", sans-serif; letter-spacing: .06em;
 }
 .rpg-roles {
@@ -387,13 +378,13 @@ html.js .acronym-letter:nth-child(4) { transition-delay: 420ms; }
   display: flex; flex-wrap: wrap; justify-content: center; gap: var(--sp-3);
 }
 .rpg-roles li {
-  border: 1px solid rgba(240,169,44,.4); border-radius: var(--rad-pill);
+  border: 1px solid var(--rule); border-radius: var(--rad-pill);
   padding: var(--sp-2) var(--sp-6); font-size: var(--fs-small);
-  background: rgba(240,169,44,.06);
+  background: var(--yolo-white);
 }
-.rpg-roles .rpg-key { color: var(--yolo-muted); margin-right: var(--sp-2); }
+.rpg-roles .rpg-key { color: var(--ink-2); margin-right: var(--sp-2); }
 .rpg-roles strong { color: var(--yolo-light); font-weight: 600; }
-.rpg-note { color: rgba(247,240,223,.86); margin: 0; }
+.rpg-note { color: var(--ink-1); margin: 0; }
 
 /* ── 写真ストリップ（仮枠） ── */
 .photo-strip {
@@ -402,10 +393,9 @@ html.js .acronym-letter:nth-child(4) { transition-delay: 420ms; }
 }
 .photo-frame {
   margin: 0; width: min(260px, 80vw); aspect-ratio: 4/3;
-  border: 1px solid rgba(247,240,223,.18); border-radius: var(--rad-s);
+  border: 1px solid var(--rule); border-radius: var(--rad-s);
   background:
-    radial-gradient(ellipse 80% 60% at 55% 100%, rgba(240,169,44,.18), transparent 70%),
-    linear-gradient(160deg, #1b1b22, #121216);
+    linear-gradient(160deg, #121212, #0b0b0b);
   box-shadow: 0 10px 32px rgba(0,0,0,.45);
   display: flex; align-items: flex-end;
   background-size: cover; background-position: center;
@@ -413,7 +403,7 @@ html.js .acronym-letter:nth-child(4) { transition-delay: 420ms; }
 .photo-frame figcaption {
   width: 100%; padding: var(--sp-2) var(--sp-3);
   font-family: "Josefin Sans", sans-serif; font-size: 10px;
-  letter-spacing: .22em; color: rgba(247,240,223,.38);
+  letter-spacing: .22em; color: var(--ink-2);
 }
 .photo-frame.tilt-l { transform: rotate(-2.5deg); }
 .photo-frame.tilt-r { transform: rotate(2.5deg); }
@@ -424,9 +414,8 @@ html.js .acronym-letter:nth-child(4) { transition-delay: 420ms; }
   aspect-ratio: 16/9;
   border-radius: var(--rad-m) var(--rad-m) 0 0;
   background:
-    radial-gradient(ellipse 90% 70% at 50% 100%, rgba(240,169,44,.14), transparent 70%),
     linear-gradient(160deg, #1c1c23, #131317);
-  border-bottom: 1px solid rgba(247,240,223,.1);
+  border-bottom: 1px solid var(--rule);
   display: flex; align-items: flex-end;
   background-size: cover; background-position: center;
   margin-bottom: var(--sp-4);
@@ -434,7 +423,7 @@ html.js .acronym-letter:nth-child(4) { transition-delay: 420ms; }
 .card-photo figcaption {
   width: 100%; padding: var(--sp-2) var(--sp-3);
   font-family: "Josefin Sans", sans-serif; font-size: 10px;
-  letter-spacing: .22em; color: rgba(247,240,223,.34);
+  letter-spacing: .22em; color: var(--ink-2);
 }
 @media (prefers-reduced-motion: reduce) {
   html.js .hero [data-stage], html.js .hero-photo { animation: none; opacity: 1; transform: none; }
