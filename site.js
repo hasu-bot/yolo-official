@@ -46,6 +46,48 @@ const LINE_OFFICIAL_URL = "https://line.me/R/ti/p/@140irxqh";
   }
 })();
 
+/* チャリティーフォトウォークの最新実績を公式サイトへ反映 */
+(function () {
+  if (!document.body.classList.contains("home-light")) return;
+
+  var charityUrl = "https://yolo-photo-walk.vercel.app/";
+  var reportUrl = "https://yolo-photo-walk.vercel.app/record.html";
+  var donationUrl = "https://yolo-photo-walk.vercel.app/donation.html";
+
+  document.querySelectorAll(".project-card").forEach(function (card) {
+    var title = card.querySelector("h3");
+    if (!title || title.textContent.trim() !== "撮影会・フォトウォーク") return;
+
+    card.href = charityUrl;
+    card.target = "_blank";
+    card.rel = "noopener noreferrer";
+
+    var label = card.querySelector(".card-label");
+    var desc = title.nextElementSibling;
+    var linkText = card.querySelector(".card-link");
+    var figcaption = card.querySelector("figcaption");
+
+    if (label) label.textContent = "CHARITY / COMMUNITY";
+    if (figcaption) figcaption.textContent = "CHARITY PHOTO WALK";
+    title.textContent = "チャリティーフォトウォーク";
+    if (desc) desc.textContent = "写真を楽しみながら地域を歩き、開催に必要な経費を除いた金額を支援へ届ける活動。開催後は収支・寄付額・寄付先・証明を公開しています。";
+    if (linkText) linkText.textContent = "活動・寄付実績を見る →";
+  });
+
+  var newsList = document.querySelector("#news .news-list");
+  if (newsList && !newsList.querySelector("[data-charity-report]")) {
+    var donationItem = document.createElement("li");
+    donationItem.setAttribute("data-charity-report", "donation");
+    donationItem.innerHTML = '<time>2026.09.08</time><span><a href="' + donationUrl + '" target="_blank" rel="noopener noreferrer" style="color:inherit">REPORT　チャリティーフォトウォーク寄付完了 — 熊本県へ35,000円</a></span>';
+    newsList.prepend(donationItem);
+
+    var reportItem = document.createElement("li");
+    reportItem.setAttribute("data-charity-report", "event");
+    reportItem.innerHTML = '<time>2026.08.23</time><span><a href="' + reportUrl + '" target="_blank" rel="noopener noreferrer" style="color:inherit">REPORT　チャリティーフォトウォーク in 黒川温泉 開催記録</a></span>';
+    donationItem.insertAdjacentElement("afterend", reportItem);
+  }
+})();
+
 /* 暗背景ページでのみ光の粒子を描画 */
 (function () {
   if (document.body.classList.contains("home-light")) return;
