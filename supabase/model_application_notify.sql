@@ -14,13 +14,14 @@
 create extension if not exists pg_net with schema extensions;
 
 -- ── 2. Webhook URL を Vault に入れる ─────────────────
+-- ※ 新しいウェブフックは作らない。**既に使っている通知先に相乗りする。**
+--    yolo-members（HUB）が Vercel の環境変数 DISCORD_WEBHOOK_URL で使っているものと同じ値を入れる。
+--    メンバー登録申請・承認却下・ポイント更新と同じチャンネルに、応募も並ぶ。
+--
 -- ※ URL を関数に直書きしない（DBのダンプや定義表示から漏れるため）。
 --
---   Discord で「サーバー設定 → 連携サービス → ウェブフック → 新しいウェブフック」を作り、
---   運営だけが見えるチャンネルを選んで URL をコピーしてから、下を1回だけ実行する：
---
 --   select vault.create_secret(
---     'https://discord.com/api/webhooks/xxxxx/yyyyy',
+--     'https://discord.com/api/webhooks/xxxxx/yyyyy',  -- ← DISCORD_WEBHOOK_URL と同じ値
 --     'discord_application_webhook'
 --   );
 --
@@ -40,7 +41,7 @@ as $$
 declare
   hook_url text;
   minor_note text;
-  body_text text;
+  body_json jsonb;  -- Discord へ送る embeds
 begin
   select decrypted_secret into hook_url
     from vault.decrypted_secrets
@@ -53,31 +54,42 @@ begin
     return new;
   end if;
 
+  -- 見え方を yolo-members/lib/discord.ts に合わせる（embeds・同じチャンネルに並ぶため）
   minor_note := case
     when new.is_minor and new.guardian_consent
-      then E'\n**未成年です。** 保護者の同意あり。登録・掲載の同意は別途必要です（29番 §2-2-2）。'
+      then '未成年です。保護者の同意あり。登録・掲載の同意は別途必要です（29番 §2-2-2）。'
     when new.is_minor
-      then E'\n**未成年で、保護者の同意がありません。** 内容を確認してください。'
-    else ''
+      then '**未成年で、保護者の同意がありません。** 内容を確認してください。'
+    else '内容は Supabase の model_applications で確認してください。'
   end;
 
-  body_text := format(
-    E'**モデル・俳優の応募が1件届きました**\n応募番号: `%s`\n希望: %s ／ 年齢: %s%s\n\n中身は Supabase の `model_applications` で見てください。本名と連絡先はここには出していません。',
-    upper(substring(new.id::text, 1, 8)),
-    case new.activity_type
-      when 'model' then 'モデル'
-      when 'actor' then '俳優'
-      when 'both'  then 'モデル・俳優の両方'
-      else coalesce(new.activity_type, '未記入')
-    end,
-    coalesce(new.age::text, '未記入'),
-    minor_note
+  body_json := jsonb_build_object(
+    'embeds', jsonb_build_array(
+      jsonb_build_object(
+        'title', 'モデル・俳優の応募',
+        'description', minor_note,
+        -- 通常は YOLO BLUE。保護者同意の無い未成年だけ、既存の警告色に合わせる
+        -- 0xb71516（既存の警告色）／ 0x1769e0（YOLO BLUE）
+        'color', case when new.is_minor and not new.guardian_consent then 11998486 else 1534432 end,
+        'fields', jsonb_build_array(
+          jsonb_build_object('name', '応募番号', 'value', upper(substring(new.id::text, 1, 8)), 'inline', true),
+          jsonb_build_object('name', '希望', 'value',
+            case new.activity_type
+              when 'model' then 'モデル'
+              when 'actor' then '俳優'
+              when 'both'  then 'モデル・俳優の両方'
+              else coalesce(new.activity_type, '未記入')
+            end, 'inline', true),
+          jsonb_build_object('name', '年齢', 'value', coalesce(new.age::text, '未記入'), 'inline', true)
+        )
+      )
+    )
   );
 
   perform extensions.net.http_post(
     url     := hook_url,
     headers := jsonb_build_object('Content-Type', 'application/json'),
-    body    := jsonb_build_object('content', body_text)
+    body    := body_json
   );
 
   return new;
