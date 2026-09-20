@@ -164,7 +164,7 @@ const LINE_OFFICIAL_URL = "https://line.me/R/ti/p/@140irxqh";
 
   var formCss = document.createElement("link");
   formCss.rel = "stylesheet";
-  formCss.href = "./form.css?v=20260908";
+  formCss.href = "./form.css?v=20260920";
   document.head.appendChild(formCss);
 
   var sdk = document.createElement("script");
@@ -172,7 +172,7 @@ const LINE_OFFICIAL_URL = "https://line.me/R/ti/p/@140irxqh";
   sdk.crossOrigin = "anonymous";
   sdk.onload = function () {
     var formScript = document.createElement("script");
-    formScript.src = "./form.js?v=20260908";
+    formScript.src = "./form.js?v=20260920";
     document.body.appendChild(formScript);
   };
   document.head.appendChild(sdk);
