@@ -1,3 +1,13 @@
+-- 【重要】このファイルは適用済みの記録であって、正本ではない。
+--
+-- 応募まわりのDB定義の正本は yolo-members/supabase/migrations/ にある。
+-- 特に 20260914-model-application-operations.sql が、通知トリガー・管理RPC・
+-- discord_notified_at / receipt_email_sent_at 列を持っている。
+-- **新しくDBを変えるときは、そちらにマイグレーションを足すこと。ここには足さない。**
+--
+-- 下記のRLSポリシーは 2026-09-08 に本番へ適用済み（pg_policies で確認できる）。
+-- 応募フォームが yolo-official にあるため、経緯としてここに残している。
+
 -- 応募フォーム（/model/）が書き込む先の設定。
 -- Supabase ダッシュボードの SQL Editor で実行する。
 -- 制度上の要件は yolo-members/docs/creative-yolo/23-OFFICIAL-MODEL-PROGRAM.md §4-1。
