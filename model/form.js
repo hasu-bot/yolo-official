@@ -197,6 +197,48 @@
     return map[file.type] || '';
   }
 
+  // 送信前に写真を縮める。
+  // スマホの写真は1枚8MBを超えることがあり、回線が細いと送信に何十秒もかかる。
+  // 審査で見るぶんには長辺2000pxあれば足りるので、そこまで落としてから送る。
+  // 掲載用の写真は別途撮り直す前提（28番 付録A）なので、原寸を保つ必要はない。
+  var MAX_EDGE = 2000;
+  var JPEG_QUALITY = 0.85;
+  var SKIP_UNDER = 1.5 * 1024 * 1024; // これ以下は触らない
+
+  async function compressImage(file) {
+    // 小さい画像はそのまま通す。再エンコードで却って重くなることがある
+    if (!file || file.size <= SKIP_UNDER) return file;
+    if (typeof createImageBitmap !== 'function') return file;
+
+    try {
+      // EXIF の向きを反映させる。指定しないと横向きのまま送られる端末がある
+      var bitmap = await createImageBitmap(file, { imageOrientation: 'from-image' });
+      var scale = Math.min(1, MAX_EDGE / Math.max(bitmap.width, bitmap.height));
+      var width = Math.round(bitmap.width * scale);
+      var height = Math.round(bitmap.height * scale);
+
+      var canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      var ctx = canvas.getContext('2d');
+      if (!ctx) return file;
+      ctx.drawImage(bitmap, 0, 0, width, height);
+      if (bitmap.close) bitmap.close();
+
+      var blob = await new Promise(function (resolve) {
+        canvas.toBlob(resolve, 'image/jpeg', JPEG_QUALITY);
+      });
+      // 縮めた結果が元より大きければ、元を使う
+      if (!blob || blob.size >= file.size) return file;
+
+      return new File([blob], 'photo.jpg', { type: 'image/jpeg' });
+    } catch (e) {
+      // 圧縮できなくても応募は通す。ここで止める方が損
+      console.warn('写真の圧縮に失敗したため、元のまま送信します:', e);
+      return file;
+    }
+  }
+
   // 入力内容の誤りは、そのまま画面に出してよいものとして投げる。
   // Supabase 側のエラーはそのまま見せない（技術的すぎて本人には直せない）
   function inputError(message) {
@@ -257,6 +299,12 @@
 
       submitButton.disabled = true;
       submitButton.textContent = '送信中…';
+      setStatus('写真を準備しています…');
+
+      // 縮めてから送る。拡張子は縮めたあとの形式に合わせる
+      faceFile = await compressImage(faceFile);
+      fullFile = await compressImage(fullFile);
+
       setStatus('写真をアップロードしています…');
 
       var applicationId = crypto.randomUUID();
