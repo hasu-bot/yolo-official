@@ -93,50 +93,26 @@
   line-height: 1.65;
   color: rgba(17,17,17,.58);
 }
-.home-light .talent-visual { position: relative; min-height: 590px; }
-.home-light .talent-photo {
-  position: absolute;
-  margin: 0;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  box-shadow: 0 22px 55px rgba(17,17,17,.16);
-}
-.home-light .talent-photo-main {
-  width: 68%;
-  aspect-ratio: 3 / 4;
-  right: 0;
-  top: 0;
-  background-image: url("https://raw.githubusercontent.com/hasu-bot/last-call-movie/main/img/gallery-1.jpg");
-}
-.home-light .talent-photo-sub {
-  width: 45%;
-  aspect-ratio: 4 / 5;
-  left: 0;
-  bottom: 0;
-  border: 8px solid #ffffff;
-  /* yolo-photo-walk は private リポジトリで raw が 404 になるため、ここに置いて配る */
-  background-image: url("assets/talent-photo-sub.jpg");
+.home-light .talent-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .home-light .talent-word {
-  position: absolute;
-  left: 4%;
-  top: 9%;
-  z-index: 2;
   font-family: "Josefin Sans", sans-serif;
   font-weight: 600;
   font-size: clamp(3.6rem, 7vw, 6.5rem);
   line-height: .82;
   letter-spacing: -.05em;
-  color: #ffffff;
-  mix-blend-mode: difference;
+  color: #111111;
   pointer-events: none;
 }
 
 @media (max-width: 959px) {
-  .home-light .talent-shell { grid-template-columns: 1fr; gap: 3.5rem; }
+  .home-light .talent-shell { grid-template-columns: 1fr; gap: 3rem; }
   .home-light .talent-copy { max-width: 620px; }
-  .home-light .talent-visual { width: min(100%, 650px); min-height: 520px; margin: 0 auto; }
+  .home-light .talent-visual { justify-content: flex-start; }
 }
 
 @media (max-width: 599px) {
@@ -169,12 +145,7 @@
   }
   .home-light .talent-entry .button { width: 100%; max-width: 340px; padding-left: 1rem; padding-right: 1rem; }
   .home-light .talent-small { font-size: .76rem; color: rgba(17,17,17,.62); }
-  .home-light .talent-visual { min-height: 350px; }
-  .home-light .talent-photo-main { width: 70%; }
-  .home-light .talent-photo-sub { width: 44%; border-width: 5px; }
   .home-light .talent-word {
-    left: 2%;
-    top: 10%;
     font-size: clamp(2.7rem, 14vw, 3.8rem);
     line-height: .88;
   }
