@@ -42,7 +42,9 @@
 }
 .home-light .talent-entry h2 {
   margin: 0 0 1.5rem;
-  font-size: clamp(2.6rem, 5vw, 5rem);
+  /* 左カラムは最大でも 474px ほど。5vw だと「モデル・俳優として、」の
+     10文字が収まらず「モデル・俳優と／して、」と割れていた */
+  font-size: clamp(2rem, 4vw, 2.8rem);
   line-height: 1.16;
   letter-spacing: -.025em;
   font-weight: 500;
@@ -146,7 +148,8 @@
     letter-spacing: .17em;
   }
   .home-light .talent-entry h2 {
-    font-size: clamp(2rem, 9.2vw, 2.55rem);
+    /* 「モデル・俳優として、」の10文字が1行に収まる大きさに抑える */
+    font-size: clamp(1.55rem, 8.4vw, 2rem);
     line-height: 1.28;
     letter-spacing: 0;
     margin-bottom: 1.25rem;
