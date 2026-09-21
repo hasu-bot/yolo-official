@@ -97,7 +97,9 @@ body:has(.model-page) .mobile-nav { color: #ffffff; }
   position: relative;
   z-index: 2;
 }
-.model-hero-inner { padding-right: 31%; }
+/* 31% は画面幅に対する比率なので、広い画面ほど本文が細くなってしまう。
+   右の黒帯には十分届かないので、余白は上限で止める */
+.model-hero-inner { padding-right: min(31%, 382px); }
 .model-narrow { width: min(780px, 100%); }
 
 .model-eyebrow,
@@ -111,7 +113,9 @@ body:has(.model-page) .mobile-nav { color: #ffffff; }
 }
 .model-hero h1 {
   font-family: "Shippori Mincho B1", serif;
-  font-size: clamp(3rem, 7.2vw, 6.2rem);
+  /* 7.2vw だと「「やってみたい」を、」の10文字が入りきらず
+     「「やってみたい」／を、」と割れていた */
+  font-size: clamp(2.6rem, 5.4vw, 4.2rem);
   line-height: 1.16;
   letter-spacing: .015em;
   font-weight: 500;
@@ -371,9 +375,17 @@ body:has(.model-page) .mobile-nav { color: #ffffff; }
   .model-hero-inner { padding-right: 0; }
   .model-section,
   .model-entry { padding: 5.3rem 1.2rem; }
-  .model-hero h1 { font-size: clamp(2.65rem, 14vw, 4.5rem); }
+  /* 「「やってみたい」を、」が1行に収まる大きさ。
+     これより大きいと10文字が途中で割れて「やってみた／い」になる */
+  .model-hero h1 { font-size: clamp(1.6rem, 8.2vw, 2.6rem); }
+  /* 「コミュニティ参加とは、」の11文字が1行に収まる大きさ */
+  .model-section h2,
+  .model-entry h2 { font-size: clamp(1.5rem, 7.4vw, 2rem); }
   .model-grid,
   .requirements-grid { grid-template-columns: 1fr; }
+  /* 狭い画面では余白を詰めて本文の幅を稼ぐ（「応募時に教えてほしいこと」が1行に収まる） */
+  .requirements-grid > div { padding: 1.4rem; }
+  .requirements-grid h3 { font-size: 1.35rem; }
   .model-card { min-height: 180px; }
   .entry-flow li { grid-template-columns: 48px 1fr; gap: .7rem; }
   .model-hero-actions,
