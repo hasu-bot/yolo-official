@@ -438,7 +438,6 @@ body.home-light {
    （26-YOLO-TALENTS-SITE.md §8-2）。彩度を少し落として地に馴染ませる */
 .home-light .hero-photo,
 .home-light .photo-frame,
-.home-light .card-photo,
-.home-light .talent-photo {
+.home-light .card-photo {
   filter: saturate(.72) contrast(1.03);
 }
