@@ -365,8 +365,10 @@ body.home-light {
     line-height: 1.85;
   }
   /* PC 用に入れてある改行。狭い画面ではもともと折り返すので、
-     ここで切ると行が細切れになるだけ */
-  .home-light .hero-lead br { display: none; }
+     ここで切ると行末が大きく余る（例: ABOUT の「りたい。」4文字で1行が終わっていた）。
+     中央ぞろえの #yolo と、2項目を分けている ※書きの改行はそのまま残す */
+  .home-light .hero-lead br,
+  .home-light #about .prose p br { display: none; }
   .home-light .hero-cta {
     width: 100%;
     gap: .75rem;
