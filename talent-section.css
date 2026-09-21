@@ -115,7 +115,8 @@
   left: 0;
   bottom: 0;
   border: 8px solid #ffffff;
-  background-image: url("https://raw.githubusercontent.com/hasu-bot/yolo-photo-walk/main/images/hero-photo-walk-together-v1.jpg");
+  /* yolo-photo-walk は private リポジトリで raw が 404 になるため、ここに置いて配る */
+  background-image: url("assets/talent-photo-sub.jpg");
 }
 .home-light .talent-word {
   position: absolute;
