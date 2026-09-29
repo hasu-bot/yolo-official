@@ -1,0 +1,180 @@
+/* HISTORY ページ — 紙面は白黒、行動は青（yolo-tokens.css 経由） */
+
+.history-hero {
+  padding: calc(var(--sp-24) + var(--sp-12)) var(--sp-6) var(--sp-12);
+}
+.history-hero h1 {
+  font-size: var(--fs-hero);
+  font-weight: 500;
+  letter-spacing: .02em;
+  line-height: 1.45;
+  margin: 0 0 var(--sp-8);
+  text-wrap: balance;
+}
+.history-hero .prose p { color: var(--ink-2); }
+
+/* ---- 絞り込み ---- */
+.history-filter {
+  position: sticky;
+  top: 64px;
+  z-index: 20;
+  background: var(--yolo-paper);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding-inline: var(--sp-6);
+}
+.history-filter .section-inner {
+  display: flex;
+  gap: var(--sp-2);
+  overflow-x: auto;
+  padding-block: var(--sp-3);
+  scrollbar-width: none;
+}
+.history-filter .section-inner::-webkit-scrollbar { display: none; }
+.filter-chip {
+  flex: none;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: var(--fs-label);
+  letter-spacing: .18em;
+  padding: var(--sp-2) var(--sp-4);
+  border-radius: var(--rad-pill);
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
+}
+.filter-chip:hover { color: var(--ink-1); border-color: var(--ink-1); }
+.filter-chip[aria-pressed="true"] { background: var(--ink-1); border-color: var(--ink-1); color: var(--yolo-white); }
+.filter-chip:focus-visible { outline: 2px solid var(--yolo-light); outline-offset: 2px; }
+
+/* ---- 年 ---- */
+.history-year { padding: var(--sp-16) var(--sp-6) 0; }
+.year-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--sp-2) var(--sp-8);
+  align-items: end;
+  padding-bottom: var(--sp-6);
+  border-bottom: 2px solid var(--ink-1);
+}
+.year-num {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 600;
+  font-size: clamp(3.5rem, 11vw, 7rem);
+  line-height: .8;
+  letter-spacing: -.01em;
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+.year-head h2 {
+  font-size: var(--fs-h2);
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.5;
+  text-wrap: balance;
+}
+.year-count {
+  grid-column: 2;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: var(--fs-label);
+  letter-spacing: .2em;
+  color: var(--ink-2);
+  margin: 0;
+}
+
+/* ---- 活動の行 ---- */
+.history-list { list-style: none; margin: 0; padding: 0; }
+.history-item {
+  display: grid;
+  grid-template-columns: 9rem minmax(0, 1fr) auto;
+  gap: var(--sp-1) var(--sp-8);
+  align-items: baseline;
+  padding: var(--sp-4) 0;
+  border-bottom: 1px solid var(--rule);
+}
+.history-item time {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: var(--fs-small);
+  letter-spacing: .06em;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+.history-item h3 { font-size: 1.05rem; font-weight: 500; margin: 0; line-height: 1.6; }
+.history-item p { margin: var(--sp-1) 0 0; font-size: var(--fs-small); color: var(--ink-2); line-height: 1.9; max-width: 40em; }
+.history-item p a { color: var(--yolo-light); text-decoration: none; }
+.history-item p a:hover, .history-item p a:focus-visible { text-decoration: underline; }
+.item-tags { display: flex; flex-wrap: wrap; gap: var(--sp-1); justify-content: flex-end; }
+.item-tags span {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: .65rem;
+  letter-spacing: .16em;
+  color: var(--ink-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--rad-s);
+  padding: 2px var(--sp-2);
+  white-space: nowrap;
+}
+
+/* 節目になった企画 */
+.history-item.is-milestone {
+  grid-template-columns: 9rem minmax(0, 1fr) auto;
+  padding: var(--sp-8) 0;
+}
+.history-item.is-milestone time { color: var(--ink-1); font-weight: 600; }
+.history-item.is-milestone h3 { font-size: clamp(1.2rem, 2.4vw, 1.5rem); line-height: 1.5; }
+.milestone-body { display: grid; gap: var(--sp-4); }
+.milestone-photo {
+  margin: var(--sp-2) 0 0;
+  aspect-ratio: 16 / 9;
+  max-width: 100%;
+  border-radius: var(--rad-s);
+  background: linear-gradient(155deg, #dcdcd6, #c3c3bc) center / cover;
+}
+.milestone-stats { display: flex; flex-wrap: wrap; gap: var(--sp-4) var(--sp-8); margin: 0; }
+.milestone-stats div { margin: 0; }
+.milestone-stats dt {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: var(--fs-label);
+  letter-spacing: .12em;
+  color: var(--ink-2);
+}
+.milestone-stats dd {
+  margin: 0;
+  font-family: "Shippori Mincho B1", serif;
+  font-size: 1.75rem;
+  line-height: 1.3;
+  font-variant-numeric: tabular-nums;
+}
+.milestone-films { list-style: none; margin: 0; padding: 0; font-size: var(--fs-small); display: grid; gap: 2px; }
+.milestone-films li::before { content: "— "; color: var(--ink-2); }
+
+.year-empty { padding: var(--sp-4) 0; margin: 0; font-size: var(--fs-small); color: var(--ink-2); }
+
+/* ---- NEXT ---- */
+.history-next { padding-top: var(--sp-24); }
+.next-list { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink-1); }
+.next-list li {
+  display: grid;
+  grid-template-columns: 9rem minmax(0, 1fr) auto;
+  gap: var(--sp-2) var(--sp-8);
+  align-items: baseline;
+  padding: var(--sp-6) 0;
+  border-bottom: 1px solid var(--rule);
+}
+.next-list time { font-family: "Josefin Sans", sans-serif; font-size: var(--fs-small); letter-spacing: .06em; font-variant-numeric: tabular-nums; }
+.next-list h3 { font-size: 1.15rem; font-weight: 500; margin: 0; }
+.next-list p { margin: var(--sp-1) 0 0; font-size: var(--fs-small); color: var(--ink-2); }
+.next-list .text-link { font-size: var(--fs-small); white-space: nowrap; }
+
+.history-more .kinds { font-family: "Shippori Mincho B1", serif; font-size: 1.15rem; color: var(--ink-1); }
+
+@media (max-width: 720px) {
+  .history-filter { top: 56px; }
+  .year-head { grid-template-columns: minmax(0, 1fr); }
+  .year-count { grid-column: 1; }
+  .history-item,
+  .history-item.is-milestone,
+  .next-list li { grid-template-columns: minmax(0, 1fr); gap: var(--sp-1); }
+  .item-tags { justify-content: flex-start; margin-top: var(--sp-2); }
+}
