@@ -22,3 +22,13 @@
     c.addEventListener("click", function () { apply(c.dataset.filter); });
   });
 })();
+
+/* 絞り込みバーをヘッダー直下に固定（ヘッダーの実寸に合わせる） */
+(function () {
+  var header = document.querySelector("[data-header]");
+  var bar = document.querySelector(".history-filter");
+  if (!header || !bar) return;
+  function fit() { bar.style.top = header.getBoundingClientRect().height + "px"; }
+  fit();
+  window.addEventListener("resize", fit);
+})();
