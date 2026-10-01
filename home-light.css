@@ -74,7 +74,7 @@ body.home-light {
   background-image: url("https://raw.githubusercontent.com/hasu-bot/last-call-movie/main/img/gallery-2.jpg");
 }
 .home-light .hero-photo-b {
-  background-image: url("https://raw.githubusercontent.com/hasu-bot/lumina-site/main/assets/past-03.jpg");
+  background-image: url("https://raw.githubusercontent.com/hasu-bot/lumina-site/main/assets/photos/shoot.jpg");
 }
 .home-light .hero-photo figcaption { display: none; }
 
@@ -148,7 +148,7 @@ body.home-light {
 .home-light .card-photo figcaption { display: none; }
 
 .home-light .photo-strip .photo-frame:nth-child(1) {
-  background-image: url("https://raw.githubusercontent.com/hasu-bot/lumina-site/main/assets/past-01.jpg");
+  background-image: url("https://raw.githubusercontent.com/hasu-bot/lumina-site/main/assets/photos/group.jpg");
 }
 .home-light .photo-strip .photo-frame:nth-child(2) {
   background-image: url("https://raw.githubusercontent.com/hasu-bot/last-call-movie/main/img/gallery-3.jpg");
@@ -175,7 +175,7 @@ body.home-light {
   background-image: url("https://raw.githubusercontent.com/hasu-bot/yolo-film-festival/main/assets/hero-wide.jpg");
 }
 .home-light .project-grid .project-card:nth-child(2) .card-photo {
-  background-image: url("https://raw.githubusercontent.com/hasu-bot/lumina-site/main/assets/past-01.jpg");
+  background-image: url("https://raw.githubusercontent.com/hasu-bot/lumina-site/main/assets/photos/group.jpg");
 }
 .home-light .project-grid .project-card:nth-child(3) .card-photo {
   background-image: url("https://raw.githubusercontent.com/hasu-bot/last-call-movie/main/img/gallery-1.jpg");
@@ -185,7 +185,7 @@ body.home-light {
   background-image: url("https://raw.githubusercontent.com/hasu-bot/last-call-movie/main/img/gallery-2.jpg");
 }
 .home-light .gallery .gallery-item:nth-child(2) {
-  background-image: url("https://raw.githubusercontent.com/hasu-bot/lumina-site/main/assets/past-02.jpg");
+  background-image: url("https://raw.githubusercontent.com/hasu-bot/lumina-site/main/assets/photos/viewing.jpg");
 }
 .home-light .gallery .gallery-item:nth-child(3) {
   background-image: url("https://raw.githubusercontent.com/hasu-bot/yolo-film-festival/main/assets/hero-2025.jpg");
@@ -194,7 +194,7 @@ body.home-light {
   background-image: url("https://raw.githubusercontent.com/hasu-bot/last-call-movie/main/img/gallery-4.jpg");
 }
 .home-light .gallery .gallery-item:nth-child(5) {
-  background-image: url("https://raw.githubusercontent.com/hasu-bot/lumina-site/main/assets/past-04.jpg");
+  background-image: url("https://raw.githubusercontent.com/hasu-bot/lumina-site/main/assets/photos/screening.jpg");
 }
 .home-light .gallery .gallery-item:nth-child(6) {
   background-image: url("https://raw.githubusercontent.com/hasu-bot/yolo-film-festival/main/assets/still-03.jpg");
