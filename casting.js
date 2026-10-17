@@ -77,7 +77,9 @@
       }
       submitted = true;
       status.textContent = `ご相談を受け付けました。受付番号：${result.receipt}。YOLOが内容を確認します。出演の確定ではありません。`;
-      form.querySelector("fieldset").disabled = true;
+      form.querySelectorAll("fieldset").forEach((fieldset) => {
+        fieldset.disabled = true;
+      });
       button.textContent = "送信済み";
       status.focus();
     } catch (error) {

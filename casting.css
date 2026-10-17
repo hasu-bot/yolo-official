@@ -118,3 +118,23 @@
 }
 
 .casting-page h1{font-family:"Noto Sans JP",sans-serif}
+
+.casting-page .casting-intro {padding-block:48px 24px;max-width:820px;}
+.casting-page .casting-intro h1 {font-size:clamp(32px,4vw,48px);margin-bottom:20px;}
+.casting-intro .casting-notice {font-size:14px;color:var(--ink-2);border-left:2px solid var(--rule);padding-left:14px;}
+.casting-guide {border-block:1px solid var(--rule);margin:24px 0 8px;}
+.casting-guide summary {padding-block:18px;min-height:48px;cursor:pointer;font-weight:500;}
+.casting-steps {list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;padding:12px 0 16px;margin:0;}
+.casting-steps h2 {font:500 16px/1.7 "Noto Sans JP",sans-serif;}
+.casting-steps h2 span {font-family:"Josefin Sans",sans-serif;color:var(--ink-2);}
+.casting-steps p,.casting-conditions {font-size:14px;color:var(--ink-2);}
+.casting-conditions {margin:0 0 24px;display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.casting-conditions dt {font-weight:500;color:var(--yolo-ink);margin-bottom:8px;}
+.casting-conditions dd {margin:0;}
+.casting-form .form-intro {font-size:14px;color:var(--ink-2);margin-bottom:32px;}
+.casting-form fieldset {border-top:1px solid var(--rule);margin-top:32px;padding-top:24px;}
+.casting-form legend {font-size:20px;font-weight:500;padding-right:16px;margin-bottom:0;}
+.casting-form legend span {font-family:"Josefin Sans",sans-serif;font-size:16px;margin-right:12px;color:var(--ink-2);}
+.casting-selected {background:var(--yolo-paper);padding:16px;margin:0 0 16px;font-size:15px;}
+.casting-form .casting-field {min-width:0;}
+@media(max-width:600px){.casting-steps,.casting-conditions{grid-template-columns:1fr;gap:16px;}.casting-page .casting-intro{padding-top:28px;}.casting-form legend{font-size:18px;}.casting-form fieldset{margin-top:24px;}}

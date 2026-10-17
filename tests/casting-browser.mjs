@@ -60,7 +60,7 @@ try {
       .textContent.includes("検証用モデル"),
   );
   assert.match(await page.locator("#selected-model").innerText(), /検証用モデル/);
-  await page.getByRole("button", { name: "YOLOへ相談を送る" }).click();
+  await page.getByRole("button", { name: "出演の相談を送信する" }).click();
   assert.equal(attempts, 0);
   results.push("native required-field validation prevents incomplete requests");
   for (const [key, value] of Object.entries({
@@ -98,7 +98,7 @@ try {
     fullPage: true,
   });
   results.push("320/390/768/1440px casting form has no horizontal overflow");
-  await page.getByRole("button", { name: "YOLOへ相談を送る" }).click();
+  await page.getByRole("button", { name: "出演の相談を送信する" }).click();
   await page.waitForFunction(() =>
     document
       .querySelector("#casting-status")
@@ -109,12 +109,13 @@ try {
     "ローカル動作確認",
   );
   mode = "success";
-  await page.getByRole("button", { name: "YOLOへ相談を送る" }).click();
+  await page.getByRole("button", { name: "出演の相談を送信する" }).click();
   await page.waitForFunction(() =>
     document
       .querySelector("#casting-status")
       .textContent.includes("TEST-RECEIPT-ONLY"),
   );
+  assert.equal(await page.locator("fieldset[disabled]").count(),3);
   assert.equal(keys.length, 2);
   assert.equal(keys[0], keys[1]);
   assert.equal(await page.locator("[name=name]").isDisabled(), true);
@@ -173,7 +174,7 @@ try {
   await noJsPage.goto(preview.url + "/casting/");
   assert.equal(
     await noJsPage
-      .getByRole("button", { name: "YOLOへ相談を送る" })
+      .getByRole("button", { name: "出演の相談を送信する" })
       .isDisabled(),
     true,
   );
