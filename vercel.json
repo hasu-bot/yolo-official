@@ -18,5 +18,23 @@
   ],
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "framework": null
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/talents",
+      "destination": "/api/talents-page"
+    },
+    {
+      "source": "/talents/",
+      "destination": "/api/talents-page"
+    },
+    {
+      "source": "/talents/:slug/",
+      "destination": "/api/talents-page?slug=:slug"
+    },
+    {
+      "source": "/talents/:slug",
+      "destination": "/api/talents-page?slug=:slug"
+    }
+  ]
 }

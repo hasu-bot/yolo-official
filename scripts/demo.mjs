@@ -1,5 +1,5 @@
 // Synthetic fixtures are built only into an OS temporary folder. Never into /talents/ in this repo.
-import { mkdtemp, mkdir, cp, writeFile, access } from 'node:fs/promises';
+import { mkdtemp, mkdir, cp, writeFile, readFile, access } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { deflateSync } from 'node:zlib';
@@ -39,7 +39,7 @@ function swatch(index) {
 
 export async function createDemo() {
   const root = await mkdtemp(path.join(tmpdir(), 'yolo-model-demo-'));
-  for (const file of ['index.html', 'site.css', 'site.js', 'home-light.css', 'talent-section.css', 'refinement.css', 'yolo-tokens.css', 'talents.css', 'talents.js', 'model', 'assets', 'history']) await cp(path.join(ROOT, file), path.join(root, file), { recursive: true });
+  for (const file of ['index.html', 'site.css', 'site.js', 'home-light.css', 'talent-section.css', 'refinement.css', 'yolo-tokens.css', 'talents.css', 'talents.js', 'casting.js', 'casting.css', 'casting', 'model', 'assets', 'history']) await cp(path.join(ROOT, file), path.join(root, file), { recursive: true });
   await mkdir(path.join(root, 'assets/talents'), { recursive: true });
   const records = ['sample-a', 'sample-b', 'sample-c', 'sample-d'].map(sampleRecord);
   records[1].profile.works = ['film'];
@@ -61,6 +61,9 @@ export async function createDemo() {
       await cp(concept, path.join(root, source));
     } else await writeFile(path.join(root, profile.portrait.src), swatch(i));
   }
+  const castingFile=path.join(root,'casting/index.html');
+  const castingHtml=await readFile(castingFile,'utf8');
+  await writeFile(castingFile,castingHtml.replace('id="casting-form"','id="casting-form" data-demo="true"').replace('<main id="main">','<main id="main"><div class="demo-notice">開発用プレビュー・架空サンプルです。実際の依頼は送信されません。</div>').replace('<head>','<head><meta name="robots" content="noindex, nofollow">'));
   await buildTalents({ records, root, demo: true });
   return root;
 }

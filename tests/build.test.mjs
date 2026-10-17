@@ -15,12 +15,9 @@ test('deployment build preserves existing pages and excludes source, samples and
   assert.equal(count, 0);
   const files = await readdir(output);
   for (const name of ['content', 'scripts', 'tests', 'docs', '.git', '.claude', 'supabase', 'package.json']) assert.ok(!files.includes(name), name);
-  assert.deepEqual(await readdir(path.join(output, 'talents')), ['index.html']);
-  const html = await readFile(path.join(output, 'talents/index.html'), 'utf8');
-  assert.match(html, /公開中のプロフィールはありません/);
-  assert.ok(!html.includes('サンプル A'));
+  assert.ok(!files.includes('talents'), 'public profiles must use the live HUB gateway');
   const { server, url } = await startPreview({ root: output, port: 0 });
   t.after(() => new Promise(resolve => server.close(resolve)));
-  for (const route of ['/', '/model/', '/history/', '/talents/', '/talents.css', '/talents.js', '/model/form.js']) assert.equal((await fetch(url + route)).status, 200, route);
+  for (const route of ['/', '/model/', '/history/', '/casting/', '/talents.css', '/talents.js', '/model/form.js']) assert.equal((await fetch(url + route)).status, 200, route);
   for (const route of ['/content/talents.json', '/scripts/talents.mjs', '/talents/sample-a/', '/talents/withdrawn/']) assert.equal((await fetch(url + route)).status, 404, route);
 });

@@ -93,10 +93,9 @@ try {
   assert.match(copied, /サンプル B/);
   for (const term of ['撮影目的', '希望日時', '場所', 'ご予算', '使用媒体', '掲載・使用期間']) assert.ok(copied.includes(term));
   const castingLink = page.getByRole('link', { name: /制作・出演について相談する/ });
-  assert.equal(await castingLink.getAttribute('href'), 'https://yolo-soudan.vercel.app/');
-  assert.equal(await castingLink.getAttribute('target'), '_blank');
-  assert.match(await castingLink.getAttribute('rel'), /noopener/);
-  pass('profile consultation retains model name; clipboard memo includes budget/media/period and real contact link');
+  assert.equal(await castingLink.getAttribute('href'), '/casting/?model=sample-b');
+  assert.equal(await castingLink.getAttribute('target'), null);
+  pass('profile consultation retains model name; clipboard memo includes budget/media/period and central casting form link');
   await capture(page, 'profile-demo-desktop.png');
   await page.goto(demo.url + '/talents/?work=event');
   assert.equal(await page.locator('.talent-card:visible').count(), 0);
@@ -173,7 +172,7 @@ try {
   await simple.locator('.talent-card a').first().click();
   assert.match(simple.url(), /sample-a/);
   assert.equal(await simple.getByRole('link', { name: /制作・出演について相談する/ }).count(), 1);
-  pass('without JavaScript, listing, profile and external consultation links remain available');
+  pass('without JavaScript, listing, profile and casting and application links remain available');
   await nojs.close();
   await context.close();
 } finally {

@@ -11,7 +11,7 @@ export async function startPreview({ root = ROOT, port = 4173 } = {}) {
   const server = createServer(async (req, res) => {
     let pathname;
     try { pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname); } catch { res.writeHead(400); res.end(); return; }
-    const allowed = pathname === '/' || pathname === '/index.html' || pathname === '/talents' || /^\/(talents|model|history|assets)\//.test(pathname) || /^\/(site|home-light|talent-section|refinement|yolo-tokens|talents)\.(css|js)$/.test(pathname);
+    const allowed = pathname === '/' || pathname === '/index.html' || pathname === '/talents' || /^\/(talents|casting|model|history|assets)\//.test(pathname) || /^\/(site|home-light|talent-section|refinement|yolo-tokens|talents|casting)\.(css|js)$/.test(pathname);
     const parts = pathname.split('/');
     if (!allowed || parts.some(p => p.startsWith('.') || p.includes('\\'))) { res.writeHead(404); res.end('Not found'); return; }
     try {
