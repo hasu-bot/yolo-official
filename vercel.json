@@ -15,5 +15,26 @@
       "destination": "https://yolo-members.vercel.app/:path*",
       "permanent": false
     }
+  ],
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/talents",
+      "destination": "/api/talents-page"
+    },
+    {
+      "source": "/talents/",
+      "destination": "/api/talents-page"
+    },
+    {
+      "source": "/talents/:slug/",
+      "destination": "/api/talents-page?slug=:slug"
+    },
+    {
+      "source": "/talents/:slug",
+      "destination": "/api/talents-page?slug=:slug"
+    }
   ]
 }

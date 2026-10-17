@@ -1,6 +1,6 @@
 # yolo-official
 
-Creative YOLO 公式サイト（表玄関）。ビルド工程のない素の静的HTML/CSS/JS 1ページ。
+Creative YOLO 公式サイト（表玄関）。静的HTML/CSS/JSを基本とし、YOLO TALENTSのみVercel Functions経由でHUB正本を毎回取得する。
 
 ## このサイトの役割（最重要）
 ゴールはただひとつ「**コミュニティ（Discord）に参加したいと思ってもらうこと**」。
@@ -24,3 +24,9 @@ Vercel（main へのプッシュで公開）
 
 ## コミット規約
 Conventional Commits + 日本語本文（例: `feat: JOINセクションを追加` / `design: 光のグラデーション調整`）
+
+## YOLO TALENTS（2026-10-18）
+- `npm run build` で配信対象だけをdist/に出す。公開モデルの静的HTMLを配信しない。
+- `/talents/` と個別ページは `api/talents-page.js`。HUB/Supabaseの掲載同意・公開設定を毎回確認する。
+- `/casting/` はHUBの受付APIへ送信し、運営画面に一括保存する。既存の `/model/` とLINE導線は維持する。
+- `npm test`、`npm run test:browser`。詳細と公開順は `docs/official-model-pages.md`。
