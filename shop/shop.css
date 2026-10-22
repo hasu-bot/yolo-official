@@ -92,4 +92,4 @@ body[data-sales-status="preparing"] shopify-cart { display: none; }
   .shop-set-contents { min-height: 0; }
 }
 
-.shop-bundle shopify-context[hidden] { display: none; }
+.shop-bundle shopify-context[hidden] { display: none !important; }
