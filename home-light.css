@@ -12,6 +12,7 @@ body.home-light {
 }
 .home-light .brand-name { color: #111111; }
 .home-light .desktop-nav a { color: rgba(17,17,17,.62); }
+.home-light .desktop-nav { gap: clamp(8px, 1.4vw, 24px); }
 .home-light .desktop-nav a:hover,
 .home-light .desktop-nav a:focus-visible { color: #111111; }
 .home-light .desktop-nav .nav-join {
