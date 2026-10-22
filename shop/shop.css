@@ -25,28 +25,7 @@
 .shop-catalog { border-top: 1px solid var(--rule); background: var(--yolo-white); padding: 94px 5vw 112px; }
 .shop-catalog-heading { max-width: 1230px; margin: 0 auto 54px; display: flex; justify-content: space-between; gap: 24px; align-items: end; }
 .shop-catalog h2 { font-family: "Shippori Mincho B1", serif; font-size: clamp(30px, 3.2vw, 46px); font-weight: 500; line-height: 1.45; margin: 18px 0 0; }
-.shop-cart-trigger { border: 1px solid var(--ink-1); background: transparent; padding: 12px 24px; min-height: 44px; border-radius: var(--rad-pill); font-family: "Josefin Sans", sans-serif; font-size: 14px; letter-spacing: .12em; cursor: pointer; white-space: nowrap; }
-.shop-cart-trigger:hover, .shop-cart-trigger:focus-visible { color: white; background: var(--ink-1); }
-.shop-cart-trigger span { margin-left: 12px; }
 .shop-products { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px 24px; max-width: 1230px; margin: 0 auto; }
-.shop-product { min-width: 0; }
-.shop-product-media { background: var(--yolo-paper); aspect-ratio: 1; overflow: hidden; }
-.shop-product-media shopify-media { display: block; width: 100%; height: 100%; }
-.shop-product-media img { width: 100%; height: 100%; object-fit: cover; }
-.shop-product-meta { color: var(--ink-2); font-size: 11px; letter-spacing: .16em; font-family: "Josefin Sans", sans-serif; margin: 20px 0 10px; }
-.shop-product h3 { font-size: 18px; font-weight: 500; margin: 0 0 12px; }
-.shop-product-price { font-family: "Josefin Sans", "Noto Sans JP", sans-serif; font-weight: 600; font-size: 17px; margin: 0 0 14px; }
-.shop-product shopify-variant-selector { display: block; margin: 12px 0; }
-.shop-add-button { width: 100%; background: var(--ink-1); color: white; border: 1px solid var(--ink-1); min-height: 48px; padding: 12px 16px; text-align: center; cursor: pointer; font-size: 14px; }
-.shop-add-button span { margin-left: 6px; }
-.shop-add-button:disabled { background: var(--rule); color: var(--ink-2); border-color: var(--rule); cursor: not-allowed; }
-.shop-add-button:not(:disabled):hover, .shop-add-button:not(:disabled):focus-visible { background: var(--yolo-light); border-color: var(--yolo-light); }
-.shop-empty { max-width: 1230px; margin: 0 auto; padding: 90px 24px 100px; border: 1px solid var(--rule); text-align: center; }
-.shop-empty[hidden] { display: none; }
-.shop-empty-symbol { font-size: 44px; color: var(--yolo-light); }
-.shop-empty-en { color: var(--yolo-light); font-family: "Josefin Sans", sans-serif; font-size: 13px; letter-spacing: .2em; font-weight: 600; margin: 18px 0; }
-.shop-empty h3 { font-family: "Shippori Mincho B1", serif; font-size: clamp(22px, 3vw, 32px); font-weight: 500; margin: 0 0 14px; }
-.shop-empty p:last-child { color: var(--ink-2); line-height: 1.9; font-size: 14px; margin: 0; }
 .shop-outro { padding: 100px 24px 110px; text-align: center; border-top: 1px solid var(--rule); }
 .shop-outro h2 { font-family: "Shippori Mincho B1", serif; font-size: clamp(27px, 3.4vw, 44px); font-weight: 500; line-height: 1.7; margin: 24px 0; }
 .shop-outro > p:not(.shop-kicker) { color: var(--ink-2); line-height: 2; font-size: 14px; }
@@ -64,32 +43,31 @@
   .shop-catalog { padding: 72px 24px 90px; }
   .shop-catalog-heading { margin-bottom: 34px; }
   .shop-products { grid-template-columns: 1fr; gap: 40px; }
-  .shop-empty { padding: 70px 20px; }
   .shop-outro { padding: 76px 24px 90px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .shop-hero-link, .shop-outro a { transition: none; }
 }
 
-/* Fixed bundle cards: product photography is supplied by the merchant later. */
-.shop-notice { max-width: 1230px; margin: 0 auto var(--sp-12); padding: var(--sp-6); border: 1px solid var(--rule); background: var(--yolo-paper); }
-.shop-notice > p:last-child { margin: var(--sp-3) 0 0; font-size: var(--fs-small); color: var(--ink-2); line-height: 1.9; }
-.shop-bundle { min-width: 0; }
-.shop-bundle shopify-context { display: block; }
-.shop-product[hidden] { display: none; }
-.shop-photo-pending { display: grid; place-items: center; color: var(--ink-2); font-size: var(--fs-small); letter-spacing: .08em; border: 1px solid var(--rule); }
-.shop-set-contents { padding: 0; margin: var(--sp-6) 0; list-style: none; min-height: 108px; }
-.shop-set-contents li { display: flex; justify-content: space-between; gap: var(--sp-3); padding: var(--sp-2) 0; border-bottom: 1px solid var(--rule); font-size: var(--fs-small); }
-.shop-set-contents li span { color: var(--ink-2); white-space: nowrap; }
-.shop-sale-details, .shop-feedback { max-width: 1230px; margin: var(--sp-8) auto 0; color: var(--ink-2); font-size: var(--fs-small); line-height: 1.9; }
-.shop-cart-trigger:disabled { color: var(--ink-2); border-color: var(--rule); cursor: not-allowed; background: transparent; }
-.shop-feedback:empty { display: none; }
-body[data-sales-status="preparing"] shopify-cart { display: none; }
-@media (max-width: 680px) {
-  .shop-catalog-heading { align-items: start; }
-  .shop-catalog-heading h2 { font-size: clamp(24px, 6vw, 32px); }
-  .shop-cart-trigger { padding: var(--sp-3); }
-  .shop-set-contents { min-height: 0; }
-}
-
-.shop-bundle shopify-context[hidden] { display: none !important; }
+/* Product cards reuse the film site's renderer; styles stay on YOLO tokens. */
+.shop-notice { max-width: 1230px; margin: 0 auto var(--sp-12); padding: var(--sp-6); border: 1px solid var(--rule); background: var(--yolo-paper); color: var(--ink-2); line-height: 1.9; font-size: var(--fs-small); }
+.shop-notice p { margin: 0; }
+.shop-sale-details { max-width: 1230px; margin: var(--sp-8) auto 0; color: var(--ink-2); font-size: var(--fs-small); line-height: 1.9; }
+.goods-card { display: flex; flex-direction: column; min-width: 0; scroll-margin-top: 100px; }
+.goods-media { aspect-ratio: 1; background: var(--yolo-paper); }
+.goods-photo { width: 100%; height: 100%; object-fit: contain; }
+.goods-photo-placeholder { height: 100%; display: grid; place-content: center; text-align: center; border: 1px solid var(--rule); color: var(--ink-2); }
+.goods-frame-number, .goods-frame-mark { display: none; }
+.goods-photo-caption { font-size: var(--fs-small); letter-spacing: .08em; }
+.goods-card-body { display: flex; flex: 1; flex-direction: column; padding-top: var(--sp-6); }
+.goods-product-label { margin: 0; color: var(--ink-2); font-family: "Josefin Sans", sans-serif; font-size: var(--fs-label); letter-spacing: .16em; }
+.goods-product-title { margin: var(--sp-3) 0 0; font-size: 20px; font-weight: 500; }
+.goods-product-description { color: var(--ink-2); line-height: 1.9; font-size: var(--fs-small); }
+.goods-product-price { font-size: 18px; font-weight: 600; margin: 0; }
+.goods-specifications { color: var(--ink-2); padding-left: 20px; line-height: 1.9; font-size: var(--fs-small); }
+.goods-card-footer { margin-top: auto; padding-top: var(--sp-4); }
+.goods-product-status { color: var(--ink-2); font-size: var(--fs-label); line-height: 1.9; }
+.goods-purchase { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 48px; padding: var(--sp-4); border: 1px solid var(--ink-1); background: var(--ink-1); color: var(--yolo-white); font-size: var(--fs-small); text-decoration: none; }
+.goods-purchase:disabled { justify-content: center; color: var(--ink-2); background: var(--yolo-paper); border-color: var(--rule); }
+.goods-purchase:focus-visible { outline: 3px solid var(--yolo-light); outline-offset: 4px; }
+@media (max-width: 680px) { .shop-catalog-heading { align-items: start; flex-direction: column; } .shop-catalog-heading h2 { font-size: clamp(24px, 6vw, 32px); } }

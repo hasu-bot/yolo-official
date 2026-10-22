@@ -1,45 +1,42 @@
 const {test} = require('node:test');
 const assert = require('node:assert/strict');
-const vm = require('node:vm');
 const fs = require('node:fs');
-const source = fs.readFileSync('shop/shop.js', 'utf8');
-
-function setup({status='preparing', available='true', loaded=true, fails=false, sdk=true}={}) {
-  const handlers = {};
-  const button = {dataset:{available}, disabled:true, textContent:''};
-  const title = {textContent:loaded?'ラストコール 日常使いセット':''};
-  const price = {textContent:loaded?'¥3,000':''};
-  const live = {hidden:true, querySelector:s=>s==='shopify-data'?title:s==='shopify-money'?price:button};
-  const preview = {hidden:false};
-  const context = {hidden:true};
-  let injected = 0, added = 0, opened = 0;
-  const template = {content:{cloneNode:()=>({})},after:()=>injected++};
-  const bundle = {querySelector:s=>s==='[data-shop-product]'?live:s==='[data-bundle-preview]'?preview:context};
-  const catalog = {querySelectorAll:s=>s==='[data-product-context]'?[template]:[bundle], addEventListener:(name,cb)=>handlers[name]=cb};
-  const feedback = {textContent:''};
-  const cart = sdk?{addLine:()=>{if(fails) throw Error('offline'); added++; return cart;}, showModal:()=>opened++}:{};
-  const cartButton = {disabled:true,addEventListener:(name,cb)=>handlers.cart=cb};
-  const document = {body:{dataset:{salesStatus:status}},getElementById:id=>id==='shop-products'?catalog:cart,querySelector:s=>s==='[data-open-cart]'?cartButton:feedback};
-  vm.runInNewContext(source,{document,window:{},MutationObserver:class{observe(){}}});
-  return {button,preview,context,cartButton,feedback,click:()=>handlers.click({target:{closest:()=>button}}),counts:()=>({injected,added,opened})};
+const vm = require('node:vm');
+const path = require('node:path');
+const official = fs.existsSync(path.join(__dirname, '../shop/catalog.js'));
+const catalogPath = path.join(__dirname, official ? '../shop/catalog.js' : '../assets/goods-data.js');
+const policy = require(official ? '../shop/catalog-policy.js' : '../assets/catalog-policy.js');
+const base = vm.runInNewContext(fs.readFileSync(catalogPath, 'utf8') + ';window.LAST_CALL_GOODS', {window:{}});
+function ready() {
+  const d=JSON.parse(JSON.stringify(base));
+  d.storeOrigin='https://fixture.invalid';
+  d.release={storeVerified:true,checkoutVerified:true,salesTermsVerified:true};
+  d.inventoryPlan.status='confirmed';
+  d.products.forEach(p=>{p.status='available';p.productUrl=d.storeOrigin+'/items/'+p.id;});
+  return d;
 }
-
-test('準備中は販売可能なShopifyデータがあっても商品取得・カートを開始しない',()=>{
-  const s=setup(); s.click(); assert.equal(s.button.disabled,true); assert.equal(s.cartButton.disabled,true);
-  assert.deepEqual(s.counts(),{injected:0,added:0,opened:0});
+test('production catalog is closed, has approved sets and no invented photo or URL',()=>{
+  assert.deepEqual(Array.from(base.products,p=>p.price),[3000,3500,5500]);
+  for(const p of base.products){ assert.equal(p.photo,null); assert.equal(p.productUrl,null); assert.equal(policy.purchaseUrl(base,p),null); }
+  assert.equal(base.inventoryPlan.status,'proposed');
 });
-test('公開後も価格が読み込めなければ案内を維持して購入不可',()=>{
-  const s=setup({status:'ready',loaded:false}); s.click(); assert.equal(s.preview.hidden,false); assert.equal(s.context.hidden,true); assert.equal(s.button.disabled,true); assert.equal(s.counts().added,0);
+test('dedicated 7/7/6 allocation fits the shared component budget; independent 20 each is rejected',()=>{
+  const d=ready(); assert.deepEqual(policy.allocation(d),{valid:true,used:{towel:13,tote:13,badge:20}});
+  d.inventoryPlan.allocations={daily:20,towel:20,support:20};
+  assert.equal(policy.allocation(d).valid,false); assert.equal(policy.purchaseUrl(d,d.products[0]),null);
+  for(const n of [-1,1.5,NaN]){d.inventoryPlan.allocations={daily:n,towel:0,support:0};assert.equal(policy.allocation(d).valid,false);}
+  d.products=[];assert.equal(policy.allocation(d).valid,false);
 });
-test('公開後の販売可能商品だけ標準Shopifyカートに追加する',()=>{
-  const s=setup({status:'ready'}); assert.equal(s.button.disabled,false); s.click(); assert.deepEqual(s.counts(),{injected:1,added:1,opened:1});
+test('every release gate is required even with a valid item URL',()=>{
+  for(const gate of ['storeVerified','checkoutVerified','salesTermsVerified']){const d=ready();d.release[gate]=false;assert.equal(policy.purchaseUrl(d,d.products[0]),null);}
+  const d=ready();d.inventoryPlan.status='proposed';assert.equal(policy.purchaseUrl(d,d.products[0]),null);
 });
-test('在庫なし商品はカート追加不可',()=>{
-  const s=setup({status:'ready',available:'false'}); s.click(); assert.equal(s.button.disabled,true); assert.equal(s.counts().added,0);
+test('confirmed item links only to the verified HTTPS store; invalid URLs stay closed',()=>{
+  const d=ready(), p=d.products[0]; assert.equal(policy.purchaseUrl(d,p),p.productUrl);
+  for(const url of [null,'','javascript:alert(1)','http://fixture.invalid/items/daily','https://other.invalid/items/daily','https://fixture.invalid/','https://fixture.invalid/items/daily?q=1','https://fixture.invalid/items/daily#x','https://user:pass@fixture.invalid/items/daily','https://fixture.invalid:444/items/daily']){p.productUrl=url;assert.equal(policy.purchaseUrl(d,p),null,url);}
+  p.productUrl='https://fixture.invalid/items/daily';
+  for(const origin of [null,'','http://fixture.invalid','https://fixture.invalid/path','https://fixture.invalid/?q=1']){d.storeOrigin=origin;assert.equal(policy.purchaseUrl(d,p),null);}
 });
-test('SDKが読み込めない場合は購入不可',()=>{
-  const s=setup({status:'ready',sdk:false}); s.click(); assert.equal(s.button.disabled,true); assert.equal(s.cartButton.disabled,true);
-});
-test('カート追加に失敗した場合は日本語の案内を表示する',()=>{
-  const s=setup({status:'ready',fails:true}); s.click(); assert.match(s.feedback.textContent,/カートに追加できませんでした/); assert.equal(s.counts().opened,0);
+test('preparing and sold out products never have a purchase link',()=>{
+  const d=ready();for(const state of ['preparing','sold-out']){d.products[0].status=state;assert.equal(policy.purchaseUrl(d,d.products[0]),null);}
 });

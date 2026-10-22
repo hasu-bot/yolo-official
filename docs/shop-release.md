@@ -1,3 +1,6 @@
+> **履歴資料（2026-10-22 STORES移行決定前）**
+> 現在の方針は [STORES移行](stores-migration.md)。以下のShopify公開手順は実施しない。Shopify商品は下書きのまま保持し、契約・削除・二重公開をしない。旧UIテスト結果も当時の実装の記録である。
+
 # YOLO SHOP 販売準備・引き継ぎ
 
 2026-10-22。既存 PR #19 (`feat/yolo-shop-shopify`) を継続。STORES の旧試作は使用しない。
