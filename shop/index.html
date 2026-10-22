@@ -13,10 +13,10 @@
   <link rel="stylesheet" href="/yolo-tokens.css?v=20260921b" />
   <link rel="stylesheet" href="/site.css?v=20260921b" />
   <link rel="stylesheet" href="/home-light.css?v=20260921b" />
-  <link rel="stylesheet" href="/shop/shop.css?v=1" />
+  <link rel="stylesheet" href="/shop/shop.css?v=2" />
   <script src="https://cdn.shopify.com/storefront/web-components.js" defer></script>
 </head>
-<body class="home-light shop-page">
+<body class="home-light shop-page" data-sales-status="preparing">
   <a class="skip-link" href="#main">本文へ移動</a>
   <header class="site-header" data-header>
     <a class="brand" href="/" aria-label="Creative YOLO トップへ"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Creative YOLO</span></a>
@@ -35,7 +35,7 @@
       <div class="shop-hero-copy">
         <p class="shop-kicker">CREATIVE YOLO / ONLINE STORE</p>
         <h1 id="shop-heading">つくったものを、<br /><em>あなたの手元へ。</em></h1>
-        <p class="shop-lead">映画、写真、イベント、そして日々の創作。<br />YOLOの活動から生まれた作品やグッズを届ける場所です。</p>
+        <p class="shop-lead">映画「ラストコール」のグッズを、日々の暮らしへ。<br />タオル、トートバッグ、缶バッジを組み合わせた3つのセットです。</p>
         <a class="shop-hero-link" href="#items">アイテムを見る <span aria-hidden="true">↘</span></a>
       </div>
       <div class="shop-hero-art" aria-hidden="true">
@@ -47,30 +47,96 @@
 
     <section class="shop-catalog" id="items" aria-labelledby="items-heading">
       <div class="shop-catalog-heading">
-        <div><p class="shop-kicker">SELECTED ITEMS</p><h2 id="items-heading">アイテム一覧</h2></div>
-        <button class="shop-cart-trigger" type="button" data-open-cart aria-label="ショッピングカートを開く">BAG <span aria-hidden="true">↗</span></button>
+        <div><p class="shop-kicker">LAST CALL / GOODS SETS</p><h2 id="items-heading">ラストコールのセット商品</h2></div>
+        <button class="shop-cart-trigger" type="button" data-open-cart disabled aria-label="ショッピングカートを開く">BAG <span aria-hidden="true">↗</span></button>
       </div>
-      <!-- Public Shopify storefront data. No private Admin API credentials. -->
+      <div class="shop-notice" id="sales-notice">
+        <p class="shop-kicker">販売準備中</p>
+        <p>セットの内容と価格をご案内しています。送料・発送時期・販売条件の確認が整い次第、ご購入いただけます。</p>
+      </div>
       <shopify-store id="yolo-store" store-domain="https://ngtsfz-h8.myshopify.com" country="JP" language="JA"></shopify-store>
-      <shopify-list-context class="shop-products" id="shop-products" type="product" query="products" first="24" sort-key="CREATED_AT" reverse-order>
-        <template>
-          <article class="shop-product" data-shop-product>
-            <div class="shop-product-media"><shopify-media query="product.featuredImage" width="600" height="600"></shopify-media></div>
-            <p class="shop-product-meta">CREATIVE YOLO / STORE</p>
+      <div class="shop-products" id="shop-products" aria-describedby="sales-notice">
+        <div class="shop-bundle" data-bundle="daily">
+          <template data-product-context>
+          <shopify-context hidden type="product" gid="gid://shopify/Product/15429906694211">
+            <template>
+          <article class="shop-product" data-shop-product hidden>
+            <div class="shop-product-media shop-photo-pending"><span>商品写真準備中</span></div>
+            <p class="shop-product-meta">LAST CALL / GOODS SET</p>
             <h3><shopify-data query="product.title"></shopify-data></h3>
             <p class="shop-product-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></p>
-            <shopify-variant-selector></shopify-variant-selector>
-            <button class="shop-add-button" type="button" onclick="document.getElementById('yolo-cart').addLine(event).showModal();" shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale">カートに追加 <span aria-hidden="true">↗</span></button>
+            <ul class="shop-set-contents" aria-label="セット内容"><li>トートバッグ <span>1点</span></li><li>缶バッジ <span>1点</span></li></ul>
+            <button class="shop-add-button" type="button" data-add-to-cart shopify-attr--data-available="product.selectedOrFirstAvailableVariant.availableForSale" disabled>販売準備中</button>
           </article>
-        </template>
-      </shopify-list-context>
-      <div class="shop-empty" data-shop-empty>
-        <span class="shop-empty-symbol" aria-hidden="true">✳</span>
-        <p class="shop-empty-en">COMING SOON</p>
-        <h3>ただいま、商品を準備しています。</h3>
-        <p>作品やグッズの販売が始まったら、このページでご紹介します。</p>
+            </template>
+          </shopify-context>
+          </template>
+          <article class="shop-product" data-bundle-preview>
+            <div class="shop-product-media shop-photo-pending"><span>商品写真準備中</span></div>
+            <p class="shop-product-meta">LAST CALL / GOODS SET</p>
+            <h3>日常使いセット</h3>
+            <p class="shop-product-price">¥3,000</p>
+            <ul class="shop-set-contents" aria-label="セット内容"><li>トートバッグ <span>1点</span></li><li>缶バッジ <span>1点</span></li></ul>
+            <button class="shop-add-button" type="button"  disabled>販売準備中</button>
+          </article>
+        </div>
+        <div class="shop-bundle" data-bundle="towel">
+          <template data-product-context>
+          <shopify-context hidden type="product" gid="gid://shopify/Product/15429906792515">
+            <template>
+          <article class="shop-product" data-shop-product hidden>
+            <div class="shop-product-media shop-photo-pending"><span>商品写真準備中</span></div>
+            <p class="shop-product-meta">LAST CALL / GOODS SET</p>
+            <h3><shopify-data query="product.title"></shopify-data></h3>
+            <p class="shop-product-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></p>
+            <ul class="shop-set-contents" aria-label="セット内容"><li>タオル <span>1点</span></li><li>缶バッジ <span>1点</span></li></ul>
+            <button class="shop-add-button" type="button" data-add-to-cart shopify-attr--data-available="product.selectedOrFirstAvailableVariant.availableForSale" disabled>販売準備中</button>
+          </article>
+            </template>
+          </shopify-context>
+          </template>
+          <article class="shop-product" data-bundle-preview>
+            <div class="shop-product-media shop-photo-pending"><span>商品写真準備中</span></div>
+            <p class="shop-product-meta">LAST CALL / GOODS SET</p>
+            <h3>タオルセット</h3>
+            <p class="shop-product-price">¥3,500</p>
+            <ul class="shop-set-contents" aria-label="セット内容"><li>タオル <span>1点</span></li><li>缶バッジ <span>1点</span></li></ul>
+            <button class="shop-add-button" type="button"  disabled>販売準備中</button>
+          </article>
+        </div>
+        <div class="shop-bundle" data-bundle="support">
+          <template data-product-context>
+          <shopify-context hidden type="product" gid="gid://shopify/Product/15429906890819">
+            <template>
+          <article class="shop-product" data-shop-product hidden>
+            <div class="shop-product-media shop-photo-pending"><span>商品写真準備中</span></div>
+            <p class="shop-product-meta">LAST CALL / GOODS SET</p>
+            <h3><shopify-data query="product.title"></shopify-data></h3>
+            <p class="shop-product-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></p>
+            <ul class="shop-set-contents" aria-label="セット内容"><li>タオル <span>1点</span></li><li>トートバッグ <span>1点</span></li><li>缶バッジ <span>1点</span></li></ul>
+            <button class="shop-add-button" type="button" data-add-to-cart shopify-attr--data-available="product.selectedOrFirstAvailableVariant.availableForSale" disabled>販売準備中</button>
+          </article>
+            </template>
+          </shopify-context>
+          </template>
+          <article class="shop-product" data-bundle-preview>
+            <div class="shop-product-media shop-photo-pending"><span>商品写真準備中</span></div>
+            <p class="shop-product-meta">LAST CALL / GOODS SET</p>
+            <h3>応援セット</h3>
+            <p class="shop-product-price">¥5,500</p>
+            <ul class="shop-set-contents" aria-label="セット内容"><li>タオル <span>1点</span></li><li>トートバッグ <span>1点</span></li><li>缶バッジ <span>1点</span></li></ul>
+            <button class="shop-add-button" type="button"  disabled>販売準備中</button>
+          </article>
+        </div>
       </div>
-      <shopify-cart id="yolo-cart"></shopify-cart>
+      <p class="shop-sale-details">表示価格はセット1組の価格です。送料・税の扱い・発送時期は販売開始時にご案内します。</p>
+      <p class="shop-feedback" data-shop-feedback role="status" aria-live="polite"></p>
+      <noscript><p class="shop-sale-details">現在は販売準備中です。販売開始後のカート操作には JavaScript が必要です。</p></noscript>
+      <shopify-cart id="yolo-cart">
+        <span slot="checkout-button">購入手続きへ</span>
+        <span slot="empty">カートに商品が入っていません。</span>
+        <span slot="extension">送料・お支払い総額は購入手続きでご確認ください。</span>
+      </shopify-cart>
     </section>
 
     <aside class="shop-outro">
@@ -87,6 +153,6 @@
     <p class="footer-copy">© Creative YOLO</p>
   </div></footer>
   <script src="/site.js?v=20260921b"></script>
-  <script src="/shop/shop.js?v=1"></script>
+  <script src="/shop/shop.js?v=2"></script>
 </body>
 </html>

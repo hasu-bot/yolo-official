@@ -70,3 +70,26 @@
 @media (prefers-reduced-motion: reduce) {
   .shop-hero-link, .shop-outro a { transition: none; }
 }
+
+/* Fixed bundle cards: product photography is supplied by the merchant later. */
+.shop-notice { max-width: 1230px; margin: 0 auto var(--sp-12); padding: var(--sp-6); border: 1px solid var(--rule); background: var(--yolo-paper); }
+.shop-notice > p:last-child { margin: var(--sp-3) 0 0; font-size: var(--fs-small); color: var(--ink-2); line-height: 1.9; }
+.shop-bundle { min-width: 0; }
+.shop-bundle shopify-context { display: block; }
+.shop-product[hidden] { display: none; }
+.shop-photo-pending { display: grid; place-items: center; color: var(--ink-2); font-size: var(--fs-small); letter-spacing: .08em; border: 1px solid var(--rule); }
+.shop-set-contents { padding: 0; margin: var(--sp-6) 0; list-style: none; min-height: 108px; }
+.shop-set-contents li { display: flex; justify-content: space-between; gap: var(--sp-3); padding: var(--sp-2) 0; border-bottom: 1px solid var(--rule); font-size: var(--fs-small); }
+.shop-set-contents li span { color: var(--ink-2); white-space: nowrap; }
+.shop-sale-details, .shop-feedback { max-width: 1230px; margin: var(--sp-8) auto 0; color: var(--ink-2); font-size: var(--fs-small); line-height: 1.9; }
+.shop-cart-trigger:disabled { color: var(--ink-2); border-color: var(--rule); cursor: not-allowed; background: transparent; }
+.shop-feedback:empty { display: none; }
+body[data-sales-status="preparing"] shopify-cart { display: none; }
+@media (max-width: 680px) {
+  .shop-catalog-heading { align-items: start; }
+  .shop-catalog-heading h2 { font-size: clamp(24px, 6vw, 32px); }
+  .shop-cart-trigger { padding: var(--sp-3); }
+  .shop-set-contents { min-height: 0; }
+}
+
+.shop-bundle shopify-context[hidden] { display: none; }
