@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>YOLO SHOP ｜ Creative YOLO</title>
+  <meta name="description" content="Creative YOLOから生まれた作品やグッズを届けるオンラインショップ。" />
+  <meta name="theme-color" content="#f7f7f3" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230b0b0b'/%3E%3Crect x='8' y='30' width='48' height='4' fill='%23ffffff'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600&family=Noto+Sans+JP:wght@400;500&family=Shippori+Mincho+B1:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/yolo-tokens.css?v=20260921b" />
+  <link rel="stylesheet" href="/site.css?v=20260921b" />
+  <link rel="stylesheet" href="/home-light.css?v=20260921b" />
+  <link rel="stylesheet" href="/shop/shop.css?v=3" />
+</head>
+<body class="home-light shop-page">
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <header class="site-header" data-header>
+    <a class="brand" href="/" aria-label="Creative YOLO トップへ"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Creative YOLO</span></a>
+    <nav class="desktop-nav" aria-label="メインナビゲーション">
+      <a href="/#yolo">YOLOとは？</a><a href="/#projects">活動</a><a href="/#community">コミュニティ</a><a href="/#news">お知らせ</a>
+      <a href="/model/">モデル・俳優募集</a><a href="/shop/" aria-current="page">SHOP</a><a class="nav-hub" href="/hub/">YOLO HUB</a><a class="nav-join" href="/#join">参加する</a>
+    </nav>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav" data-menu-button><span></span><span></span><span class="sr-only">メニュー</span></button>
+  </header>
+  <div class="mobile-nav" id="mobile-nav" aria-hidden="true" data-mobile-nav>
+    <a href="/">トップ</a><a href="/#projects">活動</a><a href="/model/">モデル・俳優募集</a><a href="/shop/" aria-current="page">SHOP</a><a href="/hub/">YOLO HUB</a><a href="/#join">参加する</a>
+  </div>
+
+  <main id="main">
+    <section class="shop-hero" aria-labelledby="shop-heading">
+      <div class="shop-hero-copy">
+        <p class="shop-kicker">CREATIVE YOLO / ONLINE STORE</p>
+        <h1 id="shop-heading">つくったものを、<br /><em>あなたの手元へ。</em></h1>
+        <p class="shop-lead">映画「ラストコール」のグッズを、日々の暮らしへ。<br />タオル、トートバッグ、缶バッジを組み合わせた3つのセットです。</p>
+        <a class="shop-hero-link" href="#items">アイテムを見る <span aria-hidden="true">↘</span></a>
+      </div>
+      <div class="shop-hero-art" aria-hidden="true">
+        <div class="shop-art-orbit shop-art-orbit-one"></div><div class="shop-art-orbit shop-art-orbit-two"></div>
+        <span class="shop-art-star">✳</span><span class="shop-art-name">YOLO<br />OBJECTS</span>
+        <span class="shop-art-caption">MADE THROUGH CREATION<br />IN KUMAMOTO</span><span class="shop-art-number">001—</span>
+      </div>
+    </section>
+
+    <section class="shop-catalog" id="items" aria-labelledby="items-heading">
+      <div class="shop-catalog-heading">
+        <div><p class="shop-kicker">LAST CALL / GOODS SETS</p><h2 id="items-heading">ラストコールのセット商品</h2></div>
+        <span class="shop-kicker" id="goodsAnnouncement">STORES · 準備中</span>
+      </div>
+      <div class="shop-notice goods-intro" id="sales-notice">
+        <p>セットの内容と価格をご案内しています。販売者情報・返品条件・決済の確認が整い次第、STORESからご購入いただけます。</p>
+      </div>
+      <div class="shop-products goods-grid" id="goodsGrid" aria-label="ラストコールのセット商品" aria-describedby="sales-notice"></div>
+      <noscript><div class="shop-notice"><p>日常使いセット 3,000円（トートバッグ＋缶バッジ）／タオルセット 3,500円（タオル＋缶バッジ）／応援セット 5,500円（タオル＋トートバッグ＋缶バッジ）。商品写真準備中、オンライン販売準備中です。</p></div></noscript>
+      <div class="shop-sale-details" id="goodsShoppingNote"><p>日本国内のみ。送料・梱包料は1注文につき500円です（送料無料・速達なし）。注文から7日以内に発送します。税の扱いは販売開始時にご案内します。</p><p>販売開始後はSTORESの同じ商品ページで価格・在庫・送料・お支払い総額をご確認いただけます。</p></div>
+    </section>
+
+    <aside class="shop-outro">
+      <p class="shop-kicker">BEYOND THE OBJECT</p><h2>作品を届けることも、<br />次の挑戦のひとつ。</h2>
+      <p>商品だけではなく、その背景にある活動やつくり手のことも知ってもらえたら嬉しいです。</p>
+      <a href="/#projects">YOLOの活動を見る <span aria-hidden="true">↗</span></a>
+    </aside>
+  </main>
+
+  <footer class="site-footer"><div class="footer-inner">
+    <p class="footer-brand">Creative YOLO — 熊本のクリエイティブコミュニティ</p><p class="footer-tagline">「人生の主人公を増やす。」</p>
+    <nav class="footer-links" aria-label="関連サイト"><a href="/">公式サイト</a><a href="/shop/">YOLO SHOP</a><a href="/hub/">YOLO HUB</a><a href="https://yolo-magazine.rencame.net" target="_blank" rel="noopener noreferrer">YOLO MAGAZINE</a><a href="/model/">モデル・俳優募集</a></nav>
+    <nav class="footer-links footer-sns" aria-label="SNS"><a href="https://line.me/R/ti/p/@140irxqh" target="_blank" rel="noopener noreferrer" data-line>LINE公式</a><a href="https://www.instagram.com/creative.yolo/" target="_blank" rel="noopener noreferrer">Instagram @creative.yolo</a></nav>
+    <p class="footer-copy">© Creative YOLO</p>
+  </div></footer>
+  <script src="/site.js?v=20260921b"></script>
+  <script src="/shop/catalog.js?v=1"></script>
+  <script src="/shop/catalog-policy.js?v=1"></script>
+  <script src="/shop/catalog-renderer.js?v=1"></script>
+</body>
+</html>
