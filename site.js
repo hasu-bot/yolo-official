@@ -14,19 +14,29 @@ const LINE_OFFICIAL_URL = "https://line.me/R/ti/p/@140irxqh";
   var mobileNav = document.querySelector("[data-mobile-nav]");
 
   if (menuButton && mobileNav) {
-    menuButton.addEventListener("click", function () {
-      var open = mobileNav.classList.toggle("open");
+    var setMenu = function (open, restoreFocus) {
+      mobileNav.hidden = !open;
+      mobileNav.classList.toggle("open", open);
       menuButton.setAttribute("aria-expanded", String(open));
       mobileNav.setAttribute("aria-hidden", String(!open));
+      if (restoreFocus) menuButton.focus();
+    };
+    menuButton.addEventListener("click", function () {
+      setMenu(mobileNav.hidden, false);
     });
-
     mobileNav.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", function () {
-        mobileNav.classList.remove("open");
-        menuButton.setAttribute("aria-expanded", "false");
-        mobileNav.setAttribute("aria-hidden", "true");
-      });
+      link.addEventListener("click", function () { setMenu(false, false); });
     });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && !mobileNav.hidden) setMenu(false, true);
+    });
+    document.addEventListener("click", function (event) {
+      if (!mobileNav.hidden && !mobileNav.contains(event.target) && !menuButton.contains(event.target)) setMenu(false, false);
+    });
+    document.addEventListener("focusin", function (event) {
+      if (!mobileNav.hidden && !mobileNav.contains(event.target) && !menuButton.contains(event.target)) setMenu(false, false);
+    });
+    window.addEventListener("pageshow", function (event) { if (event.persisted) setMenu(false, false); });
   }
 
   var revealTargets = document.querySelectorAll("[data-reveal]");

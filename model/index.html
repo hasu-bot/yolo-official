@@ -19,22 +19,21 @@
   <link rel="stylesheet" href="../yolo-tokens.css?v=20260921b" />
   <link rel="stylesheet" href="../site.css?v=20260921b" />
   <link rel="stylesheet" href="./model.css?v=20260921b" />
+  <link rel="stylesheet" href="/public-navigation.css?v=20261028">
 </head>
 <body>
   <a class="skip-link" href="#main">本文へ移動</a>
 
-  <header class="site-header" data-header>
+  <header class="site-header yolo-shared-header" data-header>
     <a class="brand" href="../" aria-label="Creative YOLO トップへ">
       <span class="brand-mark" aria-hidden="true"></span>
       <span class="brand-name">Creative YOLO</span>
     </a>
-    <nav class="desktop-nav" aria-label="メインナビゲーション">
-      <a href="#about-entry">登録について</a>
-      <a href="#activities">活動</a>
-      <a href="#flow">審査の流れ</a>
-      <a href="#exclusive">専属について</a>
-      <a class="nav-hub" href="/hub/">YOLO HUB</a>
-      <a class="nav-join" href="#entry">応募する</a>
+    <nav class="desktop-nav" aria-label="YOLO共通メニュー">
+      <a href="https://yolo-magazine.rencame.net/">読む</a>
+      <a href="https://yolo-members.vercel.app/events">イベントに参加する</a>
+      <a href="https://yolo-members.vercel.app/members">クリエイターを探す</a>
+      <a href="https://yolo-soudan.vercel.app/">仕事を相談する</a>
     </nav>
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav" data-menu-button>
       <span></span><span></span>
@@ -42,14 +41,18 @@
     </button>
   </header>
 
-  <div class="mobile-nav" id="mobile-nav" aria-hidden="true" data-mobile-nav>
-    <a href="#about-entry">登録について</a>
-    <a href="#activities">活動</a>
-    <a href="#flow">審査の流れ</a>
-    <a href="#exclusive">専属について</a>
-    <a href="/hub/">YOLO HUB</a>
-    <a href="/hub/my">メンバーログイン →</a>
-    <a href="#entry">応募する</a>
+  <div class="mobile-nav yolo-navigation-panel" id="mobile-nav" aria-hidden="true" data-mobile-nav hidden>
+    <nav class="yolo-mobile-actions" aria-label="YOLO共通メニュー"><a href="https://yolo-magazine.rencame.net/">読む</a>
+      <a href="https://yolo-members.vercel.app/events">イベントに参加する</a>
+      <a href="https://yolo-members.vercel.app/members">クリエイターを探す</a>
+      <a href="https://yolo-soudan.vercel.app/">仕事を相談する</a></nav>
+    <nav class="yolo-local-links" aria-label="公式サイト内の案内"><a href="#about-entry">登録について</a>
+<a href="#activities">活動</a>
+<a href="#flow">審査の流れ</a>
+<a href="#exclusive">専属について</a>
+<a href="/hub/">YOLO HUB</a>
+<a href="/hub/my">メンバーログイン →</a>
+<a href="#entry">応募する</a></nav>
   </div>
 
   <main id="main" class="model-page">
@@ -196,7 +199,7 @@ SNS：
     </div>
   </footer>
 
-  <script src="../site.js"></script>
+  <script src="../site.js?v=20261028nav"></script>
   <script>
     const copyButton = document.getElementById('copy-entry');
     const template = document.getElementById('entry-template');

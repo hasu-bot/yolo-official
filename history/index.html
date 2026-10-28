@@ -21,37 +21,39 @@
   <link rel="stylesheet" href="../site.css?v=20260930b" />
   <link rel="stylesheet" href="../home-light.css?v=20260930b" />
   <link rel="stylesheet" href="./history.css?v=20260930b" />
+  <link rel="stylesheet" href="/public-navigation.css?v=20261028">
 </head>
 <body class="home-light history-page">
   <a class="skip-link" href="#main">本文へ移動</a>
 
-  <header class="site-header" data-header>
+  <header class="site-header yolo-shared-header" data-header>
     <a class="brand" href="../" aria-label="Creative YOLO トップへ">
       <span class="brand-mark" aria-hidden="true"></span>
       <span class="brand-name">Creative YOLO</span>
     </a>
-    <nav class="desktop-nav" aria-label="メインナビゲーション">
-      <a href="../#yolo">YOLOとは？</a>
-      <a href="../#projects">活動</a>
-      <a href="./" aria-current="page">これまでの活動</a>
-      <a href="../#community">コミュニティ</a>
-      <a href="/model/">モデル・俳優募集</a>
-      <a class="nav-hub" href="/hub/">YOLO HUB</a>
-      <a class="nav-join" href="#join">参加する</a>
+    <nav class="desktop-nav" aria-label="YOLO共通メニュー">
+      <a href="https://yolo-magazine.rencame.net/">読む</a>
+      <a href="https://yolo-members.vercel.app/events">イベントに参加する</a>
+      <a href="https://yolo-members.vercel.app/members">クリエイターを探す</a>
+      <a href="https://yolo-soudan.vercel.app/">仕事を相談する</a>
     </nav>
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav" data-menu-button>
       <span></span><span></span><span class="sr-only">メニュー</span>
     </button>
   </header>
 
-  <div class="mobile-nav" id="mobile-nav" aria-hidden="true" data-mobile-nav>
-    <a href="../#yolo">YOLOとは？</a>
-    <a href="../#projects">活動</a>
-    <a href="./" aria-current="page">これまでの活動</a>
-    <a href="../#community">コミュニティ</a>
-    <a href="/model/">モデル・俳優募集</a>
-    <a href="/hub/">YOLO HUB</a>
-    <a href="#join">参加する</a>
+  <div class="mobile-nav yolo-navigation-panel" id="mobile-nav" aria-hidden="true" data-mobile-nav hidden>
+    <nav class="yolo-mobile-actions" aria-label="YOLO共通メニュー"><a href="https://yolo-magazine.rencame.net/">読む</a>
+      <a href="https://yolo-members.vercel.app/events">イベントに参加する</a>
+      <a href="https://yolo-members.vercel.app/members">クリエイターを探す</a>
+      <a href="https://yolo-soudan.vercel.app/">仕事を相談する</a></nav>
+    <nav class="yolo-local-links" aria-label="公式サイト内の案内"><a href="../#yolo">YOLOとは？</a>
+<a href="../#projects">活動</a>
+<a href="./" aria-current="page">これまでの活動</a>
+<a href="../#community">コミュニティ</a>
+<a href="/model/">モデル・俳優募集</a>
+<a href="/hub/">YOLO HUB</a>
+<a href="#join">参加する</a></nav>
   </div>
 
   <main id="main">
@@ -387,7 +389,7 @@
     </div>
   </footer>
 
-  <script src="../site.js?v=20260930b"></script>
+  <script src="../site.js?v=20261028nav"></script>
   <script src="./history.js?v=20260930b"></script>
 </body>
 </html>
