@@ -2,17 +2,17 @@
   "redirects": [
     {
       "source": "/hub/",
-      "destination": "https://yolo-members.vercel.app/",
+      "destination": "https://community.creativeyolo.com/",
       "permanent": false
     },
     {
       "source": "/hub",
-      "destination": "https://yolo-members.vercel.app/",
+      "destination": "https://community.creativeyolo.com/",
       "permanent": false
     },
     {
       "source": "/hub/:path*",
-      "destination": "https://yolo-members.vercel.app/:path*",
+      "destination": "https://community.creativeyolo.com/:path*",
       "permanent": false
     }
   ]
