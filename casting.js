@@ -49,7 +49,7 @@
     data.privacyConsent = form.elements.privacyConsent.checked;
     try {
       const response = await fetch(
-        form.dataset.endpoint || "https://yolo-members.vercel.app/api/casting",
+        form.dataset.endpoint || "https://community.creativeyolo.com/api/casting",
         {
           method: "POST",
           headers: {
