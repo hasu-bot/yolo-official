@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const ORIGIN = 'https://yolo-official.vercel.app';
+const ORIGIN = 'https://creativeyolo.com';
 export const CATEGORIES = { fashion: 'ファッション', beauty: 'ビューティー', lifestyle: 'ライフスタイル' };
 export const WORKS = { photo: ['PHOTO', '写真・ポートレート'], film: ['FILM', '映像・MV'], ad: ['ADVERTISING', '広告・PR'], event: ['EVENT', 'イベント'] };
 export const escape = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
