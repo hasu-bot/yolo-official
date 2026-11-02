@@ -47,7 +47,7 @@ test("HUB public contract strips private fields and rejects unexpected photo ori
   assert.equal(p.consent_at, undefined);
   assert.match(
     p.portrait.src,
-    /^https:\/\/yolo-members\.vercel\.app\/api\/talents\/photos\//,
+    /^https:\/\/community\.creativeyolo\.com\/api\/talents\/photos\//,
   );
   assert.throws(() =>
     publicProfiles([
