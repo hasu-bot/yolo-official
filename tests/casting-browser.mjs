@@ -19,7 +19,7 @@ try {
   const keys = [];
   let mode = "failure";
   await page.route(
-    "https://yolo-members.vercel.app/api/casting",
+    "https://community.creativeyolo.com/api/casting",
     async (route) => {
       if (route.request().method() === "OPTIONS")
         return route.fulfill({
@@ -136,7 +136,7 @@ try {
   assert.match(hidden.headers()["cache-control"], /no-store/);
   const invalid = await context.request.post(
     "http://127.0.0.1:3000/api/casting",
-    { headers: { Origin: "https://yolo-official.vercel.app" }, data: {} },
+    { headers: { Origin: "https://creativeyolo.com" }, data: {} },
   );
   assert.equal(invalid.status(), 400);
   const denied = await context.request.post(
@@ -148,13 +148,13 @@ try {
     "http://127.0.0.1:3000/api/casting",
     {
       method: "OPTIONS",
-      headers: { Origin: "https://yolo-official.vercel.app" },
+      headers: { Origin: "https://creativeyolo.com" },
     },
   );
   assert.equal(preflight.status(), 204);
   assert.equal(
     preflight.headers()["access-control-allow-origin"],
-    "https://yolo-official.vercel.app",
+    "https://creativeyolo.com",
   );
   results.push(
     "real local HUB endpoints: anonymous admin/self denied, hidden photo denied, validation 400, foreign origin 403, valid preflight 204",
