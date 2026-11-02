@@ -56,7 +56,7 @@ export function renderCasting() {
       <dl class="casting-conditions"><div><dt>写真・動画の使用範囲</dt><dd>使用媒体・使用期間・地域、二次利用、競合に関する条件を確認します。プロフィール掲載への同意は、個別の広告利用への承諾とは別のものです。</dd></div><div><dt>変更・延期・中止</dt><dd>日程や内容の変更、延期・中止時の連絡方法と、費用が発生する条件を事前に確認します。</dd></div></dl>
     </details>
   </section>
-  <form id="casting-form" class="casting-form" method="post" action="https://yolo-members.vercel.app/api/casting">
+  <form id="casting-form" class="casting-form" method="post" action="https://community.creativeyolo.com/api/casting">
     <p class="form-intro">必須項目をご入力ください。日程・場所・予算・使用予定が未定の場合は「未定」とご記入ください。</p>
     <fieldset><legend><span>01</span> 企画について</legend><p id="selected-model" class="casting-selected">希望モデル：指定なし</p><input type="hidden" name="modelSlug" value="">${field("purpose")}<div class="form-grid">${field("schedule")}${field("location")}</div>${field("budget")}</fieldset>
     <fieldset><legend><span>02</span> 写真・映像の使用予定</legend>${field("media")}${field("period")}</fieldset>
