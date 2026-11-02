@@ -1,0 +1,9 @@
+# Build inputs remain available; only dist/ is served.
+.claude/
+.git/
+.vercel/
+tests/
+docs/
+node_modules/
+.talents-build/
+dist/
