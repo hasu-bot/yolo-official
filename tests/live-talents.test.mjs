@@ -140,4 +140,10 @@ test("published repository profile renders on the listing and its own page", asy
   assert.equal(page.statusCode, 200);
   assert.ok(page.body.includes("/assets/talents/yuka.webp"));
   assert.ok(!page.body.includes("consentVersion") && !page.body.includes("LINE"));
+  assert.ok(page.body.includes('<meta property="og:image" content="https://creativeyolo.com/assets/talents/yuka.webp">'));
+  assert.ok(page.body.includes('<meta property="og:type" content="profile">'));
+  const description = page.body.match(/<meta name="description" content="([^"]*)">/)[1];
+  assert.ok(description.startsWith("ゆうか（YUKA）｜YOLO公式モデル。活動エリア：熊本県内。"));
+  assert.ok([...description].length <= 120, description);
+  assert.ok(list.body.includes('<meta property="og:image" content="https://creativeyolo.com/assets/ogp.png">'));
 });

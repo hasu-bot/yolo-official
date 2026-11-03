@@ -21,3 +21,23 @@ test('deployment build preserves existing pages and excludes source, samples and
   for (const route of ['/', '/model/', '/history/', '/casting/', '/talents.css', '/talents.js', '/model/form.js']) assert.equal((await fetch(url + route)).status, 200, route);
   for (const route of ['/content/talents.json', '/scripts/talents.mjs', '/talents/sample-a/', '/talents/withdrawn/']) assert.equal((await fetch(url + route)).status, 404, route);
 });
+
+test('every local stylesheet, script and image referenced by built pages is shipped', async t => {
+  const output = await mkdtemp(path.join(tmpdir(), 'yolo-public-refs-'));
+  t.after(() => rm(output, { recursive: true, force: true }));
+  await buildSite({ output });
+  const pages = (await readdir(output, { recursive: true })).filter(file => file.endsWith('.html'));
+  assert.ok(pages.length >= 4);
+  const missing = [];
+  for (const page of pages) {
+    const html = await readFile(path.join(output, page), 'utf8');
+    for (const [, ref] of html.matchAll(/(?:href|src)="(\/[^"#?]*\.(?:css|js|png|jpe?g|webp|svg|ico|txt|xml))(?:[?#][^"]*)?"/g)) {
+      try { await readFile(path.join(output, ref)); } catch { missing.push(`${page} → ${ref}`); }
+    }
+  }
+  assert.deepEqual(missing, []);
+  for (const file of ['robots.txt', 'sitemap.xml', 'public-navigation.css']) assert.ok((await readFile(path.join(output, file))).length > 0, file);
+  const sitemap = await readFile(path.join(output, 'sitemap.xml'), 'utf8');
+  assert.match(sitemap, /<loc>https:\/\/creativeyolo\.com\/talents\/<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/creativeyolo\.com\/history\/<\/loc>/);
+});
