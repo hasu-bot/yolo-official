@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import handler from "../api/talents-page.js";
-import { publicProfiles } from "../lib/public-talents.js";
+import { getPublicProfiles, publicProfiles } from "../lib/public-talents.js";
 const id = "11111111-1111-4111-8111-111111111111";
 const file = "22222222-2222-4222-8222-222222222222.jpg";
 const row = {
@@ -101,7 +101,43 @@ test("revoked direct URLs return generic 404 and upstream outage returns 503", a
   assert.ok(!res.body.includes("/talents/hidden"));
   globalThis.fetch = async () => new Response("", { status: 503 });
   const failed = response();
-  await handler({ method: "GET", url: "/talents/", query: {} }, failed);
+  await handler(
+    { method: "GET", url: "/talents/hidden", query: { slug: "hidden" } },
+    failed,
+  );
   assert.equal(failed.statusCode, 503);
   assert.ok(!failed.body.includes("公開中のプロフィールはありません"));
+});
+test("repository profiles are merged with HUB profiles and survive a HUB outage", async (t) => {
+  const original = globalThis.fetch;
+  t.after(() => {
+    globalThis.fetch = original;
+  });
+  const local = [{ ...publicProfiles([row])[0], slug: "local-person", name: "Local", portrait: { src: "/assets/talents/local.webp", alt: "Local" } }];
+  globalThis.fetch = async () => Response.json({ profiles: [row] });
+  const merged = await getPublicProfiles(null, { local });
+  assert.deepEqual(merged.map((p) => p.slug), ["test-person", "local-person"]);
+  globalThis.fetch = async () => Response.json({ profiles: [{ ...row, slug: "local-person" }] });
+  const duplicate = await getPublicProfiles("local-person", { local });
+  assert.equal(duplicate.length, 1);
+  assert.ok(duplicate[0].portrait.src.startsWith("https://"), "HUB record wins on slug collision");
+  globalThis.fetch = async () => new Response("", { status: 503 });
+  assert.deepEqual((await getPublicProfiles(null, { local })).map((p) => p.slug), ["local-person"]);
+  await assert.rejects(getPublicProfiles("test-person", { local }));
+});
+test("published repository profile renders on the listing and its own page", async (t) => {
+  const original = globalThis.fetch;
+  t.after(() => {
+    globalThis.fetch = original;
+  });
+  globalThis.fetch = async () => Response.json({ profiles: [] });
+  const list = response();
+  await handler({ method: "GET", url: "/talents/", query: {} }, list);
+  assert.equal(list.statusCode, 200);
+  assert.ok(list.body.includes('href="/talents/yuka/"'));
+  const page = response();
+  await handler({ method: "GET", url: "/talents/yuka/", query: { slug: "yuka" } }, page);
+  assert.equal(page.statusCode, 200);
+  assert.ok(page.body.includes("/assets/talents/yuka.webp"));
+  assert.ok(!page.body.includes("consentVersion") && !page.body.includes("LINE"));
 });

@@ -1,1 +1,27 @@
-[]
+[
+  {
+    "publication": {
+      "status": "approved",
+      "consent": "granted",
+      "consentVersion": "talents-publication-2026-10-18（運営確認：坂本がLINEで本人の了承を確認）",
+      "consentRecordedAt": "2026-11-03",
+      "profileConfirmed": true,
+      "photosConfirmed": true,
+      "isMinor": false
+    },
+    "profile": {
+      "slug": "yuka",
+      "name": "ゆうか",
+      "romanName": "YUKA",
+      "intro": "熊本を拠点に活動しています。YOLOのフォトウォークでは、杖立温泉・阿蘇などでモデルを務めてきました。モデルとしての経験はまだ多くありませんが、好奇心と向上心を大切に、新しいことに挑戦するのが好きです。一つひとつの撮影を大切に、さまざまな現場で経験を重ねながら、自分の新しい魅力を見つけていきたいと思っています。熊本県の魅力をたくさん発信できるモデルを目指しています。",
+      "area": "熊本県内",
+      "height": 161,
+      "works": ["photo"],
+      "categories": ["lifestyle"],
+      "portrait": { "src": "/assets/talents/yuka.webp", "alt": "紫陽花の前に立つゆうか" },
+      "gallery": [{ "src": "/assets/talents/yuka-2.webp", "alt": "温泉街の石段に立つゆうか" }],
+      "skills": [],
+      "credits": ["杖立温泉フォトウォーク モデル", "阿蘇フォトウォーク モデル", "チャリティーフォトウォーク モデル"]
+    }
+  }
+]

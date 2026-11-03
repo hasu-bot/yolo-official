@@ -1,4 +1,4 @@
-import { getPublicProfiles } from "../lib/public-talents.js";
+import { getPublicProfiles, isLocalSlug } from "../lib/public-talents.js";
 export default async function handler(request, response) {
   for (const name of [
     "Cache-Control",
@@ -22,7 +22,9 @@ export default async function handler(request, response) {
     const profiles = await getPublicProfiles(slug);
     if (!profiles.length)
       return response.status(404).json({ message: "Not found" });
-    return response.status(200).json({ name: profiles[0].name });
+    return response
+      .status(200)
+      .json({ name: profiles[0].name, ...(isLocalSlug(slug) ? { local: true } : {}) });
   } catch {
     return response.status(503).json({ message: "Unavailable" });
   }
