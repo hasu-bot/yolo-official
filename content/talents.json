@@ -16,12 +16,67 @@
       "intro": "熊本を拠点に活動しています。YOLOのフォトウォークでは、杖立温泉・阿蘇などでモデルを務めてきました。モデルとしての経験はまだ多くありませんが、好奇心と向上心を大切に、新しいことに挑戦するのが好きです。一つひとつの撮影を大切に、さまざまな現場で経験を重ねながら、自分の新しい魅力を見つけていきたいと思っています。熊本県の魅力をたくさん発信できるモデルを目指しています。",
       "area": "熊本県内",
       "height": 161,
-      "works": ["photo"],
-      "categories": ["lifestyle"],
-      "portrait": { "src": "/assets/talents/yuka.webp", "alt": "紫陽花の前に立つゆうか" },
-      "gallery": [{ "src": "/assets/talents/yuka-2.webp", "alt": "温泉街の石段に立つゆうか" }],
+      "works": [
+        "photo"
+      ],
+      "categories": [
+        "lifestyle"
+      ],
+      "portrait": {
+        "src": "/assets/talents/yuka.webp",
+        "alt": "紫陽花の前に立つゆうか"
+      },
+      "gallery": [
+        {
+          "src": "/assets/talents/yuka-2.webp",
+          "alt": "温泉街の石段に立つゆうか"
+        }
+      ],
       "skills": [],
-      "credits": ["杖立温泉フォトウォーク モデル", "阿蘇フォトウォーク モデル", "チャリティーフォトウォーク モデル"]
+      "credits": [
+        "杖立温泉フォトウォーク モデル",
+        "阿蘇フォトウォーク モデル",
+        "チャリティーフォトウォーク モデル"
+      ]
+    }
+  },
+  {
+    "publication": {
+      "status": "approved",
+      "consent": "granted",
+      "consentVersion": "talents-publication-2026-10-18（運営確認：坂本が本人の了承を確認）",
+      "consentRecordedAt": "2026-11-04",
+      "profileConfirmed": true,
+      "photosConfirmed": true,
+      "isMinor": false
+    },
+    "profile": {
+      "slug": "mio",
+      "name": "MIO",
+      "romanName": "MIO",
+      "intro": "日本と韓国でメジャーデビューし、アイドルとして活動してきました。これからは熊本・福岡を拠点に、個人のモデルとしても活動の幅を広げていきます。プライベートでもカメラで写真を撮るなど、日頃から「表現すること」が大好きです。モデルを中心に、MCや演技などさまざまなジャンルに挑戦しながら、まだ見たことのない自分の表情を見つけていきたいと思っています。",
+      "area": "熊本県・福岡県",
+      "height": 160,
+      "works": [
+        "photo",
+        "film"
+      ],
+      "categories": [
+        "fashion",
+        "lifestyle"
+      ],
+      "portrait": {
+        "src": "/assets/talents/mio.webp",
+        "alt": "花の咲く木の前に立つMIO"
+      },
+      "gallery": [
+        {
+          "src": "/assets/talents/mio-2.webp",
+          "alt": "庭園の小道に立つMIO"
+        }
+      ],
+      "skills": [],
+      "credits": []
     }
   }
 ]
