@@ -67,14 +67,14 @@ const about = `<section class="talents-about talents-wrap" id="about" aria-label
   </aside>
 </section>`;
 
-export function shell({ title, description, pathname, body, demo = false, castingSlug }) {
+export function shell({ title, description, pathname, body, demo = false, castingSlug, image, type = 'website' }) {
   const headerCasting = castingUrl(castingSlug ? { slug: castingSlug } : null);
   return `<!doctype html>
 <html lang="ja"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escape(title)} | Creative YOLO</title><meta name="description" content="${escape(description)}">
 ${demo ? '<meta name="robots" content="noindex, nofollow">' : `<link rel="canonical" href="${ORIGIN}${pathname}">`}
-<meta property="og:type" content="website"><meta property="og:title" content="${escape(title)} | Creative YOLO"><meta property="og:description" content="${escape(description)}"><meta property="og:url" content="${ORIGIN}${pathname}"><meta property="og:image" content="${ORIGIN}/assets/ogp.png"><meta property="og:locale" content="ja_JP"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#ffffff">
+<meta property="og:type" content="${type}"><meta property="og:title" content="${escape(title)} | Creative YOLO"><meta property="og:description" content="${escape(description)}"><meta property="og:url" content="${ORIGIN}${pathname}"><meta property="og:image" content="${escape(image ? new URL(image, ORIGIN).href : `${ORIGIN}/assets/ogp.png`)}"><meta property="og:locale" content="ja_JP"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#ffffff">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230b0b0b'/%3E%3Crect x='8' y='30' width='48' height='4' fill='%23ffffff'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600&family=Noto+Sans+JP:wght@400;500;600&family=Shippori+Mincho+B1:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/yolo-tokens.css?v=20260921b"><link rel="stylesheet" href="/site.css?v=20260921b"><link rel="stylesheet" href="/home-light.css?v=20260921b"><link rel="stylesheet" href="/talents.css?v=20261018b"><script src="/talents.js?v=20261018b" defer></script>
@@ -99,11 +99,18 @@ ${consultation()}${about}`;
   return shell({ title: 'YOLO TALENTS｜公式モデル', description: 'YOLO公式モデルの写真・プロフィールと対応できる出演内容をご紹介。写真・映像・広告・イベントへの出演のご相談はYOLOが承ります。', pathname: '/talents/', body, demo });
 }
 
+// Search/share description: who, where, then the start of the introduction (about 120 characters).
+export function summary(p) {
+  const head = `${p.name}（${p.romanName}）｜YOLO公式モデル。活動エリア：${p.area}。`;
+  const room = Math.max(0, 120 - head.length);
+  const intro = [...p.intro.replace(/\s+/g, ' ')];
+  return head + (intro.length > room ? `${intro.slice(0, room - 1).join('')}…` : intro.join(''));
+}
 export function renderProfile(p, demo = false) {
   const body = `<div class="talents-wrap"><nav class="talents-breadcrumb" aria-label="パンくず"><a href="/talents/">モデル一覧</a><span aria-hidden="true">/</span><span aria-current="page">${escape(p.name)}</span></nav><section class="talents-profile" aria-labelledby="profile-name"><figure class="profile-portrait">${img(p.portrait, true)}</figure><div class="profile-info">${kicker(demo ? 'MODEL / DEVELOPMENT SAMPLE' : 'YOLO OFFICIAL MODEL')}<h1 id="profile-name">${escape(p.name)}</h1><p class="profile-roman" lang="en">${escape(p.romanName)}</p><p class="profile-intro">${escape(p.intro)}</p><dl class="profile-facts"><div><dt>活動エリア</dt><dd>${escape(p.area)}</dd></div>${p.height ? `<div><dt>身長</dt><dd>${p.height} cm</dd></div>` : ''}${p.skills.length ? `<div><dt>特技・好きなこと</dt><dd>${p.skills.map(escape).join(' / ')}</dd></div>` : ''}</dl><h2 class="profile-work-title">対応できる出演</h2>${tags(p.works)}<a class="button button-primary" href="${castingUrl(p)}" aria-label="${escape(p.name)}への出演を相談する">このモデルの出演を相談する <span aria-hidden="true">↗</span></a><p class="profile-contact-note">出演のご相談はYOLOが窓口となります。</p></div></section>
 ${p.gallery.length ? `<section class="profile-gallery" aria-labelledby="gallery-title">${kicker('GALLERY')}<h2 id="gallery-title">フォトギャラリー</h2><div>${p.gallery.map(photo => `<figure>${img(photo)}</figure>`).join('')}</div></section>` : ''}
 ${p.credits.length ? `<section class="profile-credits" aria-labelledby="credits-title">${kicker('WORKS')}<h2 id="credits-title">出演・活動実績</h2><ul>${p.credits.map(credit => `<li>${escape(credit)}</li>`).join('')}</ul></section>` : ''}<p class="profile-back"><a class="talents-text-link" href="/talents/">← モデル一覧へ戻る</a></p></div>${consultation(p)}`;
-  return shell({ title: `${p.name} — YOLO公式モデル`, description: `${p.name}のプロフィール。${p.intro}`, pathname: `/talents/${p.slug}/`, body, demo, castingSlug: p.slug });
+  return shell({ title: `${p.name} — YOLO公式モデル`, description: summary(p), pathname: `/talents/${p.slug}/`, body, demo, castingSlug: p.slug, image: p.portrait.src, type: 'profile' });
 }
 
 export async function buildTalents({ records, root = ROOT, demo = false } = {}) {
