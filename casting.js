@@ -12,6 +12,7 @@
     return;
   }
   button.disabled = false;
+  let localModel = "";
   const selected = new URLSearchParams(location.search).get("model") || "";
   if (/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(selected) && selected.length <= 70) {
     form.elements.modelSlug.value = selected;
@@ -30,6 +31,9 @@
         if (typeof data.name === "string")
           document.querySelector("#selected-model").textContent =
             `希望モデル：${data.name}`;
+        // Repository-published models are not HUB records; send the name in the request text.
+        if (data.local === true && typeof data.name === "string")
+          localModel = data.name;
       })
       .catch(() => {});
     document.querySelector("#selected-model").textContent =
@@ -47,6 +51,10 @@
       .forEach((el) => el.removeAttribute("aria-invalid"));
     const data = Object.fromEntries(new FormData(form));
     data.privacyConsent = form.elements.privacyConsent.checked;
+    if (localModel) {
+      data.modelSlug = "";
+      data.purpose = `希望モデル：${localModel}\n${data.purpose}`;
+    }
     try {
       const response = await fetch(
         form.dataset.endpoint || "https://community.creativeyolo.com/api/casting",
