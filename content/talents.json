@@ -4,7 +4,7 @@
       "status": "approved",
       "consent": "granted",
       "consentVersion": "talents-publication-2026-10-18（運営確認：坂本がLINEで本人の了承を確認）",
-      "consentRecordedAt": "2026-11-03",
+      "consentRecordedAt": "2026-11-04",
       "profileConfirmed": true,
       "photosConfirmed": true,
       "isMinor": false
@@ -30,6 +30,26 @@
         {
           "src": "/assets/talents/yuka-2.webp",
           "alt": "温泉街の石段に立つゆうか"
+        },
+        {
+          "src": "/assets/talents/yuka-3.webp",
+          "alt": "すすき野原に立つゆうか"
+        },
+        {
+          "src": "/assets/talents/yuka-4.webp",
+          "alt": "紫陽花の前に立つゆうか"
+        },
+        {
+          "src": "/assets/talents/yuka-5.webp",
+          "alt": "温泉街の欄干にもたれるゆうか"
+        },
+        {
+          "src": "/assets/talents/yuka-6.webp",
+          "alt": "夕暮れの横断歩道に立つゆうか"
+        },
+        {
+          "src": "/assets/talents/yuka-7.webp",
+          "alt": "夜の街灯の柱にもたれるゆうか"
         }
       ],
       "skills": [],
