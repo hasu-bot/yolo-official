@@ -109,6 +109,55 @@
   pointer-events: none;
 }
 
+.home-light .talent-featured { flex-direction: column; align-items: stretch; gap: 1.1rem; }
+.home-light .talent-featured-label {
+  margin: 0;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: .72rem;
+  letter-spacing: .22em;
+  color: rgba(17,17,17,.52);
+}
+.home-light .talent-featured-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 240px));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.home-light .talent-featured-list a { display: block; color: #111111; text-decoration: none; }
+.home-light .talent-featured-list img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  background: rgba(17,17,17,.06);
+}
+.home-light .talent-featured-name { display: block; margin-top: .7rem; font-size: 1.05rem; font-weight: 500; }
+.home-light .talent-featured-roman {
+  display: block;
+  margin-top: .15rem;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: .72rem;
+  letter-spacing: .16em;
+  color: rgba(17,17,17,.56);
+}
+.home-light .talent-featured-list a:hover .talent-featured-name,
+.home-light .talent-featured-list a:focus-visible .talent-featured-name { text-decoration: underline; text-underline-offset: .2em; }
+.home-light .talent-featured-all {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: "Josefin Sans", "Noto Sans JP", sans-serif;
+  font-size: .82rem;
+  letter-spacing: .14em;
+  color: #111111;
+  border-bottom: 1px solid #111111;
+  text-decoration: none;
+}
+
 @media (max-width: 959px) {
   .home-light .talent-shell { grid-template-columns: 1fr; gap: 3rem; }
   .home-light .talent-copy { max-width: 620px; }
@@ -145,6 +194,7 @@
   }
   .home-light .talent-entry .button { width: 100%; max-width: 340px; padding-left: 1rem; padding-right: 1rem; }
   .home-light .talent-small { font-size: .76rem; color: rgba(17,17,17,.62); }
+  .home-light .talent-featured-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
   .home-light .talent-word {
     font-size: clamp(2.7rem, 14vw, 3.8rem);
     line-height: .88;

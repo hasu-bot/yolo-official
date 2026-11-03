@@ -41,3 +41,16 @@ test('every local stylesheet, script and image referenced by built pages is ship
   assert.match(sitemap, /<loc>https:\/\/creativeyolo\.com\/talents\/<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/creativeyolo\.com\/history\/<\/loc>/);
 });
+
+test('top page shows listed models with a link to all models, and keeps the original visual when none are listed', async t => {
+  const { withFeaturedTalents } = await import('../scripts/build.mjs');
+  const source = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  assert.equal(withFeaturedTalents(source, []), source);
+  const output = await mkdtemp(path.join(tmpdir(), 'yolo-public-top-'));
+  t.after(() => rm(output, { recursive: true, force: true }));
+  await buildSite({ output });
+  const top = await readFile(path.join(output, 'index.html'), 'utf8');
+  assert.match(top, /<a href="\/talents\/yuka\/"><img src="\/assets\/talents\/yuka\.webp"/);
+  assert.match(top, /<a class="talent-featured-all" href="\/talents\/">/);
+  assert.doesNotMatch(top, /MODEL<br \/>ACTOR/);
+});
