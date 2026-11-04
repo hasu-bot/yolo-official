@@ -1,6 +1,21 @@
 {
   "redirects": [
     {
+      "source": "/model",
+      "destination": "/model/",
+      "permanent": true
+    },
+    {
+      "source": "/history",
+      "destination": "/history/",
+      "permanent": true
+    },
+    {
+      "source": "/casting",
+      "destination": "/casting/",
+      "permanent": true
+    },
+    {
       "source": "/hub/",
       "destination": "https://community.creativeyolo.com/",
       "permanent": false
