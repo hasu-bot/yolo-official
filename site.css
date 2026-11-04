@@ -32,8 +32,10 @@ h1, h2, h3, h4 {
   word-break: auto-phrase;
 }
 
-/* 最後の行に1〜2文字だけ取り残さない。未対応ブラウザは従来どおり */
-h1, h2, h3, h4, p, li, dd, dt, figcaption, blockquote {
+/* 見出しは最後の行に1〜2文字だけ取り残さない。未対応ブラウザは従来どおり。
+   本文には掛けない——iPhone（WebKit）の pretty は全行を短めに折り返すため、
+   日本語の本文だと右側が大きく空いて左寄りに見える */
+h1, h2, h3, h4 {
   text-wrap: pretty;
 }
 
