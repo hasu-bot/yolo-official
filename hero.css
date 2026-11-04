@@ -1,189 +1,134 @@
 /* hero.css — トップのファーストビュー
-   「テキスト＋写真1枚」をやめ、大きな見出しと活動写真の帯で
-   “撮る・演じる・歌う・上映する・出会う”が一目で伝わるようにする。
+   中央に問いかけの見出し、その背後で活動写真が2段、左右逆向きにゆっくり流れる。
+   「人が集まって、いろんなことをやっている場所」が開いた瞬間に伝わるようにする。
+   コピーの正本は yolo-members docs/creative-yolo/21-OFFICIAL-SITE-COPY.md §1。
    紙面は白黒、色はCTAの青だけ（yolo-tokens.css）。home-light.css より後に読む */
 
 .home-light .hero {
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  padding: 96px 0 var(--sp-16);
+  text-align: center;
+  isolation: isolate;
+}
+
+/* ── 流れる写真 ── */
+.home-light .hero-flow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: stretch;
-  gap: clamp(32px, 5vh, 56px);
-  min-height: 100svh;
-  padding: clamp(104px, 14vh, 140px) 0 clamp(24px, 4vh, 40px);
-  text-align: left;
-}
-
-/* ── 見出しブロック ── */
-.home-light .hero-inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 400px);
-  grid-template-areas: "eyebrow eyebrow" "title side";
-  column-gap: clamp(32px, 5vw, 80px);
-  align-items: end;
-  width: 100%;
-  max-width: none;
-  padding: 0 5vw;
-  z-index: 1;
-}
-.home-light .hero-eyebrow {
-  grid-area: eyebrow;
-  display: flex;
-  align-items: center;
+  justify-content: center;
   gap: var(--sp-3);
-  margin: 0 0 var(--sp-6);
-  font-size: var(--fs-label);
-  letter-spacing: .25em;
-  color: var(--ink-2);
+  padding-top: 40px;
 }
-.home-light .hero-eyebrow::before {
-  content: "";
-  width: 32px;
-  height: 1px;
-  background: var(--ink-1);
-}
-.home-light .hero h1 {
-  grid-area: title;
-  margin: 0;
-  font-size: clamp(2.6rem, 6.4vw, 6.25rem);
-  font-weight: 500;
-  line-height: 1.22;
-  letter-spacing: -.035em;
-  color: var(--ink-1);
-}
-.home-light .hero h1 .nowrap { display: block; white-space: nowrap; }
-.home-light .hero h1 wbr { display: none; }
-/* 「 の約物ぶんの空きを詰めて、2行目と左端を揃える */
-.home-light .hero h1 .nowrap:first-child { margin-left: -.5em; }
-
-.home-light .hero-side { grid-area: side; padding-bottom: .6em; }
-.home-light .hero-lead {
-  max-width: none;
-  margin: 0 0 var(--sp-6);
-  font-size: var(--fs-small);
-  line-height: 2;
-  color: var(--ink-2);
-}
-.home-light .hero-lead br { display: none; }
-.home-light .hero-cta {
+.home-light .hero-row {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
-  gap: var(--sp-4) var(--sp-6);
-}
-
-/* ── 活動写真の帯 ── */
-.home-light .hero-reel {
-  display: flex;
-  gap: var(--sp-2);
-  height: clamp(220px, 38vh, 420px);
+  gap: var(--sp-3);
+  width: max-content;
   margin: 0;
-  padding: 0 5vw;
+  padding: 0;
   list-style: none;
+  animation: hero-flow 70s linear infinite;
 }
-.home-light .hero-shot {
-  position: relative;
-  flex: 1 1 0;
-  min-width: 0;
+.home-light .hero-row-rev { animation-direction: reverse; animation-duration: 80s; }
+.home-light .hero-row li {
+  width: clamp(240px, 26vw, 420px);
+  height: clamp(160px, 31vh, 300px);
   overflow: hidden;
   border-radius: var(--rad-s);
   background: var(--rule);
 }
-.home-light .hero-shot:nth-child(1) { flex-grow: 1.5; }
-.home-light .hero-shot:nth-child(2) { flex-grow: .8; }
-.home-light .hero-shot:nth-child(3) { flex-grow: 1.3; }
-.home-light .hero-shot:nth-child(4) { flex-grow: 1; }
-.home-light .hero-shot:nth-child(5) { flex-grow: 1.2; }
-.home-light .hero-shot img {
+.home-light .hero-row img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   filter: saturate(.72) contrast(1.03);
-  transition: transform var(--dur-slow) var(--ease-out), filter var(--dur-slow) var(--ease-out);
 }
-.home-light .hero-shot:nth-child(1) img { object-position: 60% center; }
-.home-light .hero-shot:nth-child(2) img { object-position: 22% center; }
-.home-light .hero-shot span {
+@keyframes hero-flow { to { transform: translateX(-50%); } }
+
+/* 文字の下だけ紙色でぼかして、写真の上でも読めるようにする */
+.home-light .hero-flow::after {
+  content: "";
   position: absolute;
-  left: var(--sp-3);
-  bottom: var(--sp-3);
-  padding: var(--sp-1) var(--sp-3);
-  border-radius: var(--rad-pill);
-  background: var(--yolo-paper);
-  color: var(--ink-1);
-  font-size: var(--fs-label);
-  letter-spacing: .12em;
-}
-@media (hover: hover) {
-  .home-light .hero-shot:hover img { transform: scale(1.04); filter: saturate(1) contrast(1.03); }
+  inset: 0;
+  background: radial-gradient(ellipse 40% 40% at 50% 52%, rgba(247,247,243,.97) 62%, rgba(247,247,243,0) 100%);
 }
 
-/* ── 読み込み演出：文字が段階的に出て、写真が左から順に立ち上がる ── */
+/* ── 見出しブロック ── */
+.home-light .hero-inner {
+  position: relative;
+  max-width: 720px;
+  padding: 0 var(--sp-6);
+}
+.home-light .hero-eyebrow {
+  margin: 0 0 var(--sp-6);
+  font-size: var(--fs-label);
+  letter-spacing: .25em;
+  color: var(--ink-2);
+}
+.home-light .hero h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 5.4vw, 5.25rem);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -.03em;
+  color: var(--ink-1);
+}
+.home-light .hero h1 .nowrap { display: block; white-space: nowrap; }
+.home-light .hero h1 wbr { display: none; }
+.home-light .hero-lead {
+  max-width: none;
+  margin: var(--sp-6) 0 var(--sp-8);
+  font-size: var(--fs-small);
+  line-height: 2;
+  color: var(--ink-2);
+}
+/* 「熊本で、〜作る。」と「スマホ1台から〜」は意味の切れ目なので、どの幅でも改行を残す */
+.home-light .hero-lead br { display: inline; }
+.home-light .hero-cta {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--sp-4) var(--sp-6);
+}
+.home-light .scroll-cue { display: none; }
+
+/* ── 読み込み演出：文字が段階的に出て、写真はふわっと現れる ── */
 html.js .home-light .hero [data-stage] {
   opacity: 0;
   transform: translateY(14px);
   animation: stage-in var(--dur-slow) var(--ease-out) forwards;
 }
-html.js .home-light .hero-shot {
+html.js .home-light .hero-flow {
   opacity: 0;
-  transform: translateY(24px);
-  animation: stage-in 900ms var(--ease-out) forwards;
+  animation: stage-in 1.2s var(--ease-out) 200ms forwards;
 }
-html.js .home-light .hero-shot:nth-child(1) { animation-delay: 700ms; }
-html.js .home-light .hero-shot:nth-child(2) { animation-delay: 790ms; }
-html.js .home-light .hero-shot:nth-child(3) { animation-delay: 880ms; }
-html.js .home-light .hero-shot:nth-child(4) { animation-delay: 970ms; }
-html.js .home-light .hero-shot:nth-child(5) { animation-delay: 1060ms; }
 
 @media (prefers-reduced-motion: reduce) {
   html.js .home-light .hero [data-stage],
-  html.js .home-light .hero-shot { opacity: 1; transform: none; animation: none; }
-  .home-light .hero-shot img { transition: none; }
+  html.js .home-light .hero-flow { opacity: 1; transform: none; animation: none; }
+  .home-light .hero-row { animation: none; }
 }
 
-/* ── タブレット：見出しの下にリードを回す ── */
-@media (max-width: 959px) {
-  .home-light .hero-inner {
-    grid-template-columns: 1fr;
-    grid-template-areas: "eyebrow" "title" "side";
-  }
-  .home-light .hero-side { max-width: 520px; padding: var(--sp-8) 0 0; }
-}
-
-/* ── スマホ：写真は横スワイプの帯にする ── */
+/* ── スマホ：写真を上下に分けて、真ん中に文字を置く ── */
 @media (max-width: 599px) {
-  .home-light .hero {
-    min-height: 0;
-    justify-content: flex-start;
-    gap: var(--sp-8);
-    padding: 104px 0 var(--sp-8);
+  .home-light .hero { padding: 88px 0 var(--sp-8); }
+  .home-light .hero-flow {
+    justify-content: space-between;
+    padding: 84px 0 var(--sp-6);
   }
-  .home-light .hero-inner { padding: 0 var(--sp-6); }
+  .home-light .hero-row li { width: 56vw; height: 19svh; }
+  .home-light .hero-flow::after {
+    background: linear-gradient(transparent 22%, rgba(247,247,243,.97) 34%, rgba(247,247,243,.97) 66%, transparent 78%);
+  }
   .home-light .hero-eyebrow { margin-bottom: var(--sp-4); font-size: .68rem; letter-spacing: .22em; }
-  .home-light .hero-eyebrow::before { width: 20px; }
-  /* 最も狭い端末でも「「やってみたい」を、」の10文字が1行に入る大きさ */
-  .home-light .hero h1 { font-size: clamp(1.75rem, 9.4vw, 2.6rem); line-height: 1.3; letter-spacing: -.03em; }
-  .home-light .hero-side { padding-top: var(--sp-6); }
-  .home-light .hero-lead { margin-bottom: var(--sp-6); font-size: .9rem; line-height: 1.9; }
-  .home-light .hero-cta .button { flex: 1 1 100%; max-width: none; }
-
-  .home-light .hero-reel {
-    order: -1;
-    height: 54vw;
-    padding: 0 var(--sp-6);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-padding: 0 var(--sp-6);
-    scrollbar-width: none;
-  }
-  .home-light .hero-reel::-webkit-scrollbar { display: none; }
-  .home-light .hero-shot,
-  .home-light .hero-shot:nth-child(n) {
-    flex: 0 0 72%;
-    scroll-snap-align: start;
-  }
-  .home-light .hero-shot:nth-child(2) { flex-basis: 42%; }
+  /* 最も狭い端末でも「やってみない？」が1行に入る大きさ */
+  .home-light .hero h1 { font-size: clamp(1.9rem, 10vw, 2.6rem); }
+  .home-light .hero-lead { margin: var(--sp-4) 0 var(--sp-6); font-size: .86rem; line-height: 1.9; }
 }
