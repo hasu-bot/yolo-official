@@ -10,7 +10,7 @@
 
   host.innerHTML = `
     <p class="kicker">Entry</p>
-    <h2>サイトから、そのまま応募できます。</h2>
+    <h2>応募フォーム</h2>
     <p class="entry-lead">必要事項と写真2枚を送信してください。応募内容を確認し、審査後にご連絡します。</p>
 
     <form class="application-form" id="model-application-form" novalidate>
