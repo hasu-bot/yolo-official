@@ -23,14 +23,6 @@ body:has(.model-page) .desktop-nav .nav-hub {
   font-weight: 600;
 }
 body:has(.model-page) .menu-button span:not(.sr-only) { background: #111111; }
-body:has(.model-page) .site-header:has(.menu-button[aria-expanded="true"]) {
-  background: #0b0b0b;
-  color: #ffffff;
-  border-bottom-color: transparent;
-}
-body:has(.model-page) .site-header:has(.menu-button[aria-expanded="true"]) .brand-name { color: #ffffff; }
-body:has(.model-page) .site-header:has(.menu-button[aria-expanded="true"]) .menu-button span:not(.sr-only) { background: #ffffff; }
-body:has(.model-page) .mobile-nav { color: #ffffff; }
 
 .model-page {
   background: #f7f7f3;
