@@ -182,7 +182,7 @@ const LINE_OFFICIAL_URL = "https://line.me/R/ti/p/@140irxqh";
   sdk.crossOrigin = "anonymous";
   sdk.onload = function () {
     var formScript = document.createElement("script");
-    formScript.src = "./form.js?v=20260920";
+    formScript.src = "./form.js?v=20261104";
     document.body.appendChild(formScript);
   };
   document.head.appendChild(sdk);
