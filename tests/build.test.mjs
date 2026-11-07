@@ -18,7 +18,7 @@ test('deployment build preserves existing pages and excludes source, samples and
   assert.ok(!files.includes('talents'), 'public profiles must use the live HUB gateway');
   const { server, url } = await startPreview({ root: output, port: 0 });
   t.after(() => new Promise(resolve => server.close(resolve)));
-  for (const route of ['/', '/model/', '/history/', '/casting/', '/talents.css', '/talents.js', '/model/form.js']) assert.equal((await fetch(url + route)).status, 200, route);
+  for (const route of ['/', '/model/', '/rangers/', '/rangers/rangers.css', '/rangers/rangers.js', '/history/', '/casting/', '/talents.css', '/talents.js', '/model/form.js']) assert.equal((await fetch(url + route)).status, 200, route);
   for (const route of ['/content/talents.json', '/scripts/talents.mjs', '/talents/sample-a/', '/talents/withdrawn/']) assert.equal((await fetch(url + route)).status, 404, route);
 });
 
