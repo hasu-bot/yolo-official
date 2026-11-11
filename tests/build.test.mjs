@@ -40,6 +40,42 @@ test('every local stylesheet, script and image referenced by built pages is ship
   const sitemap = await readFile(path.join(output, 'sitemap.xml'), 'utf8');
   assert.match(sitemap, /<loc>https:\/\/creativeyolo\.com\/talents\/<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/creativeyolo\.com\/history\/<\/loc>/);
+  assert.equal(sitemap.split('<loc>https://creativeyolo.com/casting/</loc>').length - 1, 1);
+});
+
+test('homepage publishes Organization JSON-LD and only confirmed production domains', async t => {
+  const output = await mkdtemp(path.join(tmpdir(), 'yolo-public-seo-'));
+  t.after(() => rm(output, { recursive: true, force: true }));
+  await buildSite({ output });
+  const pages = (await readdir(output, { recursive: true })).filter(file => file.endsWith('.html'));
+  const htmlByPage = new Map();
+  for (const page of pages) htmlByPage.set(page, await readFile(path.join(output, page), 'utf8'));
+  for (const [page, html] of htmlByPage) {
+    assert.doesNotMatch(html, /yolo-film-festival\.vercel\.app|yolo-magazine\.rencame\.net/, page);
+  }
+  const top = htmlByPage.get('index.html');
+  assert.match(top, /href="https:\/\/festival\.creativeyolo\.com\/"/);
+  assert.match(top, /href="https:\/\/magazine\.creativeyolo\.com\/"/);
+  for (const host of ['lumina-site-ecru.vercel.app', 'last-call-movie.vercel.app', 'yolo-soudan.vercel.app']) {
+    assert.match(top, new RegExp(`https://${host.replaceAll('.', '\\.')}/`));
+  }
+  const blocks = [...top.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]));
+  assert.equal(blocks.length, 1);
+  const org = blocks[0];
+  assert.deepEqual(Object.keys(org), ['@context', '@type', 'name', 'url', 'logo', 'sameAs']);
+  assert.equal(org['@context'], 'https://schema.org');
+  assert.equal(org['@type'], 'Organization');
+  assert.equal(org.name, 'Creative YOLO');
+  assert.equal(org.url, 'https://creativeyolo.com/');
+  assert.equal(org.logo, 'https://creativeyolo.com/assets/ogp.png');
+  assert.deepEqual(org.sameAs, [
+    'https://festival.creativeyolo.com/',
+    'https://magazine.creativeyolo.com/',
+    'https://community.creativeyolo.com/',
+    'https://www.instagram.com/creative.yolo/',
+    'https://line.me/R/ti/p/@140irxqh',
+  ]);
+  for (const value of org.sameAs) assert.match(value, /^https:\/\/[^ ]+$/);
 });
 
 test('top page shows listed models with a link to all models, and keeps the original visual when none are listed', async t => {
