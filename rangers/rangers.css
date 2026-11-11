@@ -1,0 +1,206 @@
+/* YOLO RANGERS — light editorial, shared with the model page; identity from the contour-map motif.
+   Blue stays reserved for actions (09-DESIGN-SYSTEM §1). */
+body:has(.rangers-page) { background: var(--yolo-paper); color: var(--ink-1); }
+body:has(.rangers-page) .site-header {
+  background: rgba(247,247,243,.9);
+  border-bottom: 1px solid rgba(17,17,17,.08);
+  backdrop-filter: blur(14px);
+  color: var(--ink-1);
+}
+body:has(.rangers-page) .brand-name { color: var(--ink-1); }
+body:has(.rangers-page) .desktop-nav a { color: rgba(17,17,17,.62); }
+body:has(.rangers-page) .desktop-nav a:hover,
+body:has(.rangers-page) .desktop-nav a:focus-visible { color: var(--ink-1); }
+body:has(.rangers-page) .menu-button span:not(.sr-only) { background: var(--ink-1); }
+body:has(.rangers-page) .site-header:has(.menu-button[aria-expanded="true"]) { background: var(--yolo-night); color: #fff; border-bottom-color: transparent; }
+body:has(.rangers-page) .site-header:has(.menu-button[aria-expanded="true"]) .brand-name { color: #fff; }
+body:has(.rangers-page) .site-header:has(.menu-button[aria-expanded="true"]) .menu-button span:not(.sr-only) { background: #fff; }
+body:has(.rangers-page) .mobile-nav { color: #fff; }
+
+.rangers-page { background: var(--yolo-paper); color: var(--ink-1); }
+.rangers-page h1, .rangers-page h2, .rangers-page h3 { margin: 0; }
+.rangers-wrap { width: min(1120px, 100%); margin: 0 auto; position: relative; z-index: 1; }
+.rangers-narrow { width: min(780px, 100%); }
+.sp-only { display: none; }
+
+.rangers-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  padding: 9.5rem 1.5rem 6rem;
+  background: var(--yolo-paper);
+}
+.rangers-contour {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: rgba(17,17,17,.12);
+  pointer-events: none;
+}
+.rangers-hero-inner { width: min(1120px, 100%); margin: 0 auto; position: relative; z-index: 1; }
+.rangers-eyebrow,
+.rangers-page .kicker {
+  font-family: "Josefin Sans", sans-serif;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-size: var(--fs-label);
+  color: var(--ink-2);
+  margin: 0 0 1.25rem;
+}
+.rangers-wordmark {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 600;
+  font-size: clamp(3.4rem, 11vw, 8.6rem);
+  line-height: .92;
+  letter-spacing: .04em;
+  color: var(--ink-1);
+}
+.rangers-lead {
+  margin: 2.2rem 0 0;
+  font-family: "Shippori Mincho B1", serif;
+  font-size: clamp(1.35rem, 2.8vw, 2.1rem);
+  line-height: 1.7;
+  font-weight: 500;
+  max-width: 760px;
+}
+.rangers-sublead { margin: 1.2rem 0 0; max-width: 620px; color: rgba(17,17,17,.66); line-height: 2; }
+.rangers-tags { list-style: none; margin: 1.6rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
+.rangers-tags li {
+  border: 1px solid rgba(17,17,17,.22);
+  border-radius: var(--rad-pill);
+  padding: .3rem .85rem;
+  font-size: var(--fs-small);
+  background: rgba(247,247,243,.8);
+}
+.rangers-tags li + li::before { content: none; }
+.rangers-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-top: 2rem; }
+.rangers-text-link { color: var(--ink-1); text-decoration: none; border-bottom: 1px solid rgba(17,17,17,.35); padding: .4rem 0; }
+.rangers-coord {
+  position: absolute;
+  right: 0;
+  bottom: -3.2rem;
+  margin: 0;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: .72rem;
+  letter-spacing: .28em;
+  color: rgba(17,17,17,.45);
+}
+
+.rangers-section { padding: 7rem 1.5rem; background: var(--yolo-paper); }
+.rangers-section-alt { background: #eee8dd; }
+.rangers-section-dark { position: relative; overflow: hidden; background: var(--yolo-night); color: #fff; }
+.rangers-section-dark::after {
+  content: "NOW";
+  position: absolute;
+  right: -1rem;
+  bottom: -1.2rem;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: clamp(5rem, 18vw, 12rem);
+  line-height: .8;
+  color: rgba(255,255,255,.03);
+  letter-spacing: .04em;
+  pointer-events: none;
+}
+.rangers-section-dark .kicker { color: var(--yolo-muted); }
+.rangers-section-dark .rangers-prose { color: rgba(255,255,255,.74); }
+.rangers-section-dark .rangers-prose strong { color: #fff; }
+.rangers-section h2,
+.rangers-entry h2 {
+  font-family: "Shippori Mincho B1", serif;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  line-height: 1.35;
+  font-weight: 500;
+  margin-bottom: 2.3rem;
+}
+.rangers-prose { display: grid; gap: 1rem; font-size: 1.02rem; line-height: 2.05; }
+.rangers-prose p { margin: 0; }
+.rangers-prose h3 { font-family: "Shippori Mincho B1", serif; font-size: 1.2rem; font-weight: 600; margin-top: .8rem; }
+.rangers-prose h3:first-child { margin-top: 0; }
+
+.rangers-about { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 4rem; align-items: center; }
+.rangers-photo { margin: 0; }
+.rangers-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+.rangers-photo figcaption { margin-top: .8rem; font-size: .8rem; line-height: 1.8; color: var(--ink-2); }
+
+.rangers-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1rem; }
+.rangers-card {
+  min-height: 250px;
+  padding: 1.5rem;
+  background: #faf8f3;
+  border: 1px solid rgba(17,17,17,.1);
+  display: flex;
+  flex-direction: column;
+}
+.rangers-card span { font-family: "Josefin Sans", sans-serif; color: var(--ink-2); font-size: .75rem; letter-spacing: .12em; }
+.rangers-card h3 { margin-top: auto; font-family: "Josefin Sans", sans-serif; font-size: 1.3rem; letter-spacing: .08em; }
+.rangers-card .rangers-card-ja { margin: .3rem 0 0; font-family: "Shippori Mincho B1", serif; font-weight: 600; color: var(--ink-1); }
+.rangers-card p { margin: .6rem 0 0; line-height: 1.8; color: rgba(17,17,17,.66); font-size: .92rem; }
+.rangers-caption { margin: 1.4rem 0 0; color: rgba(17,17,17,.56); font-size: .84rem; line-height: 1.8; }
+
+.rangers-flow { margin: 0; padding: 0; list-style: none; display: grid; }
+.rangers-flow li { display: grid; grid-template-columns: 72px 1fr; gap: 1.3rem; padding: 1.5rem 0; border-top: 1px solid rgba(17,17,17,.13); }
+.rangers-flow li:last-child { border-bottom: 1px solid rgba(17,17,17,.13); }
+.rangers-flow b { font-family: "Josefin Sans", sans-serif; color: var(--ink-2); font-size: 1rem; letter-spacing: .12em; }
+.rangers-flow div { display: grid; gap: .45rem; }
+.rangers-flow strong { font-family: "Shippori Mincho B1", serif; font-size: 1.25rem; }
+.rangers-flow span { color: rgba(17,17,17,.66); line-height: 1.8; }
+
+.rangers-faq { display: grid; }
+.rangers-faq details { border-top: 1px solid rgba(17,17,17,.15); }
+.rangers-faq details:last-child { border-bottom: 1px solid rgba(17,17,17,.15); }
+.rangers-faq summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  min-height: 44px;
+  padding: 1.2rem 0;
+  font-family: "Shippori Mincho B1", serif;
+  font-size: 1.12rem;
+  font-weight: 600;
+}
+.rangers-faq summary::-webkit-details-marker { display: none; }
+.rangers-faq summary::after { content: "+"; font-family: "Josefin Sans", sans-serif; font-size: 1.4rem; color: var(--ink-2); transition: transform var(--dur-fast) var(--ease-out); }
+.rangers-faq details[open] summary::after { transform: rotate(45deg); }
+.rangers-faq summary:focus-visible { outline: 2px solid var(--yolo-light); outline-offset: 4px; }
+.rangers-faq p { margin: 0 0 1.4rem; line-height: 2; color: rgba(17,17,17,.72); }
+.rangers-faq a, .rangers-entry-note a { color: var(--yolo-light); }
+
+.rangers-entry { position: relative; overflow: hidden; padding: 8rem 1.5rem; background: #efe9dd; border-top: 1px solid rgba(17,17,17,.08); }
+.rangers-entry::before {
+  content: "RANGERS";
+  position: absolute;
+  right: -1rem;
+  top: 2rem;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: clamp(5rem, 17vw, 12rem);
+  color: rgba(17,17,17,.035);
+  line-height: .8;
+  letter-spacing: .04em;
+  pointer-events: none;
+}
+.rangers-entry-lead { margin: -.5rem 0 0; color: rgba(17,17,17,.7); line-height: 2; }
+.rangers-entry-note { margin: 1.6rem 0 0; color: rgba(17,17,17,.56); font-size: .82rem; line-height: 1.9; }
+
+@media (max-width: 1000px) {
+  .rangers-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rangers-about { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+@media (max-width: 640px) {
+  .sp-only { display: inline; }
+  .rangers-hero { min-height: auto; padding: 8rem 1rem 5.5rem; }
+  .rangers-coord { position: static; margin-top: 2.2rem; }
+  .rangers-section, .rangers-entry { padding: 5rem 1rem; }
+  .rangers-section h2, .rangers-entry h2 { font-size: clamp(1.5rem, 7.4vw, 2rem); }
+  .rangers-grid { grid-template-columns: 1fr; }
+  .rangers-card { min-height: 0; }
+  .rangers-card h3 { margin-top: 1.4rem; }
+  .rangers-flow li { grid-template-columns: 44px 1fr; gap: .7rem; }
+  .rangers-actions { align-items: stretch; flex-direction: column; }
+  .rangers-actions .button, .rangers-text-link { width: 100%; text-align: center; box-sizing: border-box; }
+}

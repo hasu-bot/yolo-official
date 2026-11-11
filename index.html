@@ -4,10 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Creative YOLO ｜ 熊本のクリエイティブコミュニティ</title>
-  <meta name="description" content="Creative YOLOは、熊本で写真・映像・演技・音楽などに挑戦したい人が、仲間と出会い、作品をつくり、発表まで進めるクリエイティブコミュニティです。" />
+  <meta name="description" content="熊本で写真・映像・演技・音楽を「やってみたい」人のコミュニティ。撮影会から写真展・映画祭まで、入口から発表の場までを熊本のまちなかに作っています。スマホ1台から、どうぞ。" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Creative YOLO ｜ 熊本のクリエイティブコミュニティ" />
-  <meta property="og:description" content="熊本で「やってみたい」を作品にする。仲間と出会い、つくり、発表するところまで進めるクリエイティブコミュニティ。" />
+  <meta property="og:description" content="熊本で写真・映像・演技・音楽を「やってみたい」人のコミュニティ。撮影会から写真展・映画祭まで、入口から発表の場までを熊本のまちなかに作っています。スマホ1台から、どうぞ。" />
   <link rel="canonical" href="https://creativeyolo.com/" />
   <meta property="og:url" content="https://creativeyolo.com/" />
   <meta property="og:image" content="https://creativeyolo.com/assets/ogp.png" />
@@ -38,7 +38,8 @@
   <link rel="stylesheet" href="site.css?v=20261104" />
   <link rel="stylesheet" href="home-light.css?v=20260921b" />
   <link rel="stylesheet" href="talent-section.css?v=20261103" />
-<link rel="stylesheet" href="refinement.css">
+<link rel="stylesheet" href="refinement.css?v=20261104">
+  <link rel="stylesheet" href="hero.css?v=20261104b" />
   <link rel="stylesheet" href="/public-navigation.css?v=20261028">
 </head>
 <body class="home-light">
@@ -82,14 +83,18 @@
     <section class="hero" id="top" aria-label="Creative YOLO">
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="hero-grain" aria-hidden="true"></div>
-      <figure class="hero-photo hero-photo-a"><img src="assets/lumina-site-shoot.jpg" alt="luminaでカメラマンとモデルが一緒に撮影する様子" width="1600" height="1069" fetchpriority="high"><figcaption>撮る人も、写る人も。luminaでの撮影風景。</figcaption></figure>
+      <div class="hero-flow" aria-hidden="true">
+        <!-- 同じ並びを2周ぶん置いて -50% 流すと、つなぎ目なくループする -->
+        <ul class="hero-row"><li><img src="assets/hero/lumina-site-shoot.jpg" alt="" width="900" height="600" decoding="async"></li><li><img src="assets/hero/last-call-movie-gallery-2.jpg" alt="" width="900" height="600" decoding="async"></li><li><img src="assets/hero/yolo-film-festival-hero-2025.jpg" alt="" width="900" height="600" decoding="async"></li><li><img src="assets/hero/lumina-site-viewing.jpg" alt="" width="900" height="600" decoding="async"></li><li><img src="assets/hero/lumina-site-shoot.jpg" alt="" width="900" height="600" decoding="async"></li><li><img src="assets/hero/last-call-movie-gallery-2.jpg" alt="" width="900" height="600" decoding="async"></li><li><img src="assets/hero/yolo-film-festival-hero-2025.jpg" alt="" width="900" height="600" decoding="async"></li><li><img src="assets/hero/lumina-site-viewing.jpg" alt="" width="900" height="600" decoding="async"></li></ul>
+        <ul class="hero-row hero-row-rev"><li><img src="assets/hero/last-call-movie-gallery-4.jpg" alt="" width="900" height="600" decoding="async"></li><li><img src="assets/hero/lumina-site-group.jpg" alt="" width="900" height="600" decoding="async"></li><li><img src="assets/hero/last-call-movie-gallery-1.jpg" alt="" width="900" height="600" decoding="async"></li><li><img src="assets/hero/last-call-movie-gallery-3.jpg" alt="" width="900" height="600" decoding="async"></li><li><img src="assets/hero/last-call-movie-gallery-4.jpg" alt="" width="900" height="600" decoding="async"></li><li><img src="assets/hero/lumina-site-group.jpg" alt="" width="900" height="600" decoding="async"></li><li><img src="assets/hero/last-call-movie-gallery-1.jpg" alt="" width="900" height="600" decoding="async"></li><li><img src="assets/hero/last-call-movie-gallery-3.jpg" alt="" width="900" height="600" decoding="async"></li></ul>
+      </div>
       <div class="hero-inner">
         <p class="hero-eyebrow" data-stage="1">CREATIVE YOLO — KUMAMOTO</p>
-        <h1 data-stage="2"><span class="nowrap">「やってみたい」を、</span><wbr /><span class="nowrap">作品にする。</span></h1>
-        <p class="hero-lead" data-stage="3">Creative YOLOは、熊本で写真・映像・演技・音楽に挑戦する人が、<br />仲間と出会い、実際の作品や発表まで進めるクリエイティブコミュニティです。</p>
+        <h1 data-stage="2"><span class="nowrap">人生の主人公、</span><wbr /><span class="nowrap">やってみない？</span></h1>
+        <p class="hero-lead" data-stage="3">熊本で、撮る・演じる・歌う・作る。<br />スマホ1台から始まるクリエイティブコミュニティ。</p>
         <div class="hero-cta" data-stage="4">
-          <a class="button button-primary" href="#join">参加方法を見る →</a>
-          <a class="hero-sub-link" href="#projects">作品と活動を見る ↗</a>
+          <a class="button button-primary" href="#join">コミュニティをのぞいてみる →</a>
+          <a class="hero-sub-link" href="#projects">活動を見る ↓</a>
         </div>
       </div>
       <a class="scroll-cue" href="#yolo" aria-hidden="true">Scroll</a>
