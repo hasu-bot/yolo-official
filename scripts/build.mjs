@@ -30,11 +30,11 @@ export async function buildSite({ output = path.join(ROOT, 'dist') } = {}) {
     await cp(path.join(ROOT, file), path.join(output, file), { recursive: true });
   }
   await writeFile(path.join(output, 'casting/index.html'), renderCasting());
-  // Repository-published profiles are known at build time; add them to the sitemap.
+  // /casting/ is rendered at build time. Repository-published profiles are known then too.
   const local = publishableProfiles(JSON.parse(await readFile(path.join(ROOT, 'content/talents.json'), 'utf8')));
   const top = await readFile(path.join(ROOT, 'index.html'), 'utf8');
   await writeFile(path.join(output, 'index.html'), withFeaturedTalents(top, local));
-  const urls = ['/talents/', ...local.map(p => `/talents/${p.slug}/`)].map(u => `  <url><loc>https://creativeyolo.com${u}</loc></url>`).join('\n');
+  const urls = ['/casting/', '/talents/', ...local.map(p => `/talents/${p.slug}/`)].map(u => `  <url><loc>https://creativeyolo.com${u}</loc></url>`).join('\n');
   const sitemap = await readFile(path.join(ROOT, 'sitemap.xml'), 'utf8');
   await writeFile(path.join(output, 'sitemap.xml'), sitemap.replace('</urlset>', `${urls}\n</urlset>`));
   // Public profiles are rendered from the HUB on every request. Never ship a stale registry.
